@@ -12,5 +12,5 @@ def step_impl(context):
 def step_impl(context):
     browser = webdriver.Chrome()
     browser.get('http://127.0.0.1:5000/')
-    assert "Creating a Full-Stack Python Application with NPM, React.js and Webpack" in browser.title
+    assert "Routes Per Mile" in browser.title
     time.sleep(5)
