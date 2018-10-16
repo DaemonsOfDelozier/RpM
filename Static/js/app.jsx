@@ -1,7 +1,8 @@
 import React from "react";
+import Map from "./map.jsx";
 
 export default class App extends React.Component {
   render () {
-    return <p> Hello React!</p>;
+    return <Map></Map>
   }
 }
