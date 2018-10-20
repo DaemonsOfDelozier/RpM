@@ -1,19 +1,55 @@
-/* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
+
       /* Optional: Makes the sample page fill the window. */
       html, body {
         height: 100%;
         margin: 0;
         padding: 0;
       }
+
+      /************* NAVBAR *************/
+
+      @media only screen and (min-width: 992px) {
+        .slicknav_menu {
+            display: none;
+        }
+
+        #map-area {
+            margin-top: 70px !important;
+        }
+      }
+
+      .slicknav_menu {
+        position: relative;
+        z-index: 100000;
+        background: transparent;
+        padding: 0px;
+      }
+
+      .slicknav_nav {
+        background:#333;
+      }
+
+      .navbar {
+        background: #333;
+      }
+
+      .navbar-brand, .nav-link {
+        color: #fff;
+      }
+
+      /************* MAP ****************/
+
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map-area {
+        margin-top: 5px;
+      }
+
+      #map {
+        height: 100%;
+      }
+
       #floating-panel {
-        position: absolute;
-        top: 10px;
-        left: 25%;
-        z-index: 5;
         background-color: #fff;
         padding: 5px;
         border: 1px solid #999;

@@ -5,7 +5,7 @@ export default class Map extends React.Component {
 
     render() {
         return (
-            <div>
+            <div id="map-area">
                 <div id="floating-panel">
                     <b>Start: </b>
                     <select id="start">
