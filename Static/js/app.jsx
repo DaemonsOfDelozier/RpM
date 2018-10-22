@@ -5,7 +5,7 @@ import Header from "./header.jsx"
 export default class App extends React.Component {
   render () {
     return (
-        <div>
+        <div class="main-wrap">
             <Header></Header>
             <Map></Map>
         </div>

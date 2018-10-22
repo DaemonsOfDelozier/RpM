@@ -37,6 +37,17 @@
         color: #fff;
       }
 
+      /************* CONTENT ****************/
+
+      #content {
+        background:#000;
+      }
+
+      .main-wrap {
+        max-width:1200px;
+        margin: 0 auto;
+      }
+
       /************* MAP ****************/
 
       /* Always set the map height explicitly to define the size of the div
