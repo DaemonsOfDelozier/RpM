@@ -43,16 +43,19 @@
 
       /************* CONTENT ****************/
 
+      #content, .main-wrap, .second-wrap {
+        height:100%;
+      }
+
       #content {
         background:#000;
-        height:100%;
+
       }
 
       .main-wrap {
         background: #fff;
         max-width:1200px;
         margin: 0 auto;
-        height: 100%;
       }
 
       .second-wrap {
@@ -60,7 +63,6 @@
         margin: 0 auto;
         border-right: solid #000 8px;
         border-left: solid #000 8px;
-        height: 100%;
       }
 
       /************* MAP ****************/
