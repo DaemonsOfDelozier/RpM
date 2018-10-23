@@ -11,7 +11,7 @@ export default class Header extends React.Component {
                     <a class="navbar-brand js-scroll-trigger" href="#page-top">RpM</a>
 
                     <div class="collapse navbar-collapse" id="navbarResponsive">
-                        <ul id="menu" class="navbar-nav ml-auto">
+                        <ul id="menu" class="navbar-nav">
                             <li class="nav-item mx-0 mx-lg-1">
                               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#explore">Explore</a>
                             </li>
