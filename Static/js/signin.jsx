@@ -1,5 +1,6 @@
 import React from "react";
 import GoogleLogin from "react-google-login";
+import axios from "axios";
 
 export default class SignIn extends React.Component {
     constructor(props) {
@@ -16,10 +17,13 @@ export default class SignIn extends React.Component {
     }
 
     login(user) {
-        this.setState({
-            user: user
-        });
-        localStorage.setItem('userInfo', JSON.stringify(user));
+        axios.post("http://localhost:5000/authenticateUser", user)
+            .then(response => {
+                this.setState({
+                    user: user
+                });
+                localStorage.setItem('userInfo', JSON.stringify(user));
+            });
     }
 
     logout() {
