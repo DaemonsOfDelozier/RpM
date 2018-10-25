@@ -1,15 +1,14 @@
 import React from "react";
 import GoogleLogin from "react-google-login";
-import { GoogleLogout } from 'react-google-login';
 
 export default class SignIn extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            loggedIn: false,
-            user: null
+            user: JSON.parse(localStorage.getItem('userInfo'))
         }
+        console.log(this.state.user);
 
         this.login = this.login.bind(this);
         this.logout = this.logout.bind(this);
@@ -18,16 +17,16 @@ export default class SignIn extends React.Component {
 
     login(user) {
         this.setState({
-            loggedIn: true,
             user: user
         });
+        localStorage.setItem('userInfo', JSON.stringify(user));
     }
 
     logout() {
         this.setState({
-            loggedIn: false,
             user: null
         });
+        localStorage.clear();
     }
 
     failure(response) {
@@ -35,16 +34,12 @@ export default class SignIn extends React.Component {
     }
 
     render() {
-        if (this.state.loggedIn) {
+        if (this.state.user) {
             return (
                 <div style={{ color: "white" }}>
-                    <GoogleLogout
-                        buttonText="Logout"
-                        onLogoutSuccess={this.logout}
-                        onLogoutFailure={this.failure}
-                        style={{ cursor: "pointer", backgroundColor: "#333333", color: "white" }}
-                    />
-                    {this.state.user.getBasicProfile().getName()}
+                    <button style={{ cursor: "pointer", backgroundColor: "#333333", color: "white" }}
+                            onClick={this.logout}>Logout</button>
+                    {this.state.user.profileObj.name}
                 </div>
 
             );
