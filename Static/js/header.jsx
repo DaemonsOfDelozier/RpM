@@ -7,7 +7,7 @@ export default class Header extends React.Component {
         return (
             <nav className="navbar navbar-expand-lg fixed-top text-uppercase" id="mainNav">
                 <div className="container">
-                    <SignIn></SignIn>
+                    
                     <a className="navbar-brand js-scroll-trigger" href="#page-top">RpM</a>
                     <div className="collapse navbar-collapse" id="navbarResponsive">
                         <ul id="menu" className="navbar-nav">
@@ -25,6 +25,7 @@ export default class Header extends React.Component {
                             </li>
                         </ul>
                     </div>
+                    <SignIn></SignIn>
                 </div>
             </nav>
         );
