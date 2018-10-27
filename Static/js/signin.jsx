@@ -9,7 +9,6 @@ export default class SignIn extends React.Component {
         this.state = {
             user: JSON.parse(localStorage.getItem('userInfo'))
         }
-        console.log(this.state.user);
 
         this.login = this.login.bind(this);
         this.logout = this.logout.bind(this);
@@ -17,13 +16,17 @@ export default class SignIn extends React.Component {
     }
 
     login(user) {
-        axios.post("http://localhost:5000/authenticateUser", user)
+        axios.post("http://localhost:5000/AuthenticateUser", user.tokenObj)
             .then(response => {
                 this.setState({
                     user: user
                 });
+                console.log(user);
                 localStorage.setItem('userInfo', JSON.stringify(user));
-            });
+            }).catch(error => {
+                alert("Could not sign in");
+                console.log(error);
+            })
     }
 
     logout() {
@@ -34,6 +37,7 @@ export default class SignIn extends React.Component {
     }
 
     failure(response) {
+        alert("Could not sign in");
         console.log(response);
     }
 

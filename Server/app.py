@@ -25,6 +25,7 @@ def AuthenticateUser():
             raise ValueError('Wrong issuer.')
         
         userid = idinfo['sub']
+        return "success"
 
     except ValueError:
         abort(403)
