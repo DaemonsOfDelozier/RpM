@@ -4,8 +4,11 @@ Feature: Navigation Bar
         Given There is a navigation bar
         Then  We want to see RPM, Explore, Route Map, Help, and Account
 
-	#possible scenario for testing responsive nav bar?	
-		
+   Scenario: On a mobile device #testing responsiveness
+		Given Our screen ratio is that of a mobile device
+		When  We click the menu button
+		Then  The navigation menu will expand
+	
 #Will implement these scenarios as each additional page is made
    #Scenario: Go to Homepage(RPM)
 	#Given We click RPM
