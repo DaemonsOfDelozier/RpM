@@ -2,9 +2,13 @@ from flask import Flask, render_template, request, abort, jsonify
 from tinydb import TinyDB, Query
 from google.oauth2 import id_token
 from google.auth.transport import requests
+from flask_login import LoginManager
+from Models.User import User
 
 app = Flask(__name__, static_folder="../Static/dist", template_folder="../Static")
 db = TinyDB('db.json')
+login_manager = LoginManager()
+login_manager.init_app(app)
 
 CLIENT_ID = "381930517371-emjlrrknknbbj3u0jm50h24l9tdjkipj.apps.googleusercontent.com"
 
@@ -14,22 +18,40 @@ def index():
 
 @app.route("/AuthenticateUser", methods=["POST"])
 def AuthenticateUser():
-    if not request.json or not "id_token" in request.json:
+
+    if not request.json or not "tokenObj" in request.json or not "profileObj" in request.json:
         abort(400)
     
     try:
-        token = request.json.get("id_token")
-        idinfo = id_token.verify_oauth2_token(token, requests.Request(), CLIENT_ID)
+        json = request.get_json()
+        token = json['tokenObj']
+
+        idinfo = id_token.verify_oauth2_token(token['id_token'], requests.Request(), CLIENT_ID)
 
         if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
             raise ValueError('Wrong issuer.')
         
         userid = idinfo['sub']
+
+        userTable = db.table("Users")
+        dbUser = userTable.get(Query().id == userid)
+
+        if dbUser == None:
+            profile = json['profileObj']
+            dbUser = { 'id': userid, 'name': profile['name'], 'email': profile['email'] }
+            userTable.insert(dbUser)
+        
+        user = User(dbUser['id'], dbUser['name'], dbUser['email'])
+
         return "success"
 
     except ValueError:
         abort(403)
 
+@login_manager.user_loader
+def load_user(user_id):
+    dbUser = db.table("Users").get(Query().id == user_id)
+    return User(dbUser['id'], dbUser['name'], dbUser['email'])
 
 @app.route("/GetAllPosts")
 def GetAllPosts():

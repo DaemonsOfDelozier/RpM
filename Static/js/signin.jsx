@@ -16,12 +16,12 @@ export default class SignIn extends React.Component {
     }
 
     login(user) {
-        axios.post("http://localhost:5000/AuthenticateUser", user.tokenObj)
+        console.log(user);
+        axios.post("http://localhost:5000/AuthenticateUser", user)
             .then(response => {
                 this.setState({
                     user: user
                 });
-                console.log(user);
                 localStorage.setItem('userInfo', JSON.stringify(user));
             }).catch(error => {
                 alert("Could not sign in");
