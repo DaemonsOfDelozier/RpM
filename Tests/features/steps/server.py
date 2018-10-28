@@ -13,4 +13,4 @@ def step_impl(context):
     browser = webdriver.Chrome()
     browser.get('http://127.0.0.1:5000/')
     assert "Routes Per Mile" in browser.title
-    time.sleep(5)
+    time.sleep(2)
