@@ -1,13 +1,12 @@
 Feature: Navigation Bar
 
-   Background: We are on the hosted page
-	Given Server is running
-	Then  Go to hosted page
-
    Scenario: See the navagation bar
         Given There is a navigation bar
         Then  We want to see RPM, Explore, Route Map, Help, and Account
 
+	#possible scenario for testing responsive nav bar?	
+		
+#Will implement these scenarios as each additional page is made
    #Scenario: Go to Homepage(RPM)
 	#Given We click RPM
 	#Then  We should be taken to the homepage
@@ -27,4 +26,3 @@ Feature: Navigation Bar
    #Scenario: Go to Account
 	#Given We click Account
 	#Then  We should be taken to the Account page
-        
