@@ -15,7 +15,7 @@ export default class SignIn extends React.Component {
     }
 
     login(user) {
-        axios.post("http://localhost:5000/Login", user)
+        axios.post("/Login", user)
             .then(() => {
                 window.location.reload();
             }).catch(error => {
@@ -28,7 +28,7 @@ export default class SignIn extends React.Component {
         this.setState({
             user: null
         });
-        axios.post("http://localhost:5000/Logout")
+        axios.post("/Logout")
     }
 
     failure(response) {
@@ -51,7 +51,7 @@ export default class SignIn extends React.Component {
         }
         return (
             <GoogleLogin
-                clientId="381930517371-emjlrrknknbbj3u0jm50h24l9tdjkipj.apps.googleusercontent.com"
+                clientId={window.CLIENT_ID}
                 buttonText="Sign In With Google"
                 onSuccess={this.login}
                 onFailure={this.failure}

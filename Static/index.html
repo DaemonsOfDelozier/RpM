@@ -16,6 +16,9 @@
       window.user.name = '{{ current_user.name }}';
     </script>
     {% endif %}
+    <script type="text/javascript">
+      window.CLIENT_ID = '{{ client_id | safe }}';
+    </script>
     <div id="content"></div>
     <script src="dist/bundle.js" type="text/javascript"></script>
     <script src="dist/maps.js" type="text/javascript"></script>
