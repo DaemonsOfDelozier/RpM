@@ -1,12 +1,15 @@
 from flask import Flask, render_template, request, abort, jsonify
 from tinydb import TinyDB, Query
+import json
 
 app = Flask(__name__, static_folder="../Static/dist", template_folder="../Static")
 db = TinyDB('db.json')
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    posts = db.table("Posts")
+    posts = json.dumps(posts.all())
+    return render_template("index.html", posts=posts)
 
 @app.route("/GetAllPosts")
 def GetAllPosts():

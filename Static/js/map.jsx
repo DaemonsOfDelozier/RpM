@@ -6,21 +6,11 @@ export default class Map extends React.Component {
     render() {
         return (
             <div id="map-area">
-                <div id="floating-panel">
-                    <b>Start: </b>
-                    <select id="start">
-                        <option value="Kent, OH">Kent</option>
-                        <option value="Brimfield, OH">Brimfield</option>
-                        <option value="Cleveland, OH">Cleveland</option>
-                    </select>
-                    <b>End: </b>
-                    <select id="end">
-                        <option value="Akron, OH">Akron</option>
-                        <option value="Columbus, OH">Columbus</option>
-                        <option value="Dayton, OH">Dayton</option>
-                    </select>
-                </div>
-                <div id="map"></div>
+
+                <div id="map-canvas0"></div>
+                <div id="map-canvas1"></div>
+                <div id="map-canvas2"></div>
+                <div id="map-canvas3"></div>
                 <div id="warnings-panel"></div>
             </div>
         );

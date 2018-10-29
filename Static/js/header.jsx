@@ -8,7 +8,7 @@ export default class Header extends React.Component {
         return (
             <nav class="navbar navbar-expand-lg fixed-top text-uppercase" id="mainNav">
                 <div class="container">
-                    <a class="navbar-brand js-scroll-trigger" href="#page-top">RpM</a>
+                    <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="../dist/css/img/rpm-logo.png"/></a>
 
                     <div class="collapse navbar-collapse" id="navbarResponsive">
                         <ul id="menu" class="navbar-nav">

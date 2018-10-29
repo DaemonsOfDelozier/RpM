@@ -11,12 +11,16 @@
   </head>
   <body>
     <div id="content"></div>
+
+    <script> var posts = {{ posts | safe }}
+    </script>
+
     <script src="dist/bundle.js" type="text/javascript"></script>
     <script src="dist/maps.js" type="text/javascript"></script>
      <script src="dist/jquery.min.js" type="text/javascript"></script>
     <script src="dist/jquery.slicknav.min.js" type="text/javascript"></script>
     <script src="dist/slicknav.js" type="text/javascript"></script>
-
+    <script src="dist/main.js" type="text/javascript"></script>
     <!-- Google Maps API -->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDy8sULYLBwu2p7wfiY9tyb-pMRER9s2Qs&callback=initMap"></script>
     
