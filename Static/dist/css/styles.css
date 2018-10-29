@@ -23,10 +23,17 @@
       }
 
       .slicknav_menu {
-        position: relative;
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
         z-index: 100000;
         background: transparent;
         padding: 0px;
+      }
+
+      .slicknav_btn {
+        margin: 48px;
       }
 
       .slicknav_nav {

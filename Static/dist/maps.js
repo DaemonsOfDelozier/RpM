@@ -21,9 +21,16 @@ function initMap(){
 
         var numString = i.toString();
         var thisMapID = "map-canvas" + numString;
+        var thisTitleID = "map-title" + numString;
+        var thisRatingID = "map-rating" + numString;
+
+        //Query database information
         var start = posts[i].start;
         var end = posts[i].end;
-
+        var title = posts[i].title;
+        var rating = posts[i].rating;
+        document.getElementById(thisTitleID).innerHTML = title;
+        document.getElementById(thisRatingID).innerHTML = rating;
         map[i] = new google.maps.Map(document.getElementById(thisMapID), mapOptions);
         directionsDisplay[i].setMap(map[i]);
 
