@@ -40,9 +40,11 @@ export default class SignIn extends React.Component {
         if (this.state.user) {
             return (
                 <div style={{ color: "white" }}>
-                    <button style={{ cursor: "pointer", backgroundColor: "#333333", color: "white" }}
-                            onClick={this.logout}>Logout</button>
                     {this.state.user.name}
+                    <button 
+                        style={{ cursor: "pointer", backgroundColor: "#333333", color: "white", marginLeft: "20px" }} 
+                        onClick={this.logout}>Logout
+                    </button>
                 </div>
 
             );

@@ -4,14 +4,15 @@ from google.oauth2 import id_token
 from google.auth.transport import requests
 from flask_login import LoginManager, login_user, logout_user, current_user
 from Models.User import User
+import os
 
 app = Flask(__name__, static_folder="../Static/dist", template_folder="../Static")
-app.config['SECRET_KEY'] = "Your_secret_string"
+
+app.config.from_envvar('APP_SETTINGS')
+
 db = TinyDB('db.json')
 login_manager = LoginManager()
 login_manager.init_app(app)
-
-CLIENT_ID = "381930517371-emjlrrknknbbj3u0jm50h24l9tdjkipj.apps.googleusercontent.com"
 
 @app.route("/")
 def index():
@@ -19,7 +20,6 @@ def index():
 
 @app.route("/Login", methods=["POST"])
 def Login():
-
     if not request.json or not "tokenObj" in request.json or not "profileObj" in request.json:
         abort(400)
     
@@ -27,7 +27,7 @@ def Login():
         json = request.get_json()
         token = json['tokenObj']
 
-        idinfo = id_token.verify_oauth2_token(token['id_token'], requests.Request(), CLIENT_ID)
+        idinfo = id_token.verify_oauth2_token(token['id_token'], requests.Request(), app.config['CLIENT_ID'])
 
         if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
             raise ValueError('Wrong issuer.')
