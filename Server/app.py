@@ -6,9 +6,9 @@ from flask_login import LoginManager, login_user, logout_user, current_user
 from Models.User import User
 import os
 
-app = Flask(__name__, static_folder="../Static/dist", template_folder="../Static")
+app = Flask(__name__, static_folder="../Static/dist", template_folder="../Static", instance_relative_config=True)
 
-app.config.from_envvar('APP_SETTINGS')
+app.config.from_pyfile("config.py")
 
 db = TinyDB('db.json')
 login_manager = LoginManager()
