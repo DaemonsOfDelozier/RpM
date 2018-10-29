@@ -3,6 +3,10 @@ import SignIn from "./signin.jsx"
 
 export default class Header extends React.Component {
 
+    constructor(props) {
+        super(props);
+    }
+    
     render() {
         return (
             <nav className="navbar navbar-expand-lg fixed-top text-uppercase" id="mainNav">
@@ -25,7 +29,7 @@ export default class Header extends React.Component {
                             </li>
                         </ul>
                     </div>
-                    <SignIn></SignIn>
+                    <SignIn user={this.props.user}></SignIn>
                 </div>
             </nav>
         );

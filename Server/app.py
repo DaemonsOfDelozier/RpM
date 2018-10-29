@@ -1,11 +1,12 @@
-from flask import Flask, render_template, request, abort, jsonify
+from flask import Flask, render_template, request, abort, jsonify, redirect, url_for
 from tinydb import TinyDB, Query
 from google.oauth2 import id_token
 from google.auth.transport import requests
-from flask_login import LoginManager
+from flask_login import LoginManager, login_user, logout_user, current_user
 from Models.User import User
 
 app = Flask(__name__, static_folder="../Static/dist", template_folder="../Static")
+app.config['SECRET_KEY'] = "Your_secret_string"
 db = TinyDB('db.json')
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -16,8 +17,8 @@ CLIENT_ID = "381930517371-emjlrrknknbbj3u0jm50h24l9tdjkipj.apps.googleuserconten
 def index():
     return render_template("index.html")
 
-@app.route("/AuthenticateUser", methods=["POST"])
-def AuthenticateUser():
+@app.route("/Login", methods=["POST"])
+def Login():
 
     if not request.json or not "tokenObj" in request.json or not "profileObj" in request.json:
         abort(400)
@@ -43,10 +44,16 @@ def AuthenticateUser():
         
         user = User(dbUser['id'], dbUser['name'], dbUser['email'])
 
-        return "success"
+        login_user(user, remember=True)
+        return redirect(url_for("index"))
 
     except ValueError:
         abort(403)
+
+@app.route("/Logout", methods=["POST"])
+def Logout():
+    logout_user()
+    return redirect(url_for("index"))
 
 @login_manager.user_loader
 def load_user(user_id):

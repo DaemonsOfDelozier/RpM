@@ -5,9 +5,8 @@ import axios from "axios";
 export default class SignIn extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
-            user: JSON.parse(localStorage.getItem('userInfo'))
+            user: props.user
         }
 
         this.login = this.login.bind(this);
@@ -16,13 +15,9 @@ export default class SignIn extends React.Component {
     }
 
     login(user) {
-        console.log(user);
-        axios.post("http://localhost:5000/AuthenticateUser", user)
-            .then(response => {
-                this.setState({
-                    user: user
-                });
-                localStorage.setItem('userInfo', JSON.stringify(user));
+        axios.post("http://localhost:5000/Login", user)
+            .then(() => {
+                window.location.reload();
             }).catch(error => {
                 alert("Could not sign in");
                 console.log(error);
@@ -33,7 +28,7 @@ export default class SignIn extends React.Component {
         this.setState({
             user: null
         });
-        localStorage.clear();
+        axios.post("http://localhost:5000/Logout")
     }
 
     failure(response) {
@@ -47,7 +42,7 @@ export default class SignIn extends React.Component {
                 <div style={{ color: "white" }}>
                     <button style={{ cursor: "pointer", backgroundColor: "#333333", color: "white" }}
                             onClick={this.logout}>Logout</button>
-                    {this.state.user.profileObj.name}
+                    {this.state.user.name}
                 </div>
 
             );
