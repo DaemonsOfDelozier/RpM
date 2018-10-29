@@ -3,3 +3,4 @@
 .DS_Store
 Server/db.json
 __pycache__
+instance/

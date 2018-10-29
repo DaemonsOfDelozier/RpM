@@ -8,7 +8,8 @@ import os
 
 app = Flask(__name__, static_folder="../Static/dist", template_folder="../Static", instance_relative_config=True)
 
-app.config.from_pyfile("config.py")
+app.config.from_object("config")
+app.config.from_pyfile("instance_config.py")
 
 db = TinyDB('db.json')
 login_manager = LoginManager()
