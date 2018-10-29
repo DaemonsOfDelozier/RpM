@@ -10,10 +10,16 @@
     <title>Routes Per Mile</title>
   </head>
   <body>
+    {% if current_user.is_authenticated %}
+    <script type="text/javascript">
+      window.user = {};
+      window.user.name = '{{ current_user.name }}';
+    </script>
+    {% endif %}
     <div id="content"></div>
     <script src="dist/bundle.js" type="text/javascript"></script>
     <script src="dist/maps.js" type="text/javascript"></script>
-     <script src="dist/jquery.min.js" type="text/javascript"></script>
+    <script src="dist/jquery.min.js" type="text/javascript"></script>
     <script src="dist/jquery.slicknav.min.js" type="text/javascript"></script>
     <script src="dist/slicknav.js" type="text/javascript"></script>
 
