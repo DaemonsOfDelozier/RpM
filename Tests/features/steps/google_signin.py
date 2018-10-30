@@ -15,6 +15,10 @@ def step_impl(context):
 @when(u'we sign in to google')
 def step_impl(context):
 	browser = context.browser
+	sign_in_window = browser.window_handles[1]
+	browser.switch_to_window(sign_in_window)
+	time.sleep(5)
+	
 	
 @then(u'we should see our name on the nav bar')
 def step_impl(context):
