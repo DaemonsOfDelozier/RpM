@@ -6,19 +6,21 @@ import time
 @given(u'we click on google sign in button')
 def step_impl(context):
 	browser = webdriver.Chrome()
-	browser.get('localhost:5000')
 	context.browser = browser
-	time.sleep(1)
+	browser.get('localhost:5000')
+	browser.maximize_window()
+	sign_in_button = browser.find_element_by_xpath('//*[@id="mainNav"]/div/button')
+	sign_in_button.click()
 
 @when(u'we sign in to google')
 def step_impl(context):
-	time.sleep(1)
+	browser = context.browser
 	
 @then(u'we should see our name on the nav bar')
 def step_impl(context):
-	time.sleep(1)
+	browser = context.browser
 
-@when(u'we should be able to log out afterwards')
+@then(u'we should be able to log out afterwards')
 def step_impl(context):
-	time.sleep(1)
-
+	browser = context.browser
+	browser.close()
