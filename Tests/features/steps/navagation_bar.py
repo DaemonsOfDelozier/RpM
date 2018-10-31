@@ -35,6 +35,7 @@ def step_impl(context):
 	browser = context.browser
 	menu_button = browser.find_element_by_xpath('/html/body/div[1]/a')
 	menu_button.click()
+	time.sleep(1)
 
 @then(u'The navigation menu will expand')
 def step_impl(context):
