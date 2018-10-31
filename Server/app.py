@@ -5,6 +5,7 @@ from google.auth.transport import requests
 from flask_login import LoginManager, login_user, logout_user, current_user
 from Models.User import User
 import os
+import json
 
 app = Flask(__name__, static_folder="../Static/dist", template_folder="../Static", instance_relative_config=True)
 
@@ -22,7 +23,9 @@ login_manager.init_app(app)
 
 @app.route("/")
 def index():
-    return render_template("index.html", client_id=app.config["CLIENT_ID"])
+    posts = db.table("Posts")
+    posts = json.dumps(posts.all())
+    return render_template("index.html", client_id=app.config["CLIENT_ID"], posts=posts)
 
 @app.route("/Login", methods=["POST"])
 def Login():
