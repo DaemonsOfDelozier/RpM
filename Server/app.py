@@ -4,9 +4,8 @@ from google.oauth2 import id_token
 from google.auth.transport import requests
 from flask_login import LoginManager, login_user, logout_user, current_user
 from Models.User import User
-import os
 
-app = Flask(__name__, static_folder="../Static/dist", template_folder="../Static", instance_relative_config=True)
+app = Flask(__name__, static_folder="../Static/dist", template_folder="../Templates", instance_relative_config=True)
 
 app.config.from_object("config")
 
