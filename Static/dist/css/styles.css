@@ -1,140 +1,175 @@
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
+/************* NAVBAR *************/
 
-      /************* NAVBAR *************/
+@media only screen and (min-width: 992px) {
+  .slicknav_menu {
+      display: none;
+  }
 
-      @media only screen and (min-width: 992px) {
-        .slicknav_menu {
-            display: none;
-        }
+  #map-area {
+      margin-top: 70px !important;
+  }
 
-        #map-area {
-            margin-top: 70px !important;
-        }
-      }
+  .navbar-brand img {
+    width: 100px;
+    margin-left: 40px;
+    padding-top: 20px;
+  }
+  
+  .logo-container {
+    width: 150px;
+    height: 150px;
+    margin-top: 50px;
+    margin-left: -40px;
+    background-color: #333;
+    border-radius: 50%;
+  }
+}
 
-      .navbar-nav li {
-        border-left: solid #fff 1px;
-      }
+.sidebar {
+  height: 100%;
+  width: 150px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
 
-      .slicknav_menu {
-        position: fixed;
-        top: 0;
-        right: 0;
-        left: 0;
-        z-index: 100000;
-        background: transparent;
-        padding: 0px;
-      }
+}
 
-      .slicknav_nav {
-        background:#333;
-      }
+.navbar-nav li {
+  border-left: solid #fff 1px;
+}
 
-      .navbar {
-        background: #333;
-      }
+.slicknav_menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 100000;
+  background: transparent;
+  padding: 0px;
+}
 
-      .navbar-brand, .nav-link {
-        color: #fff;
-      }
+.slicknav_nav {
+  background:#333;
+}
 
-      .navbar-brand img {
-        width: 100px;
-      }
+.navbar {
+  background: #333;
+}
 
-      /************* CONTENT ****************/
+.navbar-brand, .nav-link {
+  color: #fff;
+}
 
+.navbar-brand img {
+  width: 100px;
+  margin-left: 40px;
+  padding-top: 20px;
+}
 
-      #content {
-        background:#000;
+.logo-container {
+  width: 150px;
+  height: 150px;
+  margin-top: 50px;
+  margin-left: -40px;
+  background-color: #333;
+  border-radius: 50%;
+}
 
-      }
-
-      .main-wrap {
-        background: #fff;
-        max-width:1200px;
-        margin: 0 auto;
-      }
-
-      .second-wrap {
-        max-width: 950px;
-        margin: 0 auto;
-        border-right: solid #000 8px;
-        border-left: solid #000 8px;
-      }
-
-      /************* ROUTES ****************/
-
-      #routes-wrp {
-        padding: 150px 0px;
-      }
-
-      /************* MAP ****************/
-
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map-area {
-        margin-top: 5px;
-        max-width: 500px;
-        margin: 0 auto;
-        padding-top: 100px;
-      }
-
-      #map-canvas0,
-      #map-canvas1,
-      #map-canvas2,
-      #map-canvas3{
-        height: 200px;
-        padding: 50px 0px;
-        margin: 50px 0px;
-      }
+/************* CONTENT ****************/
 
 
-      #map {
-      height:100%;
-        max-height: 500px;
-      }
+#content {
+  background:#000;
 
-      #floating-panel {
-        background-color: #fff;
-        padding: 5px;
-        border: 1px solid #999;
-        text-align: center;
-        font-family: 'Roboto','sans-serif';
-        line-height: 30px;
-        padding-left: 10px;
-      }
-      #warnings-panel {
-        width: 100%;
-        height:10%;
-        text-align: center;
-      }
+}
 
-      #block-wrp {
-          width: 100%;
-      }
-      #block-wrp .block-item {
-          height: 400px;
-          width: 400px;
-          margin: 0 auto;
+.main-wrap {
+  background: #fff;
+  max-width:1200px;
+  margin: 0 auto;
+}
 
-          padding-top: 100px;
-      }
-      #block-wrp .block-item .map-item {
-          height: 90%
-      }
-      #block-wrp .block-item span.city-name {
-          text-align: center;
-          color: #000;
-          text-transform: uppercase;
-          font-weight: bold;
-          background: #a2ccff;
-          height: 10%;
-          line-height: 2em;
-      }
+.second-wrap {
+  max-width: 950px;
+  margin: 0 auto;
+  border-right: solid #000 8px;
+  border-left: solid #000 8px;
+}
+
+/************* ROUTES ****************/
+
+#routes-wrp {
+  padding: 150px 0px;
+}
+
+/************* MAP ****************/
+
+/* Always set the map height explicitly to define the size of the div
+  * element that contains the map. */
+#map-area {
+  margin-top: 5px;
+  max-width: 500px;
+  margin: 0 auto;
+  padding-top: 100px;
+}
+
+#map-canvas0,
+#map-canvas1,
+#map-canvas2,
+#map-canvas3{
+  height: 200px;
+  padding: 50px 0px;
+  margin: 50px 0px;
+}
+
+
+#map {
+height:100%;
+  max-height: 500px;
+}
+
+#floating-panel {
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
+  font-family: 'Roboto','sans-serif';
+  line-height: 30px;
+  padding-left: 10px;
+}
+#warnings-panel {
+  width: 100%;
+  height:10%;
+  text-align: center;
+}
+
+#block-wrp {
+    width: 100%;
+}
+#block-wrp .block-item {
+    height: 400px;
+    width: 400px;
+    margin: 0 auto;
+
+    padding-top: 100px;
+}
+#block-wrp .block-item .map-item {
+    height: 90%
+}
+#block-wrp .block-item span.city-name {
+    text-align: center;
+    color: #000;
+    text-transform: uppercase;
+    font-weight: bold;
+    background: #a2ccff;
+    height: 10%;
+    line-height: 2em;
+}
