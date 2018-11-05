@@ -4,6 +4,9 @@ python:
 branches:
   only:
   - master
+sudo: required
+addons:
+  chrome: stable
 install:
   - pip install selenium
   - pip install behave
