@@ -9,7 +9,7 @@ chrome_options.add_argument("--no-sandbox")
 
 @given(u'we click on google sign in button')
 def step_impl(context):
-	browser = webdriver.Chrome()
+	browser = webdriver.Chrome(chrome_options=chrome_options)
 	context.browser = browser
 	browser.get('localhost:5000')
 	browser.maximize_window()

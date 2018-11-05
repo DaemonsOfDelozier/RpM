@@ -6,7 +6,7 @@ import time
 #See the navagation bar
 @given(u'There is a navigation bar')
 def step_impl(context):
-	browser = webdriver.Chrome()
+	browser = webdriver.Chrome(chrome_options=chrome_options)
 	context.browser = browser
 	browser.get('localhost:5000')
 	browser.maximize_window()
@@ -25,7 +25,7 @@ def step_impl(context):
 #On a mobile device
 @given(u'Our screen ratio is that of a mobile device')
 def step_impl(context):
-	browser = webdriver.Chrome()
+	browser = webdriver.Chrome(chrome_options=chrome_options)
 	context.browser = browser
 	browser.get('localhost:5000')
 	browser.set_window_size(375, 812)
