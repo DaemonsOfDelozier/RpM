@@ -66,7 +66,10 @@ def Logout():
 @login_manager.user_loader
 def load_user(user_id):
     dbUser = db.table("Users").get(Query().id == user_id)
-    return User(dbUser['id'], dbUser['name'], dbUser['email'])
+    if dbUser is not None:
+        return User(dbUser['id'], dbUser['name'], dbUser['email'])
+    else:
+        return None
 
 @app.route("/GetAllPosts")
 def GetAllPosts():
