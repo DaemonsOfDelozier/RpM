@@ -8,6 +8,8 @@ python:
 branches:
   only:
   - master
+before_install:
+  - - google-chrome-stable --headless --disable-gpu --no-sandbox
 install:
   - pip3 install -r Server/requirements.txt
   - pip3 install selenium
