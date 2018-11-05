@@ -1,12 +1,12 @@
+sudo: required
+addons:
+  chrome: stable
 language: python
 python: 
   - "3.6"
 branches:
   only:
   - master
-sudo: required
-addons:
-  chrome: stable
 install:
   - pip install selenium
   - pip install behave
