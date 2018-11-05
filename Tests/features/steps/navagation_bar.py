@@ -15,7 +15,7 @@ def step_impl(context):
 @then(u'We want to see RPM, Explore, Route Map, Help, and Account')
 def step_impl(context):
 	browser = context.browser
-	assert 'RpM' in browser.page_source
+	rpm_button = browser.find_element_by_xpath('//*[@id="mainNav"]/div/a')
 	assert 'Explore' in browser.page_source
 	assert 'Route Map' in browser.page_source
 	assert 'Help' in browser.page_source

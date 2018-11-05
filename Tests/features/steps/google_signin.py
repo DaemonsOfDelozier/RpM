@@ -9,7 +9,7 @@ def step_impl(context):
 	context.browser = browser
 	browser.get('localhost:5000')
 	browser.maximize_window()
-	sign_in_button = browser.find_element_by_xpath('//*[@id="mainNav"]/div/button')
+	sign_in_button = browser.find_element_by_xpath('//*[@id="mainNav"]/div/div[2]/button')
 	sign_in_button.click()
 
 @when(u'we sign in to google')
@@ -27,7 +27,7 @@ def step_impl(context):
 	password_text_box.send_keys('testing4lyfe')
 	password_next_button = browser.find_element_by_xpath('//*[@id="passwordNext"]')
 	password_next_button.click()
-	time.sleep(500)
+	time.sleep(5)
 
 	#checks if google wants us to verify via phone number
 	#if this happens we cant continue the scenario
@@ -43,7 +43,7 @@ def step_impl(context):
 	if(not(google_beat_us)):
 		original_window = browser.window_handles[0]
 		browser.switch_to_window(original_window)
-		upper_right_text = browser.find_element_by_xpath('//*[@id="mainNav"]/div/div[2]').text
+		upper_right_text = browser.find_element_by_xpath('//*[@id="mainNav"]/div/div[2]/div').text
 		assert upper_right_text == 'JOHN DOELogout'
 	else:
 		browser.close()
@@ -56,7 +56,7 @@ def step_impl(context):
 	google_beat_us = context.google_beat_us
 	browser = context.browser
 	if(not(google_beat_us)):
-		logout_button = browser.find_element_by_xpath('//*[@id="mainNav"]/div/div[2]/button')
+		logout_button = browser.find_element_by_xpath('//*[@id="mainNav"]/div/div[2]/div/button')
 		logout_button.click()
 		assert not('JOHN DOE' in browser.page_source)
 		time.sleep(5)
