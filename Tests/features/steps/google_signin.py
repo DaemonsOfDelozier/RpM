@@ -17,6 +17,7 @@ def step_impl(context):
 	browser = context.browser
 	sign_in_window = browser.window_handles[1]
 	browser.switch_to_window(sign_in_window)
+	time.sleep(5)
 	email_text_box = browser.find_element_by_xpath('//*[@id="identifierId"]')
 	email_text_box.send_keys('testingiscool86@gmail.com')
 	email_next_button = browser.find_element_by_xpath('//*[@id="identifierNext"]')
