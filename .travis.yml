@@ -1,16 +1,15 @@
 language: python
 python: 
-    - "3.6"
+  - "3.6"
 branches:
   only:
-    - master
-    - travis-ci
+  - master
+  - travis-ci
 install:
-    - pip install selenium
-    - pip install behave
+  - pip install selenium
+  - pip install behave
 before_script:
-    - wget http://chromedriver.storage.googleapis.com/2.23/chromedriver_linux64.zip
-    - unzip chromedriver_linux64.zip -d 
-    /home/travis/virtualenv/python2.7.12/bin/
-    - export CHROME_BIN=chromium-browser
+  - wget http://chromedriver.storage.googleapis.com/2.23/chromedriver_linux64.zip
+  - unzip chromedriver_linux64.zip -d /home/travis/virtualenv/python2.7.12/bin/
+  - export CHROME_BIN=chromium-browser
 script: behave
