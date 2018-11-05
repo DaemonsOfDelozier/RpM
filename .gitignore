@@ -4,3 +4,4 @@
 Server/db.json
 __pycache__
 instance/
+.travis.yml
