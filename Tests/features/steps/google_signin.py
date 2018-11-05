@@ -1,7 +1,11 @@
 from behave import *
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options
 import time
+
+chrome_options = Options()
+chrome_options.add_argument("--no-sandbox")
 
 @given(u'we click on google sign in button')
 def step_impl(context):
