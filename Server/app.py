@@ -16,7 +16,7 @@ except FileNotFoundError:
     pass
 
 
-db = TinyDB('db.json')
+db = TinyDB('./db.json')
 login_manager = LoginManager()
 login_manager.init_app(app)
 
