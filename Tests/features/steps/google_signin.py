@@ -27,19 +27,36 @@ def step_impl(context):
 	password_next_button = browser.find_element_by_xpath('//*[@id="passwordNext"]')
 	password_next_button.click()
 	time.sleep(5)
+
+	#checks if google wants us to verify via phone number
+	#if this happens we cant continue the scenario
+	google_beat_us = False
+	if (len(browser.window_handles) == 2): #if the sign in window is still open
+		google_beat_us = True
+	context.google_beat_us = google_beat_us
 	
 @then(u'we should see our name on the nav bar')
 def step_impl(context):
+	google_beat_us = context.google_beat_us
 	browser = context.browser
-	original_window = browser.window_handles[0]
-	browser.switch_to_window(original_window)
-	upper_right_text = browser.find_element_by_xpath('//*[@id="mainNav"]/div/div[2]').text
-	assert upper_right_text == 'JOHN DOELogout'
+	if(not(google_beat_us)):
+		original_window = browser.window_handles[0]
+		browser.switch_to_window(original_window)
+		upper_right_text = browser.find_element_by_xpath('//*[@id="mainNav"]/div/div[2]').text
+		assert upper_right_text == 'JOHN DOELogout'
+	else:
+		browser.close()
+		original_window = browser.window_handles[0]
+		browser.switch_to_window(original_window)
+		context.browser = browser
 
 @then(u'we should be able to log out afterwards')
 def step_impl(context):
+	google_beat_us = context.google_beat_us
 	browser = context.browser
-	logout_button = browser.find_element_by_xpath('//*[@id="mainNav"]/div/div[2]/button')
-	logout_button.click()
-	assert not('JOHN DOE' in browser.page_source)
+	if(not(google_beat_us)):
+		logout_button = browser.find_element_by_xpath('//*[@id="mainNav"]/div/div[2]/button')
+		logout_button.click()
+		assert not('JOHN DOE' in browser.page_source)
+		time.sleep(5)
 	browser.close()
