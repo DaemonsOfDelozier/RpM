@@ -11,7 +11,7 @@ def step_impl(context):
 @then(u'Go to hosted page')
 def step_impl(context):
 	browser = webdriver.Chrome()
-	browser.get('http://127.0.0.1:5000/')
+	browser.get('localhost:5000')
 	assert "Routes Per Mile" in browser.title
 	browser.close()
 	time.sleep(1)
