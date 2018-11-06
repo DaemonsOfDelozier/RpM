@@ -8,6 +8,8 @@ import time
 def step_impl(context):
 	chrome_options = Options()
 	chrome_options.add_argument('--no-sandbox')
+	chrome_options.add_argument('--headless')
+	chrome_options.add_argument('--disable-gpu')
 	browser = webdriver.Chrome(chrome_options = chrome_options)
 	context.browser = browser
 	browser.get('localhost:5000')
