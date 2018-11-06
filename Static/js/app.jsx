@@ -1,6 +1,6 @@
 import React from "react";
-import Map from "./map.jsx";
 import Header from "./header.jsx"
+import PostList from "./postList.jsx"
 
 export default class App extends React.Component {
 
@@ -14,7 +14,7 @@ export default class App extends React.Component {
                 <Header user={this.props.user}></Header>
                 <div className="main-wrap">
                     <div className="second-wrap">
-                        <Map user={this.props.user}></Map>
+                        <PostList user={this.props.user}/>
                     </div>
                 </div>
             </div>

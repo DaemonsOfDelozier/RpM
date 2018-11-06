@@ -2,9 +2,11 @@ from flask import Flask, render_template, request, abort, jsonify, redirect, url
 from tinydb import TinyDB, Query
 from google.oauth2 import id_token
 from google.auth.transport import requests
-from flask_login import LoginManager, login_user, logout_user, current_user
+from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 from Models.User import User
+from Models.Post import Post
 import json
+import uuid
 
 app = Flask(__name__, static_folder="../Static/dist", template_folder="../Templates", instance_relative_config=True)
 
@@ -22,9 +24,7 @@ login_manager.init_app(app)
 
 @app.route("/")
 def index():
-    posts = db.table("Posts")
-    posts = json.dumps(posts.all())
-    return render_template("index.html", client_id=app.config["CLIENT_ID"], posts=posts)
+    return render_template("index.html", client_id=app.config["CLIENT_ID"])
 
 @app.route("/Login", methods=["POST"])
 def Login():
@@ -77,12 +77,23 @@ def GetAllPosts():
     return jsonify(posts.all())
 
 @app.route("/SubmitPost", methods=["POST"])
+@login_required
 def SubmitPost():
     if not request.json or not "post" in request.json:
         abort(400)
 
-    newPost = {'notes': request.json.get("post")}
-    db.table("Posts").insert(newPost)
+    json = request.get_json()
+    newPost = Post(postID=uuid.uuid4().hex,
+                   userID=current_user.id,
+                   title=json['title'],
+                   description=json['description'],
+                   notes=json['notes'],
+                   rating=json['rating'],
+                   numRatings=0,
+                   start=json['start'],
+                   end=json['end'])
+
+    db.table("Posts").insert(newPost.getDatabaseModel())
     return "success"
 
 if __name__ == "__main__":

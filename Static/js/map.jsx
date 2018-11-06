@@ -2,24 +2,46 @@ import React from "react";
 
 export default class Map extends React.Component {
 
+    constructor(props) {
+        super(props);
+        console.log(props);
+    }
+
+    componentDidMount() {
+        const latitude = 41.1537;
+        const longitude = 81.3579;
+
+        const coordinates = new window.google.maps.LatLng(latitude, longitude);
+
+        const mapOptions = {
+            zoom: 13,
+            center: coordinates
+        };
+
+        this.directionsService = new window.google.maps.DirectionsService();
+        this.directionsRenderer = new window.google.maps.DirectionsRenderer();
+
+        const map = new window.google.maps.Map(document.getElementById(this.props.id), mapOptions);
+        this.directionsRenderer.setMap(map);
+
+        var request = {
+            origin: this.props.start,
+            destination: this.props.end,
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+
+        this.directionsService.route(request, (response, status) => {
+            if (status === window.google.maps.DirectionsStatus.OK) {
+                this.directionsRenderer.setDirections(response);
+            } else { 
+                alert("Directions request failed: " + status); 
+            }
+        });
+    }
 
     render() {
         return (
-            <div id="map-area">
-                <div id="map-title0"></div>
-                <div id="map-rating0"></div>
-                <div id="map-canvas0"></div>
-                <div id="map-title1"></div>
-                <div id="map-rating1"></div>
-                <div id="map-canvas1"></div>
-                <div id="map-title2"></div>
-                <div id="map-rating2"></div>
-                <div id="map-canvas2"></div>
-                <div id="map-title3"></div>
-                <div id="map-rating3"></div>
-                <div id="map-canvas3"></div>
-                <div id="warnings-panel"></div>
-            </div>
+            <div style={{ width: 500, height: 500 }} id={this.props.id} />
         );
     }
 }
