@@ -23,9 +23,7 @@ login_manager.init_app(app)
 
 @app.route("/")
 def index():
-    posts = db.table("Posts")
-    posts = json.dumps(posts.all())
-    return render_template("index.html", client_id=app.config["CLIENT_ID"], posts=posts)
+    return render_template("index.html", client_id=app.config["CLIENT_ID"])
 
 @app.route("/Login", methods=["POST"])
 def Login():
