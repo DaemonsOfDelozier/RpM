@@ -14,9 +14,9 @@ install:
   - pip3 install behave
   - pip3 install requests
 before_script:
-  - wget http://chromedriver.storage.googleapis.com/2.23/chromedriver_linux64.zip
-  - unzip chromedriver_linux64.zip -d /home/travis/virtualenv/python3.6/bin/
-  - export CHROME_BIN=chromium-browser
+# - wget http://chromedriver.storage.googleapis.com/2.23/chromedriver_linux64.zip
+# - unzip chromedriver_linux64.zip -d /home/travis/virtualenv/python3.6/bin/
+# - export CHROME_BIN=chromium-browser
   - python3 Server/app.py &
 script:
   - cd Tests
