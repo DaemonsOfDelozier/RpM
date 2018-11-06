@@ -28,4 +28,4 @@ script:
   - whereis google-chrome-stable
   - whereis chromedriver
   - cd Tests
-  - behave
+  - xvfb-run behave
