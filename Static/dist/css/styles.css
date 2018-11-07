@@ -87,21 +87,12 @@ html, body {
 
 
 #content {
-  background:#000;
-
+  background:#ddd;
 }
 
 .main-wrap {
   background: #fff;
-  max-width:1200px;
-  margin: 0 auto;
-}
-
-.second-wrap {
-  max-width: 950px;
-  margin: 0 auto;
-  border-right: solid #000 8px;
-  border-left: solid #000 8px;
+  margin-left: 15vw;
 }
 
 /************* ROUTES ****************/

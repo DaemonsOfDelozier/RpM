@@ -30,10 +30,11 @@ export default class PostList extends React.Component {
         return (
             this.state.posts.map(post => {
                 return (
-                    <div key={post.title} style={{marginLeft: "200px", paddingTop: "20px"}}>
+                    <div key={post.id} style={{paddingLeft: "20px", paddingTop: "20px"}}>
                         <h3>{post.title}</h3>
-                        <p>{post.rating}</p>
-                        <Map id={post.title} start={post.start} end={post.end}/>
+                        <p>{post.description}</p>
+                        <p>{post.notes}</p>
+                        <Map id={post.id} start={post.start} end={post.end}/>
                     </div>
                 );
             })
