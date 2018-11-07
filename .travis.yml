@@ -19,6 +19,7 @@ install:
 branches:
   only:
   - master
+  - travis-ci
 before_script:
   - python3 Server/app.py &
   - "export DISPLAY=:99.0"
