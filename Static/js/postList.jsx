@@ -1,6 +1,7 @@
 import React from "react";
 import Map from "./map.jsx";
 import axios from "axios";
+import Grid from "@material-ui/core/Grid"
 
 export default class PostList extends React.Component {
 
@@ -30,11 +31,20 @@ export default class PostList extends React.Component {
         return (
             this.state.posts.map(post => {
                 return (
-                    <div key={post.id} style={{paddingLeft: "20px", paddingTop: "20px"}}>
-                        <h3>{post.title}</h3>
-                        <p>{post.description}</p>
-                        <p>{post.notes}</p>
-                        <Map id={post.id} start={post.start} end={post.end}/>
+                    <div key={post.id} style={{padding: "20px"}}>
+                        <Grid container direction="row" justify="flex-start" alignItems="flex-start" spacing={24}>
+                            <Grid item sm={12} md={6}>
+                                <h3>{post.title}</h3>
+                                <Map id={post.id} start={post.start} end={post.end}/>
+                            </Grid>
+                            <Grid item zeroMinWidth sm={12} md={6} style={{paddingTop: "40px"}}>
+                                <h4>Description</h4>
+                                <p>{post.description}</p>
+                                <br/>
+                                <h5>Notes</h5>
+                                <p>{post.notes}</p>
+                            </Grid>
+                        </Grid>
                     </div>
                 );
             })
