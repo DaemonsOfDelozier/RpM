@@ -1,7 +1,5 @@
 sudo: required
 dist: trusty
-addons:
-  chrome: stable
 language: python
 python: 
   - "3.6"
@@ -10,23 +8,14 @@ install:
   - pip3 install selenium
   - pip3 install behave
   - pip3 install requests
-  - wget -N http://chromedriver.storage.googleapis.com/2.30/chromedriver_linux64.zip -P ~/
-  - unzip ~/chromedriver_linux64.zip -d ~/
-  - rm ~/chromedriver_linux64.zip
-  - sudo mv -f ~/chromedriver /usr/local/share/
-  - sudo chmod +x /usr/local/share/chromedriver
-  - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
+  - wget https://github.com/mozilla/geckodriver/releases/download/v0.20.1/geckodriver-v0.20.1-linux64.tar.gz
+  - tar -xzf geckodriver-v0.20.0-linux64.tar.gz -C bin
 branches:
   only:
   - master
   - travis-ci
 before_script:
   - python3 Server/app.py &
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-  - sleep 4
 script:
-  - whereis google-chrome-stable
-  - whereis chromedriver
   - cd Tests
-  - xvfb-run behave
+  - behave
