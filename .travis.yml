@@ -3,6 +3,9 @@ dist: trusty
 language: python
 addons:
   firefox: "45.4.0esr"
+  sauce_connect:
+    username: "mckennaman123"
+    access_key: "47e14922-2ea6-410c-bee8-8fcecd70045a"
 python: 
   - "3.6"
 before_install:
