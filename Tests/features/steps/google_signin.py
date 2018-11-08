@@ -1,8 +1,9 @@
 from behave import *
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import time
+
 
 
 
@@ -10,7 +11,7 @@ import time
 def step_impl(context):
 	browser = webdriver.Chrome()
 	context.browser = browser
-	browser.get('http://localhost:5000')
+	browser.get('localhost:5000')
 	browser.maximize_window()
 	sign_in_button = browser.find_element_by_xpath('//*[@id="mainNav"]/div/div[2]/button')
 	sign_in_button.click()
