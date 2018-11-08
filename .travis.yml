@@ -24,9 +24,8 @@ branches:
   only:
   - master
   - travis-ci
-before_script:
+script:
   - python3 Server/app.py &
   - sleep 3
-script:
   - cd Tests
   - behave
