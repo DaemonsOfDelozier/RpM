@@ -1,11 +1,14 @@
 from behave import *
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options
 import time
+
+
 
 @given(u'we click on google sign in button')
 def step_impl(context):
-	browser = webdriver.Firefox()
+	browser = webdriver.Chrome()
 	context.browser = browser
 	browser.get('http://localhost:5000')
 	browser.maximize_window()

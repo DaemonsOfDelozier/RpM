@@ -1,23 +1,24 @@
 sudo: required
 dist: trusty
-language: python
 addons:
-  firefox: "45.4.0esr"
+  chrome: stable
   sauce_connect:
     username: "mckennaman123"
     access_key: "47e14922-2ea6-410c-bee8-8fcecd70045a"
+language: python
 python: 
   - "3.6"
-before_install:
-  - wget https://github.com/mozilla/geckodriver/releases/download/v0.11.1/geckodriver-v0.11.1-linux64.tar.gz
-  - mkdir geckodriver
-  - tar -xzf geckodriver-v0.11.1-linux64.tar.gz -C geckodriver
-  - export PATH=$PATH:$PWD/geckodriver
 install:
   - pip3 install -r Server/requirements.txt
   - pip3 install selenium
   - pip3 install behave
   - pip3 install requests
+  - wget -N http://chromedriver.storage.googleapis.com/2.30/chromedriver_linux64.zip -P ~/
+  - unzip ~/chromedriver_linux64.zip -d ~/
+  - rm ~/chromedriver_linux64.zip
+  - sudo mv -f ~/chromedriver /usr/local/share/
+  - sudo chmod +x /usr/local/share/chromedriver
+  - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
 branches:
   only:
   - master
