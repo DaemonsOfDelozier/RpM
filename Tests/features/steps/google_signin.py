@@ -1,16 +1,13 @@
 from behave import *
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.chrome.options import Options
 import time
 
 @given(u'we click on google sign in button')
 def step_impl(context):
-	chrome_options = Options()
-	chrome_options.sandbox = False
-	browser = webdriver.Chrome(chrome_options = chrome_options)
+	browser = webdriver.Firefox()
 	context.browser = browser
-	browser.get('localhost:5000')
+	browser.get('http://localhost:5000')
 	browser.maximize_window()
 	sign_in_button = browser.find_element_by_xpath('//*[@id="mainNav"]/div/div[2]/button')
 	sign_in_button.click()
