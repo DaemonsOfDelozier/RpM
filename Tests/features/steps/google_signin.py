@@ -9,8 +9,11 @@ def step_impl(context):
 	#setting up remote browser
 	SAUCE_USERNAME = 'mckennaman123'
 	SAUCE_ACCESS_KEY = '47e14922-2ea6-410c-bee8-8fcecd70045a'
+	caps = {'browserName': 'Chrome',
+		    'version': '60.0',
+		    'tunnel-identifier': env('travis_job_number')}
 	browser = webdriver.Remote(
-    	desired_capabilities=webdriver.DesiredCapabilities.CHROME,
+    	desired_capabilities= caps,
     	command_executor='http://%s:%s@ondemand.saucelabs.com:80/wd/hub' %
     	(SAUCE_USERNAME, SAUCE_ACCESS_KEY)
 	)
