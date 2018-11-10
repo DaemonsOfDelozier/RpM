@@ -26,6 +26,10 @@ html, body {
     background-color: #333;
     border-radius: 50%;
   }
+
+  .main-wrap {
+    margin-left: 15vw;
+  }
 }
 
 .navbar-nav li {
@@ -79,6 +83,5 @@ html, body {
 
 .main-wrap {
   background: #fff;
-  margin-left: 15vw;
   min-height: 100%;
 }
