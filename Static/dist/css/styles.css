@@ -12,10 +12,6 @@ html, body {
       display: none;
   }
 
-  #map-area {
-      margin-top: 70px !important;
-  }
-
   .navbar-brand img {
     width: 100px;
     margin-left: 40px;
@@ -30,16 +26,6 @@ html, body {
     background-color: #333;
     border-radius: 50%;
   }
-}
-
-.sidebar {
-  height: 100%;
-  width: 150px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-
 }
 
 .navbar-nav li {
@@ -88,79 +74,11 @@ html, body {
 
 #content {
   background:#ddd;
+  min-height: 100%;
 }
 
 .main-wrap {
   background: #fff;
   margin-left: 15vw;
-}
-
-/************* ROUTES ****************/
-
-#routes-wrp {
-  padding: 150px 0px;
-}
-
-/************* MAP ****************/
-
-/* Always set the map height explicitly to define the size of the div
-  * element that contains the map. */
-#map-area {
-  margin-top: 5px;
-  max-width: 500px;
-  margin: 0 auto;
-  padding-top: 100px;
-}
-
-#map-canvas0,
-#map-canvas1,
-#map-canvas2,
-#map-canvas3{
-  height: 200px;
-  padding: 50px 0px;
-  margin: 50px 0px;
-}
-
-
-#map {
-height:100%;
-  max-height: 500px;
-}
-
-#floating-panel {
-  background-color: #fff;
-  padding: 5px;
-  border: 1px solid #999;
-  text-align: center;
-  font-family: 'Roboto','sans-serif';
-  line-height: 30px;
-  padding-left: 10px;
-}
-#warnings-panel {
-  width: 100%;
-  height:10%;
-  text-align: center;
-}
-
-#block-wrp {
-    width: 100%;
-}
-#block-wrp .block-item {
-    height: 400px;
-    width: 400px;
-    margin: 0 auto;
-
-    padding-top: 100px;
-}
-#block-wrp .block-item .map-item {
-    height: 90%
-}
-#block-wrp .block-item span.city-name {
-    text-align: center;
-    color: #000;
-    text-transform: uppercase;
-    font-weight: bold;
-    background: #a2ccff;
-    height: 10%;
-    line-height: 2em;
+  min-height: 100%;
 }

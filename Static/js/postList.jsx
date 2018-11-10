@@ -33,11 +33,11 @@ export default class PostList extends React.Component {
                 return (
                     <div key={post.id} style={{padding: "20px"}}>
                         <Grid container direction="row" justify="flex-start" alignItems="flex-start" spacing={24}>
-                            <Grid item sm={12} md={6}>
+                            <Grid item md={12} lg={6}>
                                 <h3>{post.title}</h3>
                                 <Map id={post.id} start={post.start} end={post.end}/>
                             </Grid>
-                            <Grid item zeroMinWidth sm={12} md={6} style={{paddingTop: "40px"}}>
+                            <Grid item zeroMinWidth md={12} lg={6} style={{paddingTop: "40px"}}>
                                 <h4>Description</h4>
                                 <p>{post.description}</p>
                                 <br/>
@@ -54,7 +54,7 @@ export default class PostList extends React.Component {
     render() {
         if (this.state.loading) return null;
         return (
-            <div style={{marginTop: "90px"}}>
+            <div style={{paddingTop: "90px"}}>
                 { this.renderPosts() }
             </div>
         );
