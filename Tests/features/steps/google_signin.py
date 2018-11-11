@@ -7,19 +7,14 @@ import time
 @given(u'we click on google sign in button')
 def step_impl(context):
 	#setting up remote browser
-	SAUCE_USERNAME = 'mckennaman123'
-	SAUCE_ACCESS_KEY = '47e14922-2ea6-410c-bee8-8fcecd70045a'
-	caps = {'browserName': 'Chrome',
-		    'version': '60.0',
-		    'tunnel-identifier': env('travis_job_number')}
-	browser = webdriver.Remote(
-    	desired_capabilities= caps,
-    	command_executor='http://%s:%s@ondemand.saucelabs.com:80/wd/hub' %
-    	(SAUCE_USERNAME, SAUCE_ACCESS_KEY)
-	)
+	username = os.environ["SAUCE_USERNAME"]
+	access_key = os.environ["SAUCE_ACCESS_KEY"]
+	capabilities["tunnel-identifier"] = os.environ["TRAVIS_JOB_NUMBER"]
+	hub_url = "%s:%s@localhost:5000" % (username, access_key)
+	browser = webdriver.Remote(desired_capabilities=capabilities, command_executor="http://%s/wd/hub" % hub_url)
+	
 	#tests start now
 	context.browser = browser
-	browser.get('http://localhost:5000')
 	browser.maximize_window()
 	sign_in_button = browser.find_element_by_xpath('//*[@id="mainNav"]/div/div[2]/button')
 	sign_in_button.click()
