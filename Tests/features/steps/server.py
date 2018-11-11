@@ -5,12 +5,22 @@ import time
 
 @given(u'Server is running')
 def step_impl(context):
-    # The server must be started manually.
+    #setting up remote browser
+	username = os.environ["SAUCE_USERNAME"]
+	access_key = os.environ["SAUCE_ACCESS_KEY"]
+	caps = {'browserName': 'Chrome',
+		    'version': '60.0',
+		    'tunnel-identifier': os.environ["TRAVIS_JOB_NUMBER"]}
+	browser = webdriver.Remote(
+    	desired_capabilities= caps,
+    	command_executor='http://%s:%s@ondemand.saucelabs.com:80/wd/hub' % (username, access_key)
+	)
+	context.browser = browser
     time.sleep(1)
 
 @then(u'Go to hosted page')
 def step_impl(context):
-	browser = webdriver.Chrome()
+	browser = context.browser
 	browser.get('localhost:5000')
 	assert "Routes Per Mile" in browser.title
 	browser.close()
