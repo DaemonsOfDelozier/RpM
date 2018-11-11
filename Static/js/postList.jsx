@@ -1,6 +1,7 @@
 import React from "react";
 import Map from "./map.jsx";
 import axios from "axios";
+import Grid from "@material-ui/core/Grid"
 
 export default class PostList extends React.Component {
 
@@ -30,10 +31,20 @@ export default class PostList extends React.Component {
         return (
             this.state.posts.map(post => {
                 return (
-                    <div key={post.title} style={{marginLeft: "200px", paddingTop: "20px"}}>
-                        <h3>{post.title}</h3>
-                        <p>{post.rating}</p>
-                        <Map id={post.title} start={post.start} end={post.end} waypoints={post.waypoints}/>
+                    <div key={post.id} style={{padding: "20px"}}>
+                        <Grid container direction="row" justify="flex-start" alignItems="flex-start" spacing={24}>
+                            <Grid item md={12} lg={6}>
+                                <h3>{post.title}</h3>
+                                <Map id={post.id} start={post.start} end={post.end} waypoints={post.waypoints}/>
+                            </Grid>
+                            <Grid item zeroMinWidth md={12} lg={6} style={{paddingTop: "40px"}}>
+                                <h4>Description</h4>
+                                <p>{post.description}</p>
+                                <br/>
+                                <h5>Notes</h5>
+                                <p>{post.notes}</p>
+                            </Grid>
+                        </Grid>
                     </div>
                 );
             })
@@ -43,7 +54,7 @@ export default class PostList extends React.Component {
     render() {
         if (this.state.loading) return null;
         return (
-            <div style={{marginTop: "90px"}}>
+            <div style={{paddingTop: "90px"}}>
                 { this.renderPosts() }
             </div>
         );

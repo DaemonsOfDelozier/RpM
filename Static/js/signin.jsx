@@ -42,7 +42,7 @@ export default class SignIn extends React.Component {
                 <div style={{ color: "white" }}>
                     {this.state.user.name}
                     <button 
-                        style={{ cursor: "pointer", backgroundColor: "#333333", color: "white", marginLeft: "20px" }} 
+                        className="login-logout-button" 
                         onClick={this.logout}>Logout
                     </button>
                 </div>
@@ -55,7 +55,7 @@ export default class SignIn extends React.Component {
                 buttonText="Sign In With Google"
                 onSuccess={this.login}
                 onFailure={this.failure}
-                style={{ cursor: "pointer", backgroundColor: "#333333", color: "white" }}
+                className="login-logout-button"
             />
         );
     }

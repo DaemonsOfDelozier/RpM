@@ -4,7 +4,6 @@ export default class Map extends React.Component {
 
     constructor(props) {
         super(props);
-        console.log(props);
     }
 
     componentDidMount() {
@@ -47,7 +46,7 @@ export default class Map extends React.Component {
 
     render() {
         return (
-            <div style={{ width: 500, height: 500 }} id={this.props.id} />
+            <div style={{ width: "100%", paddingTop: "100%" }} id={this.props.id} />
         );
     }
 }
