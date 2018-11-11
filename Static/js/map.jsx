@@ -23,10 +23,16 @@ export default class Map extends React.Component {
         const map = new window.google.maps.Map(document.getElementById(this.props.id), mapOptions);
         this.directionsRenderer.setMap(map);
 
+        var wypts = this.props.waypoints;
+        wypts = JSON.parse(this.props.waypoints);
+
+
         var request = {
             origin: this.props.start,
             destination: this.props.end,
-            travelMode: google.maps.TravelMode.DRIVING
+            travelMode: google.maps.TravelMode.DRIVING,
+            waypoints: wypts,
+            optimizeWaypoints: false
         };
 
         this.directionsService.route(request, (response, status) => {

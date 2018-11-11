@@ -35,7 +35,7 @@ export default class PostList extends React.Component {
                         <Grid container direction="row" justify="flex-start" alignItems="flex-start" spacing={24}>
                             <Grid item md={12} lg={6}>
                                 <h3>{post.title}</h3>
-                                <Map id={post.id} start={post.start} end={post.end}/>
+                                <Map id={post.id} start={post.start} end={post.end} waypoints={post.waypoints}/>
                             </Grid>
                             <Grid item zeroMinWidth md={12} lg={6} style={{paddingTop: "40px"}}>
                                 <h4>Description</h4>
