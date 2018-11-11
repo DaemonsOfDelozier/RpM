@@ -10,7 +10,7 @@ def step_impl(context):
 	#setting up remote browser
 	username = os.environ["SAUCE_USERNAME"]
 	access_key = os.environ["SAUCE_ACCESS_KEY"]
-	capabilities = {"tunnel-identifier" = os.environ["TRAVIS_JOB_NUMBER"]}
+	capabilities = {"tunnel-identifier" : os.environ["TRAVIS_JOB_NUMBER"]}
 	hub_url = "%s:%s@localhost:5000" % (username, access_key)
 	browser = webdriver.Remote(desired_capabilities=capabilities, command_executor="http://%s/wd/hub" % hub_url)
 	
