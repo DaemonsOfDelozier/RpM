@@ -1,3 +1,5 @@
 $(function(){
-    $('#menu').slicknav();
+    $('#menu').slicknav({
+        prependTo: "#logo"
+    });
 });

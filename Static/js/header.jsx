@@ -9,7 +9,7 @@ export default class Header extends React.Component {
 
     renderLogo() {
         return (
-            <a className="navbar-brand js-scroll-trigger" href="#page-top">
+            <a id="logo" className="navbar-brand js-scroll-trigger" href="#page-top">
                 <div className="logo-container">
                     <img src="../dist/css/img/rpm-logo.png"/>
                 </div>
@@ -31,7 +31,7 @@ export default class Header extends React.Component {
                               <a className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#route-map">Route Map</a>
                             </li>
                             <li className="nav-item mx-0 mx-lg-1">
-                              <a className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#help">Help</a>
+                              <a className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#help">About Us</a>
                             </li>
                             <li className="nav-item mx-0 mx-lg-1">
                               <a className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#account">Account</a>
