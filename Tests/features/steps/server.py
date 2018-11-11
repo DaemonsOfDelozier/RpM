@@ -16,7 +16,6 @@ def step_impl(context):
     	command_executor='http://%s:%s@ondemand.saucelabs.com:80/wd/hub' % (username, access_key)
 	)
 	context.browser = browser
-    time.sleep(1)
 
 @then(u'Go to hosted page')
 def step_impl(context):
