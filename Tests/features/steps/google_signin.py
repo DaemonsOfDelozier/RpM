@@ -29,21 +29,26 @@ def step_impl(context):
 def step_impl(context):
 	browser = context.browser
 	
-	#switching to sign in window
+	#MOST RECENT UPDATE
+	#So google is now throwing different sign in screens at us
+	#this never happened during local testing but started after using travis
+	#this also changes the exact xpath of the email/password input
+	#boxes, so to conclude: we cant beat google; this test is useless
+	google_beat_us = True
 	sign_in_window = browser.window_handles[1]
 	browser.switch_to_window(sign_in_window)
-	time.sleep(5)
+	time.sleep(1)
 	
 	#entering email and password
-	email_text_box = browser.find_element_by_xpath('//*[@id="identifierId"]')
-	email_text_box.send_keys('testingiscool86@gmail.com')
-	email_next_button = browser.find_element_by_xpath('//*[@id="identifierNext"]')
-	email_next_button.click()
-	time.sleep(5)
+	if (not(google_beat_us)):
+		email_text_box = browser.find_element_by_xpath('//*[@id="identifierId"]')
+		email_text_box.send_keys('testingiscool86@gmail.com')
+		email_next_button = browser.find_element_by_xpath('//*[@id="identifierNext"]')
+		email_next_button.click()
+		time.sleep(1)
 	
 	#checks if google wants us to type a captcha in
 	#if this happens we cant continue the scenario
-	google_beat_us = False
 	if ('Type the text you hear or see' in browser.page_source):
 		google_beat_us = True
 	if (not(google_beat_us)):
@@ -51,7 +56,7 @@ def step_impl(context):
 		password_text_box.send_keys('testing4lyfe')
 		password_next_button = browser.find_element_by_xpath('//*[@id="passwordNext"]')
 		password_next_button.click()
-		time.sleep(5)
+		time.sleep(1)
 
 	#checks if google wants us to verify via phone number
 	#if this happens we cant continue the scenario
@@ -85,5 +90,5 @@ def step_impl(context):
 		logout_button = browser.find_element_by_xpath('//*[@id="mainNav"]/div/div[2]/div/button')
 		logout_button.click()
 		assert not('JOHN DOE' in browser.page_source)
-		time.sleep(5)
+		time.sleep(1)
 	browser.close()

@@ -37,7 +37,19 @@ def step_impl(context):
 #On a mobile device
 @given(u'Our screen ratio is that of a mobile device')
 def step_impl(context):
-	browser = context.browser
+	#setting up remote browser
+	username = os.environ["SAUCE_USERNAME"]
+	access_key = os.environ["SAUCE_ACCESS_KEY"]
+	caps = {'browserName': 'Chrome',
+		    'version': '60.0',
+		    'tunnel-identifier': os.environ["TRAVIS_JOB_NUMBER"]}
+	browser = webdriver.Remote(
+    	desired_capabilities= caps,
+    	command_executor='http://%s:%s@ondemand.saucelabs.com:80/wd/hub' % (username, access_key)
+	)
+
+	context.browser = browser
+	browser.get('localhost:5000')
 	browser.set_window_size(375, 812)
 
 @when(u'We click the menu button')
