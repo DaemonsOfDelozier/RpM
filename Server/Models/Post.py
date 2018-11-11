@@ -1,5 +1,5 @@
 class Post(object):
-    def __init__(self, postID, userID, title, description, notes, rating, numRatings, start, end):
+    def __init__(self, postID, userID, title, description, notes, rating, numRatings, start, waypoints, end):
         self.id = postID
         self.userid = userID
         self.title = title
