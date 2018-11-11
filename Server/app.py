@@ -79,7 +79,7 @@ def GetAllPosts():
 @app.route("/SubmitPost", methods=["POST"])
 @login_required
 def SubmitPost():
-    if not request.json or not "post" in request.json:
+    if not request.json:
         abort(400)
 
     json = request.get_json()
@@ -91,6 +91,7 @@ def SubmitPost():
                    rating=json['rating'],
                    numRatings=0,
                    start=json['start'],
+                   waypoints=json['waypoints'],
                    end=json['end'])
 
     db.table("Posts").insert(newPost.getDatabaseModel())
