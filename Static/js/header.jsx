@@ -5,14 +5,9 @@ export default class Header extends React.Component {
 
     constructor(props) {
         super(props);
-
-        this.state = {
-            isMobile: window.innerWidth < 992
-        }
     }
 
     renderLogo() {
-        if (this.state.isMobile) return null;
         return (
             <a className="navbar-brand js-scroll-trigger" href="#page-top">
                 <div className="logo-container">
@@ -23,10 +18,9 @@ export default class Header extends React.Component {
     }
     
     render() {
-        const signInStyle = this.state.isMobile ? {} : {marginLeft: "150px"};
         return (
             <nav className="navbar navbar-expand-lg fixed-top text-uppercase" id="mainNav">
-                <div className="container" style={{maxHeight: "75px", maxWidth: "100%", marginLeft: "0px"}}>
+                <div className="container">
                     {this.renderLogo()}
                     <div className="collapse navbar-collapse" id="navbarResponsive">
                         <ul id="menu" className="navbar-nav">
@@ -44,7 +38,7 @@ export default class Header extends React.Component {
                             </li>
                         </ul>
                     </div>
-                    <div style={signInStyle}>
+                    <div>
                         <SignIn user={this.props.user}></SignIn>
                     </div>
                 </div>

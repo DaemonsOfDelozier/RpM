@@ -7,43 +7,8 @@ html, body {
 
 /************* NAVBAR *************/
 
-@media only screen and (min-width: 992px) {
-  .slicknav_menu {
-      display: none;
-  }
-
-  .navbar-brand img {
-    width: 100px;
-    margin-left: 40px;
-    padding-top: 20px;
-  }
-  
-  .logo-container {
-    width: 150px;
-    height: 150px;
-    margin-top: 50px;
-    margin-left: -40px;
-    background-color: #333;
-    border-radius: 50%;
-  }
-
-  .main-wrap {
-    margin-left: 15vw;
-  }
-}
-
 .navbar-nav li {
   border-left: solid #fff 1px;
-}
-
-.slicknav_menu {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 100000;
-  background: transparent;
-  padding: 0px;
 }
 
 .slicknav_nav {
@@ -73,8 +38,27 @@ html, body {
   border-radius: 50%;
 }
 
-/************* CONTENT ****************/
+.slicknav_menu {
+  display: none;
+}
 
+.login-logout-button {
+  height: 2em;
+  min-width: 5em;
+  background-color: #333;
+  margin: 10px;
+  color: white;
+  border: 1px solid white;
+  font-size: 1.3em;
+}
+
+.container {
+  max-height: 8vh;
+  min-width: 100%;
+  margin: 0px;
+}
+
+/************* CONTENT ****************/
 
 #content {
   background:#ddd;
@@ -84,4 +68,39 @@ html, body {
 .main-wrap {
   background: #fff;
   min-height: 100%;
+  margin-left: 15vw;
+}
+
+/******** MOBILE STYLES ***************/
+
+@media only screen and (max-device-width: 480px){
+  .navbar-brand img {
+    width: 75px;
+    height: 75px;
+    margin-left: 0px;
+    padding-top: 0px;
+  }
+  
+  .logo-container {
+    width: 75px;
+    height: 75px;
+    margin-top: 0px;
+    margin-left: 0px;
+    border-radius: 0px;
+  }
+
+  .main-wrap {
+    margin-left: 0px;
+  }
+
+  .slicknav_menu {
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 100000;
+    background: transparent;
+    padding: 0px;
+  }
 }
