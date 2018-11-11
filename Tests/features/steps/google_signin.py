@@ -19,6 +19,7 @@ def step_impl(context):
 	)
 	
 	#tests start now
+	browser.get('localhost:4443')
 	context.browser = browser
 	browser.maximize_window()
 	sign_in_button = browser.find_element_by_xpath('//*[@id="mainNav"]/div/div[2]/button')
