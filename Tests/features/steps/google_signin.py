@@ -44,7 +44,7 @@ def step_impl(context):
 	#checks if google wants us to type a captcha in
 	#if this happens we cant continue the scenario
 	google_beat_us = False
-	if ('Type the text you hear or see' in browser.page_source)
+	if ('Type the text you hear or see' in browser.page_source):
 		google_beat_us = True
 	if (not(google_beat_us)) {
 		password_text_box = browser.find_element_by_xpath('//*[@id=\"password\"]/div[1]/div/div[1]/input')
