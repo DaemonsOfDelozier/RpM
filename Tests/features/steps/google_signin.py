@@ -91,4 +91,4 @@ def step_impl(context):
 		logout_button.click()
 		assert not('JOHN DOE' in browser.page_source)
 		time.sleep(1)
-	browser.close()
+	browser.quit()

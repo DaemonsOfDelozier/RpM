@@ -32,7 +32,7 @@ def step_impl(context):
 	assert 'Route Map' in browser.page_source
 	assert 'Help' in browser.page_source
 	assert 'Account' in browser.page_source
-	browser.close()
+	browser.quit()
 	
 #On a mobile device
 @given(u'Our screen ratio is that of a mobile device')
@@ -65,4 +65,4 @@ def step_impl(context):
 	nav_menu = browser.find_element_by_xpath('/html/body/div[1]')
 	nav_height = nav_menu.size.get('height')
 	assert nav_height > 50
-	browser.close()
+	browser.quit()

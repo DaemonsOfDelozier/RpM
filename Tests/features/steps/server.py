@@ -25,5 +25,5 @@ def step_impl(context):
 	browser = context.browser
 	browser.get('localhost:5000')
 	assert "Routes Per Mile" in browser.title
-	browser.close()
+	browser.quit()
 	time.sleep(1)
