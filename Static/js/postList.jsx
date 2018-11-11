@@ -33,7 +33,7 @@ export default class PostList extends React.Component {
                     <div key={post.title} style={{marginLeft: "200px", paddingTop: "20px"}}>
                         <h3>{post.title}</h3>
                         <p>{post.rating}</p>
-                        <Map id={post.title} start={post.start} end={post.end}/>
+                        <Map id={post.title} start={post.start} end={post.end} waypoints={post.waypoints}/>
                     </div>
                 );
             })
