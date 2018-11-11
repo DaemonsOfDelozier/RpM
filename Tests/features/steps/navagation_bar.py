@@ -1,12 +1,24 @@
 from behave import *
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import time
+import os
 
 #See the navagation bar
 @given(u'There is a navigation bar')
 def step_impl(context):
-	browser = webdriver.Chrome()
+	#setting up remote browser
+	username = os.environ["SAUCE_USERNAME"]
+	access_key = os.environ["SAUCE_ACCESS_KEY"]
+	caps = {'browserName': 'Chrome',
+		    'version': '60.0',
+		    'tunnel-identifier': os.environ["TRAVIS_JOB_NUMBER"]}
+	browser = webdriver.Remote(
+    	desired_capabilities= caps,
+    	command_executor='http://%s:%s@ondemand.saucelabs.com:80/wd/hub' % (username, access_key)
+	)
+
 	context.browser = browser
 	browser.get('localhost:5000')
 	browser.maximize_window()
@@ -20,12 +32,22 @@ def step_impl(context):
 	assert 'Route Map' in browser.page_source
 	assert 'Help' in browser.page_source
 	assert 'Account' in browser.page_source
-	browser.close()
+	browser.quit()
 	
 #On a mobile device
 @given(u'Our screen ratio is that of a mobile device')
 def step_impl(context):
-	browser = webdriver.Chrome()
+	#setting up remote browser
+	username = os.environ["SAUCE_USERNAME"]
+	access_key = os.environ["SAUCE_ACCESS_KEY"]
+	caps = {'browserName': 'Chrome',
+		    'version': '60.0',
+		    'tunnel-identifier': os.environ["TRAVIS_JOB_NUMBER"]}
+	browser = webdriver.Remote(
+    	desired_capabilities= caps,
+    	command_executor='http://%s:%s@ondemand.saucelabs.com:80/wd/hub' % (username, access_key)
+	)
+
 	context.browser = browser
 	browser.get('localhost:5000')
 	browser.set_window_size(375, 812)
@@ -43,4 +65,4 @@ def step_impl(context):
 	nav_menu = browser.find_element_by_xpath('/html/body/div[1]')
 	nav_height = nav_menu.size.get('height')
 	assert nav_height > 50
-	browser.close()
+	browser.quit()
