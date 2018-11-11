@@ -23,7 +23,6 @@ install:
 branches:
   only:
   - master
-  - travis-ci
 script:
   - python3 Server/app.py &
   - sleep 3
