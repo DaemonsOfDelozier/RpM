@@ -40,15 +40,22 @@ def step_impl(context):
 	email_next_button = browser.find_element_by_xpath('//*[@id="identifierNext"]')
 	email_next_button.click()
 	time.sleep(5)
-	password_text_box = browser.find_element_by_xpath('//*[@id=\"password\"]/div[1]/div/div[1]/input')
-	password_text_box.send_keys('testing4lyfe')
-	password_next_button = browser.find_element_by_xpath('//*[@id="passwordNext"]')
-	password_next_button.click()
-	time.sleep(5)
+	
+	#checks if google wants us to type a captcha in
+	#if this happens we cant continue the scenario
+	google_beat_us = False
+	if ('Type the text you hear or see' in browser.page_source)
+		google_beat_us = True
+	if (not(google_beat_us)) {
+		password_text_box = browser.find_element_by_xpath('//*[@id=\"password\"]/div[1]/div/div[1]/input')
+		password_text_box.send_keys('testing4lyfe')
+		password_next_button = browser.find_element_by_xpath('//*[@id="passwordNext"]')
+		password_next_button.click()
+		time.sleep(5)
+	}
 
 	#checks if google wants us to verify via phone number
 	#if this happens we cant continue the scenario
-	google_beat_us = False
 	if (len(browser.window_handles) == 2): #if the sign in window is still open
 		google_beat_us = True
 	context.google_beat_us = google_beat_us
