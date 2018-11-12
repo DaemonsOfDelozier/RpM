@@ -9,18 +9,18 @@ import os
 @given(u'There is a navigation bar')
 def step_impl(context):
 	#setting up remote browser
-	#username = os.environ["SAUCE_USERNAME"]
-	#access_key = os.environ["SAUCE_ACCESS_KEY"]
-	#caps = {'browserName': 'Chrome',
-	#	    'version': '60.0',
-	#	    'tunnel-identifier': os.environ["TRAVIS_JOB_NUMBER"]}
-	#browser = webdriver.Remote(
-    #	desired_capabilities= caps,
-    #	command_executor='http://%s:%s@ondemand.saucelabs.com:80/wd/hub' % (username, access_key)
-	#)
+	username = os.environ["SAUCE_USERNAME"]
+	access_key = os.environ["SAUCE_ACCESS_KEY"]
+	caps = {'browserName': 'Chrome',
+		    'version': '60.0',
+		    'tunnel-identifier': os.environ["TRAVIS_JOB_NUMBER"]}
+	browser = webdriver.Remote(
+    	desired_capabilities= caps,
+    	command_executor='http://%s:%s@ondemand.saucelabs.com:80/wd/hub' % (username, access_key)
+	)
 
 	#for local testing
-	browser = webdriver.Chrome()
+	#browser = webdriver.Chrome()
 
 	context.browser = browser
 	browser.get('localhost:5000')
@@ -41,22 +41,28 @@ def step_impl(context):
 @given(u'We are emulating a mobile device')
 def step_impl(context):
 	#setting up remote browser
-	#username = os.environ["SAUCE_USERNAME"]
-	#access_key = os.environ["SAUCE_ACCESS_KEY"]
-	#caps = {'browserName': 'Chrome',
-	#	    'version': '60.0',
-	#	    'tunnel-identifier': os.environ["TRAVIS_JOB_NUMBER"]
-	#		'mobile_emulation': }
-	#browser = webdriver.Remote(
-    #	desired_capabilities= caps,
-    #	command_executor='http://%s:%s@ondemand.saucelabs.com:80/wd/hub' % (username, access_key)
-	#)
-
-	#for local testing
+	username = os.environ["SAUCE_USERNAME"]
+	access_key = os.environ["SAUCE_ACCESS_KEY"]
 	mobile_emulation = { "deviceName": "iPhone X" }
 	chrome_options = webdriver.ChromeOptions()
 	chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
-	browser = webdriver.Chrome(desired_capabilities = chrome_options.to_capabilities())
+	caps = chrome_options.to_capabilities()
+	caps['browserName'] = 'Chrome'
+	caps['version'] = '60.0'
+	caps['tunnel-identifier'] = os.environ["TRAVIS_JOB_NUMBER"]
+	#caps = {'browserName': 'Chrome',
+	#	    'version': '60.0',
+	#	    'tunnel-identifier': os.environ["TRAVIS_JOB_NUMBER"]}
+	browser = webdriver.Remote(
+    	desired_capabilities= caps,
+    	command_executor='http://%s:%s@ondemand.saucelabs.com:80/wd/hub' % (username, access_key)
+	)
+
+	#for local testing
+	#mobile_emulation = { "deviceName": "iPhone X" }
+	#chrome_options = webdriver.ChromeOptions()
+	#chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
+	#browser = webdriver.Chrome(desired_capabilities = chrome_options.to_capabilities())
 
 	context.browser = browser
 	browser.get('localhost:5000')

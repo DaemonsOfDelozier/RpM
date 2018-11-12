@@ -9,18 +9,18 @@ import os
 @given(u'Server is running')
 def step_impl(context):
     #setting up remote browser
-	#username = os.environ["SAUCE_USERNAME"]
-	#access_key = os.environ["SAUCE_ACCESS_KEY"]
-	#caps = {'browserName': 'Chrome',
-	#	    'version': '60.0',
-	#	    'tunnel-identifier': os.environ["TRAVIS_JOB_NUMBER"]}
-	#browser = webdriver.Remote(
-    #	desired_capabilities= caps,
-    #	command_executor='http://%s:%s@ondemand.saucelabs.com:80/wd/hub' % (username, access_key)
-	#)
+	username = os.environ["SAUCE_USERNAME"]
+	access_key = os.environ["SAUCE_ACCESS_KEY"]
+	caps = {'browserName': 'Chrome',
+		    'version': '60.0',
+		    'tunnel-identifier': os.environ["TRAVIS_JOB_NUMBER"]}
+	browser = webdriver.Remote(
+    	desired_capabilities= caps,
+    	command_executor='http://%s:%s@ondemand.saucelabs.com:80/wd/hub' % (username, access_key)
+	)
 
 	#for local testing
-	browser = webdriver.Chrome()
+	#browser = webdriver.Chrome()
 
 	context.browser = browser
 
