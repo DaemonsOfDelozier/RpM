@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Redirect, Switch } from "react-router-dom";
 import SignIn from "./signin.jsx"
 import Explore from "./Explore.jsx";
 import About from "./About.jsx";
 import Account from "./Account.jsx";
 import RouteMap from "./RouteMap.jsx";
+import NoMatch from "./404.jsx"
 
 const App = () => {
     const user = window.user;
@@ -43,11 +44,14 @@ const App = () => {
                 </nav>
 
                 <div className="main-wrap">
-                    <Route path="/" exact render={(props) => <Explore {...props} user={user} />} />
-                    <Route path="/explore/" render={(props) => <Explore {...props} user={user} />} />
-                    <Route path="/route-map/" render={(props) => <RouteMap {...props} user={user} />} />
-                    <Route path="/about/" render={(props) => <About {...props} user={user} />} />
-                    <Route path="/account/" render={(props) => <Account {...props} user={user} />} />
+                    <Switch>
+                        <Route path="/explore/" render={(props) => <Explore {...props} user={user} />} />
+                        <Route path="/route-map/" render={(props) => <RouteMap {...props} user={user} />} />
+                        <Route path="/about/" render={(props) => <About {...props} user={user} />} />
+                        <Route path="/account/" render={(props) => <Account {...props} user={user} />} />
+                        <Redirect exact from='/' to='/explore' />
+                        <Route component={NoMatch} />
+                    </Switch>
                 </div>
             </div>
         </Router>
