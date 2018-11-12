@@ -8,15 +8,18 @@ import os
 @given(u'we click on google sign in button')
 def step_impl(context):
 	#setting up remote browser
-	username = os.environ["SAUCE_USERNAME"]
-	access_key = os.environ["SAUCE_ACCESS_KEY"]
-	caps = {'browserName': 'Chrome',
-		    'version': '60.0',
-		    'tunnel-identifier': os.environ["TRAVIS_JOB_NUMBER"]}
-	browser = webdriver.Remote(
-    	desired_capabilities= caps,
-    	command_executor='http://%s:%s@ondemand.saucelabs.com:80/wd/hub' % (username, access_key)
-	)
+	#username = os.environ["SAUCE_USERNAME"]
+	#access_key = os.environ["SAUCE_ACCESS_KEY"]
+	#caps = {'browserName': 'Chrome',
+	#	    'version': '60.0',
+	#	    'tunnel-identifier': os.environ["TRAVIS_JOB_NUMBER"]}
+	#browser = webdriver.Remote(
+    #	desired_capabilities= caps,
+    #	command_executor='http://%s:%s@ondemand.saucelabs.com:80/wd/hub' % (username, access_key)
+	#)
+
+	#for local testing
+	browser = webdriver.Chrome()
 	
 	#tests start now
 	browser.get('localhost:5000')
