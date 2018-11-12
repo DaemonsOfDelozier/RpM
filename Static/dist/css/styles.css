@@ -43,6 +43,8 @@ html, body {
 }
 
 .login-logout-button {
+  position: relative;
+  z-index: 1000000;
   height: 2em;
   min-width: 5em;
   background-color: #333;
@@ -99,7 +101,7 @@ html, body {
     top: 0;
     right: 0;
     left: 0;
-    z-index: 100000;
+    z-index: 10000;
     background: transparent;
     padding: 0px;
     line-height: 2;
