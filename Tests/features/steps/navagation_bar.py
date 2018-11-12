@@ -47,12 +47,7 @@ def step_impl(context):
 	chrome_options = webdriver.ChromeOptions()
 	chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
 	caps = chrome_options.to_capabilities()
-	caps['browserName'] = 'Chrome'
-	caps['version'] = '60.0'
 	caps['tunnel-identifier'] = os.environ["TRAVIS_JOB_NUMBER"]
-	#caps = {'browserName': 'Chrome',
-	#	    'version': '60.0',
-	#	    'tunnel-identifier': os.environ["TRAVIS_JOB_NUMBER"]}
 	browser = webdriver.Remote(
     	desired_capabilities= caps,
     	command_executor='http://%s:%s@ondemand.saucelabs.com:80/wd/hub' % (username, access_key)
