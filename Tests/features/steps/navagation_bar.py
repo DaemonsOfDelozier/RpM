@@ -38,7 +38,7 @@ def step_impl(context):
 	browser.quit()
 	
 #On a mobile device
-@given(u'Our screen ratio is that of a mobile device')
+@given(u'We are emulating a mobile device')
 def step_impl(context):
 	#setting up remote browser
 	#username = os.environ["SAUCE_USERNAME"]
@@ -53,7 +53,10 @@ def step_impl(context):
 	#)
 
 	#for local testing
-	browser = webdriver.Chrome(mobile_emulation = { deviceName: "iPhone X" })
+	mobile_emulation = { "deviceName": "iPhone X" }
+	chrome_options = webdriver.ChromeOptions()
+	chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
+	browser = webdriver.Chrome(desired_capabilities = chrome_options.to_capabilities())
 
 	context.browser = browser
 	browser.get('localhost:5000')
@@ -61,14 +64,14 @@ def step_impl(context):
 @when(u'We click the menu button')
 def step_impl(context):
 	browser = context.browser
-	menu_button = browser.find_element_by_xpath('//*[@id="menu"]')
+	menu_button = browser.find_element_by_xpath('//*[@id="logo"]/div[1]/a')
 	menu_button.click()
 	time.sleep(1)
 
 @then(u'The navigation menu will expand')
 def step_impl(context):
 	browser = context.browser
-	nav_menu = browser.find_element_by_xpath('/html/body/div[1]')
+	nav_menu = browser.find_element_by_xpath('//*[@id="logo"]/div[1]')
 	nav_height = nav_menu.size.get('height')
 	assert nav_height > 50
 	browser.quit()

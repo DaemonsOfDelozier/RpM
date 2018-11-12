@@ -5,7 +5,7 @@ Feature: Navigation Bar
         Then  We want to see RPM, Explore, Route Map, Help, and Account
 
    Scenario: On a mobile device #testing responsiveness
-		Given Our screen ratio is that of a mobile device
+		Given We are emulating a mobile device
 		When  We click the menu button
 		Then  The navigation menu will expand
 	
