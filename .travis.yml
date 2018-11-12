@@ -23,6 +23,7 @@ install:
 branches:
   only:
   - master
+  - update_tests_for_style_changes
 script:
   - python3 Server/app.py &
   - sleep 3
