@@ -15,7 +15,7 @@ export default class Explore extends React.Component {
     }
 
     componentDidMount() {
-        axios.get("/GetAllPosts")
+        axios.get("/GetAllPosts/")
             .then((response) => {
                 this.setState({
                     posts: response.data,

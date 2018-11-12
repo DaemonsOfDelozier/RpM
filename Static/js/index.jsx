@@ -7,7 +7,9 @@ import About from "./About.jsx";
 import Account from "./Account.jsx";
 import RouteMap from "./RouteMap.jsx";
 
-const App = (user) => {
+const App = () => {
+    const user = window.user;
+
     return (
         <Router>
             <div>
@@ -52,4 +54,4 @@ const App = (user) => {
     );
 }
 
-ReactDOM.render(<App user={window.user}/>, document.getElementById("content"));
+ReactDOM.render(<App/>, document.getElementById("content"));

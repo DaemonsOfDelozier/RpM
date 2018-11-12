@@ -26,7 +26,7 @@ login_manager.init_app(app)
 def index():
     return render_template("index.html", client_id=app.config["CLIENT_ID"])
 
-@app.route("/Login", methods=["POST"])
+@app.route("/Login/", methods=["POST"])
 def Login():
     if not request.json or not "tokenObj" in request.json or not "profileObj" in request.json:
         abort(400)
@@ -53,15 +53,15 @@ def Login():
         user = User(dbUser['id'], dbUser['name'], dbUser['email'])
 
         login_user(user, remember=True)
-        return redirect(url_for("index"))
+        return render_template("index.html", client_id=app.config["CLIENT_ID"])
 
     except ValueError:
         abort(403)
 
-@app.route("/Logout", methods=["POST"])
+@app.route("/Logout/", methods=["POST"])
 def Logout():
     logout_user()
-    return redirect(url_for("index"))
+    return render_template("index.html", client_id=app.config["CLIENT_ID"])
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -71,12 +71,12 @@ def load_user(user_id):
     else:
         return None
 
-@app.route("/GetAllPosts")
+@app.route("/GetAllPosts/")
 def GetAllPosts():
     posts = db.table("Posts")
     return jsonify(posts.all())
 
-@app.route("/SubmitPost", methods=["POST"])
+@app.route("/SubmitPost/", methods=["POST"])
 @login_required
 def SubmitPost():
     if not request.json:
@@ -96,6 +96,11 @@ def SubmitPost():
 
     db.table("Posts").insert(newPost.getDatabaseModel())
     return "success"
+
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch_all(path):
+    return render_template("index.html", client_id=app.config["CLIENT_ID"])
 
 if __name__ == "__main__":
     app.run()

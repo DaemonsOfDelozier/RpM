@@ -15,7 +15,7 @@ export default class SignIn extends React.Component {
     }
 
     login(user) {
-        axios.post("/Login", user)
+        axios.post("/Login/", user)
             .then(() => {
                 window.location.reload();
             }).catch(error => {
@@ -28,7 +28,7 @@ export default class SignIn extends React.Component {
         this.setState({
             user: null
         });
-        axios.post("/Logout")
+        axios.post("/Logout/")
     }
 
     failure(response) {
