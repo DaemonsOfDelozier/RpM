@@ -33,7 +33,7 @@ def step_impl(context):
 	rpm_button = browser.find_element_by_xpath('//*[@id="logo"]/div[2]/img')
 	assert 'Explore' in browser.page_source
 	assert 'Route Map' in browser.page_source
-	assert 'About Us' in browser.page_source
+	assert 'About' in browser.page_source
 	assert 'Account' in browser.page_source
 	browser.quit()
 	
