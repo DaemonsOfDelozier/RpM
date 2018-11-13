@@ -3,7 +3,7 @@ import Map from "./map.jsx";
 import axios from "axios";
 import Grid from "@material-ui/core/Grid"
 
-export default class PostList extends React.Component {
+export default class Explore extends React.Component {
 
     constructor(props) {
         super(props);
@@ -15,7 +15,7 @@ export default class PostList extends React.Component {
     }
 
     componentDidMount() {
-        axios.get("/GetAllPosts")
+        axios.get("/GetAllPosts/")
             .then((response) => {
                 this.setState({
                     posts: response.data,
