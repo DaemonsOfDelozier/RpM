@@ -2,9 +2,6 @@ sudo: required
 dist: trusty
 addons:
   chrome: stable
-  sauce_connect:
-    username: "mckennaman123"
-    access_key: "47e14922-2ea6-410c-bee8-8fcecd70045a"
 language: python
 python: 
   - "3.6"
@@ -27,4 +24,3 @@ script:
   - python3 Server/app.py &
   - sleep 3
   - cd Tests
-  - behave
