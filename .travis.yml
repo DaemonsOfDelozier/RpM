@@ -11,6 +11,7 @@ install:
   - pip3 install behave
   - pip3 install requests
   - pip3 install sauceclient
+  - pip3 install pytest
   - wget -N http://chromedriver.storage.googleapis.com/2.30/chromedriver_linux64.zip -P ~/
   - unzip ~/chromedriver_linux64.zip -d ~/
   - rm ~/chromedriver_linux64.zip
@@ -24,3 +25,4 @@ script:
   - python3 Server/app.py &
   - sleep 3
   - cd Tests
+  - python3 -m pytest
