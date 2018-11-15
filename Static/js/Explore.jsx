@@ -34,14 +34,14 @@ export default class Explore extends React.Component {
                     <div key={post.id} style={{padding: "20px"}}>
                         <Grid container direction="row" justify="flex-start" alignItems="flex-start" spacing={24}>
                             <Grid item md={12} lg={6}>
-                                <h3>{post.title}</h3>
+                                <h3 className="emphasized">{post.title}</h3>
                                 <Map id={post.id} start={post.start} end={post.end} waypoints={post.waypoints}/>
                             </Grid>
                             <Grid item zeroMinWidth md={12} lg={6} style={{paddingTop: "40px"}}>
-                                <h4>Description</h4>
+                                <h4 className="emphasized">Description</h4>
                                 <p>{post.description}</p>
                                 <br/>
-                                <h5>Notes</h5>
+                                <h4 className="emphasized">Notes</h4>
                                 <p>{post.notes}</p>
                             </Grid>
                         </Grid>

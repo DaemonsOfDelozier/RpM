@@ -73,6 +73,10 @@ html, body {
   margin-left: 15vw;
 }
 
+.emphasized {
+  font-weight: bold;
+}
+
 /******** MOBILE STYLES ***************/
 
 @media only screen and (max-device-width: 480px){
