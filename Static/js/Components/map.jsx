@@ -24,7 +24,7 @@ export default class Map extends React.Component {
         this.directionsRenderer.setMap(map);
 
         var wypts = this.props.waypoints;
-        wypts = JSON.parse(this.props.waypoints);
+        wypts = this.props.waypoints;
 
 
         var request = {

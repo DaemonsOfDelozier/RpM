@@ -30,7 +30,7 @@ export default class Explore extends React.Component {
         return (
             this.state.posts.map(post => {
                 return (
-                    <Post post={post} />
+                    <Post key={post.id} post={post} />
                 );
             })
         );
