@@ -1,5 +1,5 @@
 import React from "react";
-import Map from "./map.jsx";
+import Map from "../Components/map.jsx";
 import axios from "axios";
 import Grid from "@material-ui/core/Grid"
 
