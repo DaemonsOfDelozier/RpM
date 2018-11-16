@@ -77,6 +77,11 @@ html, body {
   font-weight: bold;
 }
 
+.dv-star-rating {
+  float: right;
+  margin-right: -20px;
+}
+
 /******** MOBILE STYLES ***************/
 
 @media only screen and (max-device-width: 480px){

@@ -1,6 +1,7 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid"
 import Map from "../Components/map.jsx";
+import StarRatingComponent from 'react-star-rating-component';
 
 const metersPerMile = 1609.344;
 
@@ -20,7 +21,7 @@ export default class Post extends React.Component {
     renderDistaceDuration() {
         if (!this.state.distance || !this.state.duration) return null;
         return (
-            <p className="emphasized">{this.state.distance} - {this.state.duration}</p>
+            <p className="emphasized" style={{marginBottom: "0px"}}>{this.state.distance} - {this.state.duration}</p>
         );
     }
 
@@ -60,7 +61,15 @@ export default class Post extends React.Component {
                 <h3 className="emphasized">{post.title}</h3>
                 <Grid container direction="row" justify="flex-start" alignItems="flex-start" spacing={24}>
                     <Grid item md={12} lg={6}>
-                        <h5>{post.start}</h5>
+                        <Grid container direction="row" justify="space-between" alignItems="flex-start" spacing={24} item sm={12}>
+                            <Grid item sm={6}><h5>{post.start}</h5></Grid>
+                            <Grid item sm={6}>
+                                <StarRatingComponent name={post.id + "_rating"}
+                                                     starCount={5}
+                                                     value={post.rating}
+                                                     editing={false}/>
+                            </Grid>
+                        </Grid>
                         <Map id={post.id} 
                              start={post.start} 
                              end={post.end} 
