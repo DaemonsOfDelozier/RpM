@@ -26,21 +26,11 @@ export default class Explore extends React.Component {
             });
     }
 
-    renderPosts() {
-        return (
-            this.state.posts.map(post => {
-                return (
-                    <Post key={post.id} post={post} />
-                );
-            })
-        );
-    }
-
     render() {
         if (this.state.loading) return null;
         return (
             <div style={{paddingTop: "90px"}}>
-                { this.renderPosts() }
+                { this.state.posts.map(post => <Post key={post.id} post={post} />) }
             </div>
         );
     }

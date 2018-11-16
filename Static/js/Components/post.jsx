@@ -2,12 +2,28 @@ import React from "react";
 import Grid from "@material-ui/core/Grid"
 import Map from "../Components/map.jsx";
 
+const metersPerMile = 1609.344;
+
 export default class Post extends React.Component {
     
     constructor(props) {
         super(props);
+
+        this.state = {
+            distance: null,
+            duration: null
+        }
+
+        this.onResponse = this.onResponse.bind(this);
     }
     
+    renderDistaceDuration() {
+        if (!this.state.distance || !this.state.duration) return null;
+        return (
+            <p className="emphasized">{this.state.distance} - {this.state.duration}</p>
+        );
+    }
+
     renderDirections() {
         const post = this.props.post;
         let locations = post.waypoints.map(waypoint => waypoint.location);
@@ -21,6 +37,22 @@ export default class Post extends React.Component {
         );
     }
 
+    onResponse(response) {
+        const legs = response.routes[0].legs;
+
+        const meters = legs.reduce((acc, current) => acc + current.distance.value, 0);
+        const miles = Math.round(meters / metersPerMile);
+
+        const seconds = legs.reduce((acc, current) => acc + current.duration.value, 0);
+        const hours = Math.floor(seconds / 3600);
+        const minutes = Math.round((seconds - (hours*3600)) / 60)
+
+        this.setState({
+            distance: `${miles} miles`,
+            duration: `${hours} hours, ${minutes} minutes`
+        });
+    }
+
     render() {
         const post = this.props.post;
         return (
@@ -29,13 +61,18 @@ export default class Post extends React.Component {
                 <Grid container direction="row" justify="flex-start" alignItems="flex-start" spacing={24}>
                     <Grid item md={12} lg={6}>
                         <h5>{post.start}</h5>
-                        <Map id={post.id} start={post.start} end={post.end} waypoints={post.waypoints} />
+                        <Map id={post.id} 
+                             start={post.start} 
+                             end={post.end} 
+                             waypoints={post.waypoints}
+                             onResponse={this.onResponse} />
                     </Grid>
                     <Grid item zeroMinWidth md={12} lg={6} style={{ paddingTop: "40px" }}>
                         <h4 className="emphasized">Description</h4>
                         <p>{post.description}</p>
                         <br />
-                        <h4 className="emphasized">Directions</h4>
+                        <h4 className="emphasized">Route</h4>
+                        {this.renderDistaceDuration()}
                         {this.renderDirections()}
                         <br />
                         <h4 className="emphasized">Notes</h4>

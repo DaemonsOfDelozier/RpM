@@ -37,6 +37,7 @@ export default class Map extends React.Component {
 
         this.directionsService.route(request, (response, status) => {
             if (status === window.google.maps.DirectionsStatus.OK) {
+                this.props.onResponse(response);
                 this.directionsRenderer.setDirections(response);
             } else { 
                 alert("Directions request failed: " + status); 
