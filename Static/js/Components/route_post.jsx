@@ -1,16 +1,18 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid"
-import Map from "../Components/map.jsx";
+import Map from "./map.jsx";
 import StarRatingComponent from 'react-star-rating-component';
 
 const metersPerMile = 1609.344;
 
-export default class Post extends React.Component {
+export default class RoutePost extends React.Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
+            post: props.post.post,
+            poster: props.post.poster,
             distance: null,
             duration: null
         }
@@ -26,7 +28,7 @@ export default class Post extends React.Component {
     }
 
     renderDirections() {
-        const post = this.props.post;
+        const post = this.state.post;
         let locations = post.waypoints.map(waypoint => waypoint.location);
         locations.unshift(post.start)
         locations.push(post.end)
@@ -38,14 +40,14 @@ export default class Post extends React.Component {
         );
     }
 
-    renderUserLocationRating(post) {
+    renderUserLocationRating(post, poster) {
         return (
             <Grid item sm={12}
                 container direction="row" justify="space-between" alignItems="flex-start">
 
                 <Grid item md={12} lg={6} container direction="row" justify="space-between" alignItems="flex-start">
                     <Grid item sm={6}>
-                        <h5>{post.userid}</h5>
+                        <h5>{poster.name}</h5>
                     </Grid>
                     <Grid item sm={6}>
                         <h5 style={{ float: "right" }}>{post.start}</h5>
@@ -79,11 +81,12 @@ export default class Post extends React.Component {
     }
 
     render() {
-        const post = this.props.post;
+        const post = this.state.post;
+        const poster = this.state.poster;
         return (
             <div style={{ padding: "20px" }}>
                 <Grid container direction="row" justify="flex-start" alignItems="flex-start">
-                    {this.renderUserLocationRating(post)}
+                    {this.renderUserLocationRating(post, poster)}
                     <Grid item md={12} lg={6}>
                         <Map id={post.id}
                             start={post.start}

@@ -5,6 +5,7 @@ from google.auth.transport import requests
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 from Models.User import User
 from Models.Post import Post
+from Helpers import UserHelper, PostHelper
 import json
 import uuid
 
@@ -64,17 +65,16 @@ def Logout():
     return render_template("index.html", client_id=app.config["CLIENT_ID"])
 
 @login_manager.user_loader
-def load_user(user_id):
-    dbUser = db.table("Users").get(Query().id == user_id)
-    if dbUser is not None:
-        return User(dbUser['id'], dbUser['name'], dbUser['email'])
-    else:
-        return None
+def loadUser(userid):
+    return UserHelper.findUser(userid, db)
 
 @app.route("/GetAllPosts/")
 def GetAllPosts():
-    posts = db.table("Posts")
-    return jsonify(posts.all())
+    posts = db.table("Posts").all()
+    attachPoster = lambda postDict: PostHelper.mapDictToPost(postDict).getResponseDict(db)
+    postsWithUsers = list(map(attachPoster, posts))
+
+    return jsonify(postsWithUsers)
 
 @app.route("/SubmitPost/", methods=["POST"])
 @login_required

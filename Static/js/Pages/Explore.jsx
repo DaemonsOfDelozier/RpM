@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import Post from "../Components/post"
+import RoutePost from "../Components/route_post"
 
 export default class Explore extends React.Component {
 
@@ -30,7 +30,7 @@ export default class Explore extends React.Component {
         if (this.state.loading) return null;
         return (
             <div style={{paddingTop: "90px"}}>
-                { this.state.posts.map(post => <Post key={post.id} post={post} />) }
+                { this.state.posts.map(route => <RoutePost key={route.post.id} post={route} />) }
             </div>
         );
     }
