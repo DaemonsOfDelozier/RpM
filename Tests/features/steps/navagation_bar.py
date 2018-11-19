@@ -5,21 +5,10 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import time
 import os
 
-#See the navagation bar
+#See the navigation bar and go to every page on desktop
 @given(u'There is a navigation bar')
 def step_impl(context):
-	#setting up remote browser
-	#username = os.environ["SAUCE_USERNAME"]
-	#access_key = os.environ["SAUCE_ACCESS_KEY"]
-	#caps = {'browserName': 'Chrome',
-	#	    'version': '60.0',
-	#	    'tunnel-identifier': os.environ["TRAVIS_JOB_NUMBER"]}
-	#browser = webdriver.Remote(
-    #	desired_capabilities= caps,
-    #	command_executor='http://%s:%s@ondemand.saucelabs.com:80/wd/hub' % (username, access_key)
-	#)
-
-	#for local testing
+	#local testing
 	browser = webdriver.Chrome()
 
 	context.browser = browser
@@ -27,7 +16,7 @@ def step_impl(context):
 	browser.maximize_window()
 	assert 'mainNav' in browser.page_source
 
-@then(u'We want to see RPM, Explore, Route Map, Help, and Account')
+@then(u'We want to see RPM, Explore, Route Map, About, and Account')
 def step_impl(context):
 	browser = context.browser
 	rpm_button = browser.find_element_by_xpath('//*[@id="logo"]/div[2]/img')
@@ -35,25 +24,37 @@ def step_impl(context):
 	assert 'Route Map' in browser.page_source
 	assert 'About' in browser.page_source
 	assert 'Account' in browser.page_source
+
+@then(u'Go to every page on desktop')
+def step_impl(context):
+	browser = context.browser
+
+	#going to explore
+	explore_button = browser.find_element_by_xpath('//*[@id="menu"]/li[1]/a')
+	explore_button.click()
+	assert 'explore' in browser.current_url
+
+	#going to route map
+	explore_button = browser.find_element_by_xpath('//*[@id="menu"]/li[2]/a')
+	explore_button.click()
+	assert 'route-map' in browser.current_url
+
+	#going to about
+	explore_button = browser.find_element_by_xpath('//*[@id="menu"]/li[3]/a')
+	explore_button.click()
+	assert 'about' in browser.current_url
+
+	#going to account
+	explore_button = browser.find_element_by_xpath('//*[@id="menu"]/li[4]/a')
+	explore_button.click()
+	assert 'account' in browser.current_url
+
 	browser.quit()
 	
-#On a mobile device
+#See the navigation bar and go to every page on mobile
 @given(u'We are emulating a mobile device')
 def step_impl(context):
-	#setting up remote browser
-	#username = os.environ["SAUCE_USERNAME"]
-	#access_key = os.environ["SAUCE_ACCESS_KEY"]
-	#mobile_emulation = { "deviceName": "iPhone X" }
-	#chrome_options = webdriver.ChromeOptions()
-	#chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
-	#caps = chrome_options.to_capabilities()
-	#caps['tunnel-identifier'] = os.environ["TRAVIS_JOB_NUMBER"]
-	#browser = webdriver.Remote(
-    #	desired_capabilities= caps,
-    #	command_executor='http://%s:%s@ondemand.saucelabs.com:80/wd/hub' % (username, access_key)
-	#)
-
-	#for local testing
+	#local testing
 	mobile_emulation = { "deviceName": "iPhone X" }
 	chrome_options = webdriver.ChromeOptions()
 	chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
@@ -75,4 +76,41 @@ def step_impl(context):
 	nav_menu = browser.find_element_by_xpath('//*[@id="logo"]/div[1]')
 	nav_height = nav_menu.size.get('height')
 	assert nav_height > 50
+
+@then(u'Go to every page on mobile')
+def step_impl(context):
+	browser = context.browser
+
+	#going to explore page
+	menu_button = browser.find_element_by_xpath('//*[@id="logo"]/div[1]/a')
+	explore_button = browser.find_element_by_xpath('//*[@id="logo"]/div[1]/ul/li[1]/a')
+	explore_button.click()
+	assert 'explore' in browser.current_url
+	
+	#going to Route Map page
+	menu_button = browser.find_element_by_xpath('//*[@id="logo"]/div[1]/a')
+	menu_button.click()
+	time.sleep(1)
+	route_button = browser.find_element_by_xpath('//*[@id="logo"]/div[1]/ul/li[2]/a')
+	route_button.click()
+	assert 'route-map' in browser.current_url
+	time.sleep(1)
+	
+	#going to About page
+	menu_button = browser.find_element_by_xpath('//*[@id="logo"]/div[1]/a')
+	menu_button.click()
+	time.sleep(1)
+	about_button = browser.find_element_by_xpath('//*[@id="logo"]/div[1]/ul/li[3]/a')
+	about_button.click()
+	assert 'about' in browser.current_url
+	time.sleep(1)
+
+	#going to Account page
+	menu_button = browser.find_element_by_xpath('//*[@id="logo"]/div[1]/a')
+	menu_button.click()
+	time.sleep(1)
+	account_button = browser.find_element_by_xpath('//*[@id="logo"]/div[1]/ul/li[4]/a')
+	account_button.click()
+	assert 'account' in browser.current_url
+
 	browser.quit()

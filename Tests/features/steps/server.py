@@ -8,7 +8,7 @@ import os
 
 @given(u'Server is running')
 def step_impl(context):
-    #setting up remote browser
+    #Setting up remote browser in Sauce Labs to work with Travis CI
 	#username = os.environ["SAUCE_USERNAME"]
 	#access_key = os.environ["SAUCE_ACCESS_KEY"]
 	#caps = {'browserName': 'Chrome',
@@ -19,7 +19,7 @@ def step_impl(context):
     #	command_executor='http://%s:%s@ondemand.saucelabs.com:80/wd/hub' % (username, access_key)
 	#)
 
-	#for local testing
+	#local testing
 	browser = webdriver.Chrome()
 
 	context.browser = browser
