@@ -1,7 +1,7 @@
 #testing post component
 import sys
-sys.path.insert(0, "../Server/Models")
-import Post
+sys.path.insert(0, "../Server")
+from Models import Post
 
 def test_post_1():
     post1 = Post.Post("96822060868999399931", 
