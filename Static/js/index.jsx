@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Link, Redirect, Switch } from "react-router-dom";
-import SignIn from "./signin.jsx"
-import Explore from "./Explore.jsx";
-import About from "./About.jsx";
-import Account from "./Account.jsx";
-import RouteMap from "./RouteMap.jsx";
-import NoMatch from "./404.jsx"
+import SignIn from "./Components/signin.jsx"
+import Explore from "./Pages/Explore.jsx";
+import About from "./Pages/About.jsx";
+import Account from "./Pages/Account.jsx";
+import RouteMap from "./Pages/RouteMap.jsx";
+import NoMatch from "./Pages/404.jsx"
 
 const App = () => {
     const user = window.user;

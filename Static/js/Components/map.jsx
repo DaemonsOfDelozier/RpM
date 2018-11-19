@@ -24,7 +24,7 @@ export default class Map extends React.Component {
         this.directionsRenderer.setMap(map);
 
         var wypts = this.props.waypoints;
-        wypts = JSON.parse(this.props.waypoints);
+        wypts = this.props.waypoints;
 
 
         var request = {
@@ -37,6 +37,7 @@ export default class Map extends React.Component {
 
         this.directionsService.route(request, (response, status) => {
             if (status === window.google.maps.DirectionsStatus.OK) {
+                this.props.onResponse(response);
                 this.directionsRenderer.setDirections(response);
             } else { 
                 alert("Directions request failed: " + status); 
