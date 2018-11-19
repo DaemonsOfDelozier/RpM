@@ -10,6 +10,8 @@ install:
   - pip3 install selenium
   - pip3 install behave
   - pip3 install requests
+  - pip3 install sauceclient
+  - pip3 install pytest
   - wget -N http://chromedriver.storage.googleapis.com/2.30/chromedriver_linux64.zip -P ~/
   - unzip ~/chromedriver_linux64.zip -d ~/
   - rm ~/chromedriver_linux64.zip
@@ -19,14 +21,8 @@ install:
 branches:
   only:
   - master
-  - travis-ci
-before_script:
-  - python3 Server/app.py &
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-  - sleep 5
 script:
-  - whereis google-chrome-stable
-  - whereis chromedriver
+  - python3 Server/app.py &
+  - sleep 3
   - cd Tests
-  - xvfb-run behave
+  - python3 -m pytest

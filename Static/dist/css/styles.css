@@ -122,3 +122,31 @@ html, body {
     margin-top: 22px;
   }
 }
+
+/************* ABOUT *****************/
+
+.about img {
+    float: left;
+    width:40%;
+    padding-top: 100px;
+    max-width: 400px;
+}
+
+
+.about p {
+    float: right;
+    width:60%;
+    padding: 150px 50px 0px 10px;
+}
+
+@media screen and (max-width: 899px) {
+    .about img {
+        width: 400px;
+        padding-top: 10px;
+
+    }
+    .about p {
+        width: 100%;
+        padding: 120px 10px 0px 10px;
+    }
+}
