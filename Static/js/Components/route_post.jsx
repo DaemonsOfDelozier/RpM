@@ -53,7 +53,7 @@ export default class RoutePost extends React.Component {
                         <h5 style={{ float: "right" }}>{post.start}</h5>
                     </Grid>
                 </Grid>
-                <Grid item md={12} lg={6}>
+                <Grid item md={12} lg={6} style={{width: "100%"}}>
                     <StarRatingComponent name={post.id + "_rating"}
                         starCount={5}
                         value={post.rating}
@@ -87,7 +87,7 @@ export default class RoutePost extends React.Component {
             <div style={{ padding: "20px" }}>
                 <Grid container direction="row" justify="flex-start" alignItems="flex-start">
                     {this.renderUserLocationRating(post, poster)}
-                    <Grid item md={12} lg={6}>
+                    <Grid item md={12} lg={6} style={{width: "100%"}}>
                         <Map id={post.id}
                             start={post.start}
                             end={post.end}
@@ -95,7 +95,7 @@ export default class RoutePost extends React.Component {
                             onResponse={this.onResponse} />
                     </Grid>
                     <Grid item zeroMinWidth md={12} lg={6}>
-                        <div style={{ padding: "20px", paddingTop: "0px" }}>
+                        <div className="route-info">
                             <h4 className="emphasized">{post.title}</h4>
                             <p>{post.description}</p>
                             <br />
