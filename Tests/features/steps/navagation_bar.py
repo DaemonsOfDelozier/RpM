@@ -19,7 +19,7 @@ def step_impl(context):
 @then(u'We want to see RPM, Explore, Route Map, About, and Account')
 def step_impl(context):
 	browser = context.browser
-	rpm_button = browser.find_element_by_xpath('//*[@id="logo"]/div[2]/img')
+	rpm_button = browser.find_element_by_xpath('//*[@id="logo"]/div/img')
 	assert 'Explore' in browser.page_source
 	assert 'Route Map' in browser.page_source
 	assert 'About' in browser.page_source
@@ -66,14 +66,14 @@ def step_impl(context):
 @when(u'We click the menu button')
 def step_impl(context):
 	browser = context.browser
-	menu_button = browser.find_element_by_xpath('//*[@id="logo"]/div[1]/a')
+	menu_button = browser.find_element_by_xpath('//*[@id="mobileMenu"]/div/a')
 	menu_button.click()
 	time.sleep(1)
 
 @then(u'The navigation menu will expand')
 def step_impl(context):
 	browser = context.browser
-	nav_menu = browser.find_element_by_xpath('//*[@id="logo"]/div[1]')
+	nav_menu = browser.find_element_by_xpath('//*[@id="mobileMenu"]/div')
 	nav_height = nav_menu.size.get('height')
 	assert nav_height > 50
 
@@ -82,34 +82,34 @@ def step_impl(context):
 	browser = context.browser
 
 	#going to explore page
-	menu_button = browser.find_element_by_xpath('//*[@id="logo"]/div[1]/a')
-	explore_button = browser.find_element_by_xpath('//*[@id="logo"]/div[1]/ul/li[1]/a')
+	menu_button = browser.find_element_by_xpath('//*[@id="mobileMenu"]/div/a')
+	explore_button = browser.find_element_by_xpath('//*[@id="mobileMenu"]/div/ul/li[1]/a')
 	explore_button.click()
 	assert 'explore' in browser.current_url
 	
 	#going to Route Map page
-	menu_button = browser.find_element_by_xpath('//*[@id="logo"]/div[1]/a')
+	menu_button = browser.find_element_by_xpath('//*[@id="mobileMenu"]/div/a')
 	menu_button.click()
 	time.sleep(1)
-	route_button = browser.find_element_by_xpath('//*[@id="logo"]/div[1]/ul/li[2]/a')
+	route_button = browser.find_element_by_xpath('//*[@id="mobileMenu"]/div/ul/li[2]/a')
 	route_button.click()
 	assert 'route-map' in browser.current_url
 	time.sleep(1)
 	
 	#going to About page
-	menu_button = browser.find_element_by_xpath('//*[@id="logo"]/div[1]/a')
+	menu_button = browser.find_element_by_xpath('//*[@id="mobileMenu"]/div/a')
 	menu_button.click()
 	time.sleep(1)
-	about_button = browser.find_element_by_xpath('//*[@id="logo"]/div[1]/ul/li[3]/a')
+	about_button = browser.find_element_by_xpath('//*[@id="mobileMenu"]/div/ul/li[3]/a')
 	about_button.click()
 	assert 'about' in browser.current_url
 	time.sleep(1)
 
 	#going to Account page
-	menu_button = browser.find_element_by_xpath('//*[@id="logo"]/div[1]/a')
+	menu_button = browser.find_element_by_xpath('//*[@id="mobileMenu"]/div/a')
 	menu_button.click()
 	time.sleep(1)
-	account_button = browser.find_element_by_xpath('//*[@id="logo"]/div[1]/ul/li[4]/a')
+	account_button = browser.find_element_by_xpath('//*[@id="mobileMenu"]/div/ul/li[4]/a')
 	account_button.click()
 	assert 'account' in browser.current_url
 

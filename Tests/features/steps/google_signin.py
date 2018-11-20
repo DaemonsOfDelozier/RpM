@@ -15,7 +15,7 @@ def step_impl(context):
 	browser.get('localhost:5000')
 	context.browser = browser
 	browser.maximize_window()
-	sign_in_button = browser.find_element_by_xpath('//*[@id="mainNav"]/div/div[2]/button')
+	sign_in_button = browser.find_element_by_xpath('//*[@id="mainNav"]/div/div[3]/button')
 	sign_in_button.click()
 
 @when(u'we sign in to google')
@@ -52,7 +52,7 @@ def step_impl(context):
 		#we logged in!
 		original_window = browser.window_handles[0]
 		browser.switch_to_window(original_window)
-		upper_right_text = browser.find_element_by_xpath('//*[@id="mainNav"]/div/div[2]/div').text
+		upper_right_text = browser.find_element_by_xpath('//*[@id="mainNav"]/div/div[3]/div').text
 		assert upper_right_text == 'JOHN DOELogout'
 		time.sleep(3)
 	else:
@@ -68,7 +68,7 @@ def step_impl(context):
 	browser = context.browser
 	if(not(google_beat_us)):
 		#making sure we logged out
-		logout_button = browser.find_element_by_xpath('//*[@id="mainNav"]/div/div[2]/div/button')
+		logout_button = browser.find_element_by_xpath('//*[@id="mainNav"]/div/div[3]/button')
 		logout_button.click()
 		assert not('JOHN DOE' in browser.page_source)
 		time.sleep(1)
@@ -86,7 +86,7 @@ def step_impl(context):
 	context.browser = browser
 	browser.get('localhost:5000')
 
-	sign_in_button = browser.find_element_by_xpath('//*[@id="mainNav"]/div/div[2]/button')
+	sign_in_button = browser.find_element_by_xpath('//*[@id="mainNav"]/div/div[3]/button')
 	sign_in_button.click()
 
 @when(u'we sign in to google on mobile')
@@ -123,7 +123,7 @@ def step_impl(context):
 		#we logged in!
 		original_window = browser.window_handles[0]
 		browser.switch_to_window(original_window)
-		upper_right_text = browser.find_element_by_xpath('//*[@id="mainNav"]/div/div[2]/div').text
+		upper_right_text = browser.find_element_by_xpath('//*[@id="mainNav"]/div/div[3]/div').text
 		assert upper_right_text == 'JOHN DOELogout'
 		time.sleep(3)
 	else:
@@ -139,7 +139,7 @@ def step_impl(context):
 	browser = context.browser
 	if(not(google_beat_us)):
 		#making sure we logged out
-		logout_button = browser.find_element_by_xpath('//*[@id="mainNav"]/div/div[2]/div/button')
+		logout_button = browser.find_element_by_xpath('//*[@id="mainNav"]/div/div[3]/div/button')
 		logout_button.click()
 		assert not('JOHN DOE' in browser.page_source)
 		time.sleep(1)
