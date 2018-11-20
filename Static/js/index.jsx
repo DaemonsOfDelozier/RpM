@@ -37,6 +37,7 @@ const App = () => {
                                 </li>
                             </ul>
                         </div>
+                        <div id="mobileMenu"></div>
                         <div>
                             <SignIn user={user}></SignIn>
                         </div>

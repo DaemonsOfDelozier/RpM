@@ -1,5 +1,6 @@
 $(function(){
     $('#menu').slicknav({
-        prependTo: "#logo"
+        appendTo: "#mobileMenu",
+        label: ""
     });
 });

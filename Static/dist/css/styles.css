@@ -46,15 +46,14 @@ html, body {
   position: relative;
   z-index: 1000000;
   background-color: #333;
-  margin: 10px;
+  margin: 10px 0px 10px 10px;
   color: white;
   border: 1px solid white;
   font-size: 1.15em;
-  max-width: 30vw;
 }
 
 .container {
-  max-height: 8vh;
+  max-height: 8ch;
   min-width: 100%;
   margin: 0px;
 }
@@ -121,8 +120,8 @@ html, body {
 
   .slicknav_btn {
     float: left;
-    margin-left: 100px;
-    margin-top: 18px;
+    margin-left: 80px;
+    margin-top: 2ch;
   }
 
   .route-info {
