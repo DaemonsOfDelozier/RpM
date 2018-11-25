@@ -1,7 +1,7 @@
 #testing user component
 import sys
-sys.path.insert(0, "../Server/Models")
-import User
+sys.path.insert(0, "../Server")
+from Models import User
 
 def test_user_stone():
     stone = User.User("15559907691249342452", "Stone Ermintrude", "fmerges@att.net")

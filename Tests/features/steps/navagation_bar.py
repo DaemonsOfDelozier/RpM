@@ -49,6 +49,10 @@ def step_impl(context):
 	explore_button.click()
 	assert 'account' in browser.current_url
 
+	#going to 404 page
+	browser.get('localhost:5000/not_a_page')
+	assert 'Sorry, this isn\'t a valid url!' in browser.page_source
+
 	browser.quit()
 	
 #See the navigation bar and go to every page on mobile
@@ -112,5 +116,9 @@ def step_impl(context):
 	account_button = browser.find_element_by_xpath('//*[@id="mobileMenu"]/div/ul/li[4]/a')
 	account_button.click()
 	assert 'account' in browser.current_url
+
+	#going to 404 page
+	browser.get('localhost:5000/also_not_a_page')
+	assert 'Sorry, this isn\'t a valid url!' in browser.page_source
 
 	browser.quit()
