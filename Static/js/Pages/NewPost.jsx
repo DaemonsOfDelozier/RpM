@@ -1,20 +1,31 @@
 import React from "react";
+import axios from "axios";
+import {Redirect} from "react-router-dom";
 
 export default class NewPost extends React.Component {
 
     constructor(props) {
         super(props);
+
+        this.state = {
+            loading: false,
+            success: false
+        }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit(event) {
         event.preventDefault();
         const data = new FormData(event.target);
+        this.setState({loading: true});
 
-        fetch('/SubmitPost/', {
-            method: 'POST',
-            body: data,
-        });
+        axios.post("/SubmitPost/", data)
+            .then(() => {
+                this.setState({success: true});
+            }).catch(() => {
+                this.setState({loading: false});
+                alert("Post could not be submitted");
+            });
     }
 
     renderForm() {
@@ -24,14 +35,13 @@ export default class NewPost extends React.Component {
             );
         } else {
             return (
-                <div class="form">
+                <div className="form">
                     <h2>Submit a Route</h2>
-                    <form action="{{ url_for('SubmitPost') }}" method="post" class="submit-form" onSubmit={this.handleSubmit}>
-
+                    <form className="submit-form" onSubmit={this.handleSubmit}>
                         <h4>Title:</h4>
                         <input type="text" placeholder="title" name="title"/>
 
-                        <h4>Description</h4>
+                        <h4>Description:</h4>
                         <textarea rows="4" cols="50" name="description">
                         </textarea>
 
@@ -58,8 +68,7 @@ export default class NewPost extends React.Component {
                         <h4>End:</h4>
                         <input type="text" placeholder="end" name="end"/>
 
-                        <input class="submit-button" type="submit"/>
-
+                        <input className="submit-button" type="submit"/>
                     </form>
                 </div>
             );
@@ -67,8 +76,15 @@ export default class NewPost extends React.Component {
     }
 
     render() {
+        if (this.state.success) {
+            return <Redirect to="/explore" />;
+        }
+        if (this.state.loading) {
+            return <img src="../dist/css/img/wheel-loader.gif"/>
+        }
+
         return (
-            <div style={{paddingTop: "120px"}}>
+            <div style={{paddingTop: "100px"}}>
                 {this.renderForm()}
             </div>
         );
