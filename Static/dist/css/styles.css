@@ -160,3 +160,15 @@ html, body {
         padding: 120px 10px 0px 10px;
     }
 }
+
+/************* SUBMITPOST *****************/
+
+.form {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.form .submit-button {
+    display: block;
+    margin-top: 10px;
+}

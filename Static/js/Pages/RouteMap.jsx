@@ -9,7 +9,7 @@ export default class RouteMap extends React.Component {
     render() {
         return (
             <div style={{paddingTop: "90px"}}>
-                Route Map page!
+                Route map page!
             </div>
         );
     }
