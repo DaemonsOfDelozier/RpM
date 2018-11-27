@@ -14,7 +14,8 @@ export default class RoutePost extends React.Component {
             post: props.post.post,
             poster: props.post.poster,
             distance: null,
-            duration: null
+            duration: null,
+            startingLocation: null
         }
 
         this.onResponse = this.onResponse.bind(this);
@@ -50,10 +51,10 @@ export default class RoutePost extends React.Component {
                         <h5>{poster.name}</h5>
                     </Grid>
                     <Grid item sm={6}>
-                        <h5 style={{ float: "right" }}>{post.start}</h5>
+                        <h5 style={{ float: "right" }}>{this.state.startingLocation}</h5>
                     </Grid>
                 </Grid>
-                <Grid item md={12} lg={6} style={{width: "100%"}}>
+                <Grid item md={12} lg={6} style={{ width: "100%" }}>
                     <StarRatingComponent name={post.id + "_rating"}
                         starCount={5}
                         value={post.rating}
@@ -62,6 +63,22 @@ export default class RoutePost extends React.Component {
 
             </Grid>
         );
+    }
+
+    getStartCity(startGeocode) {
+        const geocoder = new window.google.maps.Geocoder();
+        geocoder.geocode({ 'placeId': startGeocode }, (results, status) => {
+            if (status === 'OK') {
+                if (results[0]) {
+                    const addressComponents = results[0].address_components;
+                    const city = addressComponents.find((component) => component.types[0] === "locality").long_name;
+                    const state = addressComponents.find((component) => component.types[0] === "administrative_area_level_1").long_name;
+                    this.setState({
+                        startingLocation: `${city}, ${state}`
+                    }); 
+                }
+            }
+        });
     }
 
     onResponse(response) {
@@ -78,6 +95,8 @@ export default class RoutePost extends React.Component {
             distance: `${miles} miles`,
             duration: `${hours} hours, ${minutes} minutes`
         });
+
+        this.getStartCity(response.geocoded_waypoints[0].place_id);
     }
 
     render() {
@@ -87,7 +106,7 @@ export default class RoutePost extends React.Component {
             <div style={{ padding: "20px" }}>
                 <Grid container direction="row" justify="flex-start" alignItems="flex-start">
                     {this.renderUserLocationRating(post, poster)}
-                    <Grid item md={12} lg={6} style={{width: "100%"}}>
+                    <Grid item md={12} lg={6} style={{ width: "100%" }}>
                         <Map id={post.id}
                             start={post.start}
                             end={post.end}
