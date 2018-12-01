@@ -31,7 +31,7 @@ def step_impl(context):
     assert "Clay James" in browser.page_source
     assert "Daniel Loftus" in browser.page_source
     assert "Josh Dotson" in browser.page_source
-    assert "Justin McKenna" in browser.page_source
+    assert "Justin Mckenna" in browser.page_source
     assert "Roger Cooper" in browser.page_source
     assert "Max Kotlan" in browser.page_source
 

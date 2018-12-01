@@ -21,7 +21,6 @@ def step_impl(context):
 	browser = context.browser
 	rpm_button = browser.find_element_by_xpath('//*[@id="logo"]/div/img')
 	assert 'Explore' in browser.page_source
-	assert 'Route Map' in browser.page_source
 	assert 'About' in browser.page_source
 	assert 'Account' in browser.page_source
 
@@ -33,11 +32,6 @@ def step_impl(context):
 	explore_button = browser.find_element_by_xpath('//*[@id="menu"]/li[1]/a')
 	explore_button.click()
 	assert 'explore' in browser.current_url
-
-	#going to route map
-	explore_button = browser.find_element_by_xpath('//*[@id="menu"]/li[2]/a')
-	explore_button.click()
-	assert 'route-map' in browser.current_url
 
 	#going to about
 	explore_button = browser.find_element_by_xpath('//*[@id="menu"]/li[3]/a')
@@ -90,15 +84,6 @@ def step_impl(context):
 	explore_button = browser.find_element_by_xpath('//*[@id="mobileMenu"]/div/ul/li[1]/a')
 	explore_button.click()
 	assert 'explore' in browser.current_url
-	
-	#going to Route Map page
-	menu_button = browser.find_element_by_xpath('//*[@id="mobileMenu"]/div/a')
-	menu_button.click()
-	time.sleep(1)
-	route_button = browser.find_element_by_xpath('//*[@id="mobileMenu"]/div/ul/li[2]/a')
-	route_button.click()
-	assert 'route-map' in browser.current_url
-	time.sleep(1)
 	
 	#going to About page
 	menu_button = browser.find_element_by_xpath('//*[@id="mobileMenu"]/div/a')
