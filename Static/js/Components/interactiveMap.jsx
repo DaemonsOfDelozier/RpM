@@ -8,6 +8,8 @@ export default class InteractiveMap extends React.Component {
         this.state = {
             initializing: true
         }
+
+        this.map = null;
     }
 
     componentDidMount() {
@@ -20,12 +22,6 @@ export default class InteractiveMap extends React.Component {
         }
     }
 
-    componentDidUpdate(prevProps) {
-        if (prevProps.locations != this.props.locations) {
-            console.log(this.props);
-        }
-    }
-
     initializeMap(latitude = 41.1537, longitude = -81.3579) {
         this.setState({initializing: false});
 
@@ -35,7 +31,29 @@ export default class InteractiveMap extends React.Component {
             center: coordinates
         };
 
-        const map = new window.google.maps.Map(document.getElementById("interactive-map"), mapOptions);
+        this.map = new window.google.maps.Map(document.getElementById("interactive-map"), mapOptions);
+    }
+
+    componentDidUpdate() {
+        if (this.props.newLocation) {
+            this.plotAddress(this.props.newLocation);
+        }
+    }
+
+    plotAddress(address) {
+        const geocoder = new window.google.maps.Geocoder();
+        geocoder.geocode({ 'address': address }, (results, status) => {
+            if (status == 'OK') {
+                const latLng = {lat: results[0].geometry.location.lat (), lng: results[0].geometry.location.lng ()};
+                const marker = new window.google.maps.Marker({
+                    position: latLng,
+                    map: this.map
+                });
+                this.props.onNewLocationSuccess();
+            } else {
+                this.props.onNewLocationFailure();
+            }
+        });
     }
 
     render() {
