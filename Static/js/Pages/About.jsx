@@ -4,10 +4,6 @@ export default class About extends React.Component {
 
     constructor(props) {
         super(props);
-
-        this.state = {
-            loading: true
-        }
     }
 
     render() {
