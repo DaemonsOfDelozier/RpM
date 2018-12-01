@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Grid from "@material-ui/core/Grid"
 import Button from '@material-ui/core/Button';
 import InteractiveMap from "../Components/interactiveMap";
+import WaypointAdder from "../Components/waypointAdder";
 
 export default class NewPost extends React.Component {
 
@@ -16,7 +17,6 @@ export default class NewPost extends React.Component {
             success: false
         }
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleStartKeyUp = this.handleStartKeyUp.bind(this);
     }
 
     handleSubmit(event) {
@@ -31,16 +31,6 @@ export default class NewPost extends React.Component {
                 this.setState({loading: false});
                 alert("Post could not be submitted");
             });
-    }
-
-    renderMap() {
-        return <InteractiveMap />;
-    }
-
-    handleStartKeyUp(event) {
-        if (event.key === "Enter") {
-            console.log(event.target.value);
-        }
     }
 
     renderForm() {
@@ -59,10 +49,10 @@ export default class NewPost extends React.Component {
 
                         <Grid container style={{paddingTop: "20px"}}>
                             <Grid item md={12} lg={6} style={{ width: "100%" }}>
-                                {this.renderMap()}
+                                <InteractiveMap />
                             </Grid>
                             <Grid item md={12} lg={6} style={{ paddingLeft: "20px"}}>
-                                <TextField fullWidth type="text" label="Start" onKeyUp={this.handleStartKeyUp}/>
+                                <WaypointAdder />
                             </Grid>
                         </Grid>
                         
