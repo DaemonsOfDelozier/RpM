@@ -2,9 +2,7 @@ import React from "react";
 import axios from "axios";
 import {Redirect} from "react-router-dom";
 import TextField from '@material-ui/core/TextField';
-import Grid from "@material-ui/core/Grid"
 import Button from '@material-ui/core/Button';
-import InteractiveMap from "../Components/interactiveMap";
 import WaypointAdder from "../Components/waypointAdder";
 
 export default class NewPost extends React.Component {
@@ -14,8 +12,10 @@ export default class NewPost extends React.Component {
 
         this.state = {
             loading: false,
-            success: false
+            success: false,
+            locations: []
         }
+
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -46,17 +46,7 @@ export default class NewPost extends React.Component {
 
                         <TextField type="text" fullWidth label="Title"/>
                         <TextField multiline fullWidth label="Description"/>
-
-                        <Grid container style={{paddingTop: "20px"}}>
-                            <Grid item md={12} lg={6} style={{ width: "100%" }}>
-                                <InteractiveMap />
-                            </Grid>
-                            <Grid item md={12} lg={6} style={{ paddingLeft: "20px"}}>
-                                <WaypointAdder />
-                            </Grid>
-                        </Grid>
-                        
-
+                        <WaypointAdder />
                         <TextField type="text" fullWidth label="Notes"/>
 
                         <Button variant="contained" color="primary" style={{float: "left", marginTop: "15px"}}>Submit</Button>

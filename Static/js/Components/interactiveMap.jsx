@@ -20,6 +20,12 @@ export default class InteractiveMap extends React.Component {
         }
     }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.locations != this.props.locations) {
+            console.log(this.props);
+        }
+    }
+
     initializeMap(latitude = 41.1537, longitude = -81.3579) {
         this.setState({initializing: false});
 
