@@ -1,8 +1,6 @@
 /* Optional: Makes the sample page fill the window. */
 html, body {
   height: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
   margin: 0;
   padding: 0;
 }
@@ -167,6 +165,8 @@ html, body {
 
 .form {
     padding: 20 50 20 50;
+    overflow-x: hidden;
+    overflow-y: overlay;
 }
 
 .form .submit-button {
