@@ -4,6 +4,7 @@ import {Redirect} from "react-router-dom";
 import TextField from '@material-ui/core/TextField';
 import Grid from "@material-ui/core/Grid"
 import Button from '@material-ui/core/Button';
+import InteractiveMap from "../Components/interactiveMap";
 
 export default class NewPost extends React.Component {
 
@@ -33,7 +34,7 @@ export default class NewPost extends React.Component {
     }
 
     renderMap() {
-        return null;
+        return <InteractiveMap />;
     }
 
     handleStartKeyUp(event) {
@@ -56,19 +57,19 @@ export default class NewPost extends React.Component {
                         <TextField type="text" fullWidth label="Title"/>
                         <TextField multiline fullWidth label="Description"/>
 
-                        <Grid container>
-                            <Grid item>
+                        <Grid container style={{paddingTop: "20px"}}>
+                            <Grid item md={12} lg={6} style={{ width: "100%" }}>
                                 {this.renderMap()}
                             </Grid>
-                            <Grid item>
-                                <TextField type="text" label="Start" onKeyUp={this.handleStartKeyUp}/>
+                            <Grid item md={12} lg={6} style={{ paddingLeft: "20px"}}>
+                                <TextField fullWidth type="text" label="Start" onKeyUp={this.handleStartKeyUp}/>
                             </Grid>
                         </Grid>
                         
 
                         <TextField type="text" fullWidth label="Notes"/>
 
-                        <Button variant={"contained"} color={"primary"} style={{float: "left", marginTop: "15px"}}>Submit</Button>
+                        <Button variant="contained" color="primary" style={{float: "left", marginTop: "15px"}}>Submit</Button>
                     </form>
                 </div>
             );
