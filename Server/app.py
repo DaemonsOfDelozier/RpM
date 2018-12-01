@@ -71,6 +71,9 @@ def loadUser(userid):
 @app.route("/GetAllPosts/")
 def GetAllPosts():
     posts = db.table("Posts").all()
+
+    posts = posts[::-1]
+
     attachPoster = lambda postDict: PostHelper.mapDictToPost(postDict).getResponseDict(db)
     postsWithUsers = list(map(attachPoster, posts))
 
