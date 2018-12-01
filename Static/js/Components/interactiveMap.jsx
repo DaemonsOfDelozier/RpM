@@ -5,21 +5,24 @@ export default class InteractiveMap extends React.Component {
     constructor(props) {
         super(props);
 
-        this.defaultLatitude = 41.1537;
-        this.defaultLongitude = 81.3579;
+        this.state = {
+            initializing: true
+        }
     }
 
     componentDidMount() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(pos => {
                 this.initializeMap(pos.coords.latitude, pos.coords.longitude)
-            }, err => this.initializeMap(this.defaultLatitude, this.defaultLongitude));
+            }, err => this.initializeMap());
         } else {
-            this.initializeMap(this.defaultLatitude, this.defaultLongitude)
+            this.initializeMap()
         }
     }
 
-    initializeMap(latitude, longitude) {
+    initializeMap(latitude = 41.1537, longitude = -81.3579) {
+        this.setState({initializing: false});
+
         const coordinates = new window.google.maps.LatLng(latitude, longitude);
         const mapOptions = {
             zoom: 13,
@@ -30,6 +33,9 @@ export default class InteractiveMap extends React.Component {
     }
 
     render() {
+        if (this.state.initializing) {
+            return <img src="../dist/css/img/wheel-loader.gif"/>
+        }
         return (
             <div style={{ width: "100%", paddingTop: "100%" }} id="interactive-map" />
         );

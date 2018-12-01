@@ -51,7 +51,7 @@ export default class NewPost extends React.Component {
         } else {
             return (
                 <div className="form">
-                    <h2>Submit a Route</h2>
+                    <h2 style={{textAlign: "left"}}>Submit a Route</h2>
                     <form className="submit-form" onSubmit={this.handleSubmit}>
 
                         <TextField type="text" fullWidth label="Title"/>
