@@ -1,6 +1,9 @@
 import React from "react";
 import axios from "axios";
 import {Redirect} from "react-router-dom";
+import TextField from '@material-ui/core/TextField';
+import Grid from "@material-ui/core/Grid"
+import Button from '@material-ui/core/Button';
 
 export default class NewPost extends React.Component {
 
@@ -12,6 +15,7 @@ export default class NewPost extends React.Component {
             success: false
         }
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleStartKeyUp = this.handleStartKeyUp.bind(this);
     }
 
     handleSubmit(event) {
@@ -28,6 +32,16 @@ export default class NewPost extends React.Component {
             });
     }
 
+    renderMap() {
+        return null;
+    }
+
+    handleStartKeyUp(event) {
+        if (event.key === "Enter") {
+            console.log(event.target.value);
+        }
+    }
+
     renderForm() {
         if (!this.props.user) {
             return (
@@ -38,37 +52,23 @@ export default class NewPost extends React.Component {
                 <div className="form">
                     <h2>Submit a Route</h2>
                     <form className="submit-form" onSubmit={this.handleSubmit}>
-                        <h4>Title:</h4>
-                        <input type="text" placeholder="title" name="title"/>
 
-                        <h4>Description:</h4>
-                        <textarea rows="4" cols="50" name="description">
-                        </textarea>
+                        <TextField type="text" fullWidth label="Title"/>
+                        <TextField multiline fullWidth label="Description"/>
 
-                        <h4>Notes:</h4>
-                        <textarea rows="4" cols="50" name="notes">
-                        </textarea>
+                        <Grid container>
+                            <Grid item>
+                                {this.renderMap()}
+                            </Grid>
+                            <Grid item>
+                                <TextField type="text" label="Start" onKeyUp={this.handleStartKeyUp}/>
+                            </Grid>
+                        </Grid>
+                        
 
-                        <h4>Rating:</h4>
-                        <select name="rating">
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                        <option value="4">Four</option>
-                        <option value="5">Five</option>
-                        </select>
+                        <TextField type="text" fullWidth label="Notes"/>
 
-                        <h4>Starting Point:</h4>
-                        <input type="text" placeholder="start" name="start"/>
-
-                        <h4>Waypoints:</h4>
-                        <p>e.g. 123 Street_Address, OH 12345 > 456 Street_Address, OH 67890 ...</p>
-                        <textarea rows="4" cols="50" name="waypoints"/>
-
-                        <h4>End:</h4>
-                        <input type="text" placeholder="end" name="end"/>
-
-                        <input className="submit-button" type="submit"/>
+                        <Button variant={"contained"} color={"primary"} style={{float: "left", marginTop: "15px"}}>Submit</Button>
                     </form>
                 </div>
             );
@@ -84,7 +84,7 @@ export default class NewPost extends React.Component {
         }
 
         return (
-            <div style={{paddingTop: "100px"}}>
+            <div style={{paddingTop: "100px", textAlign: "center"}}>
                 {this.renderForm()}
             </div>
         );
