@@ -2,7 +2,7 @@ import React from "react";
 import Grid from "@material-ui/core/Grid"
 import Map from "./map.jsx";
 import StarRatingComponent from 'react-star-rating-component';
-
+import { Link } from "react-router-dom";
 const metersPerMile = 1609.344;
 
 export default class RoutePost extends React.Component {
@@ -48,7 +48,7 @@ export default class RoutePost extends React.Component {
 
                 <Grid item md={12} lg={6} container direction="row" justify="space-between" alignItems="flex-start">
                     <Grid item sm={6}>
-                        <h5>{poster.name}</h5>
+                        <Link to={`/account/${poster.id}`}><h5>{poster.name}</h5></Link>
                     </Grid>
                     <Grid item sm={6}>
                         <h5 style={{ float: "right" }}>{this.state.startingLocation}</h5>

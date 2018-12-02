@@ -50,7 +50,9 @@ const App = () => {
                         <Route path="/explore/" render={(props) => <Explore {...props} user={user} />} />
                         <Route path="/route-map/" render={(props) => <RouteMap {...props} user={user} />} />
                         <Route path="/about/" render={(props) => <About {...props} user={user} />} />
-                        <Route path="/account/" render={(props) => <Account {...props} user={user} />} />
+                        <Route path="/account/:userid" render={(props) => 
+                            <Account {...props} user={user} userToView={props.match.params.userid || user.id}/>
+                        }/>
                         <Route path="/new-post/" render={(props) => <NewPost {...props} user={user} />} />
                         <Redirect exact from='/' to='/explore' />
                         <Route component={NoMatch} />
