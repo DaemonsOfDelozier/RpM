@@ -10,7 +10,8 @@ export default class Account extends React.Component {
 
         this.state = {
             accountInfo: null,
-            loading: true
+            loading: true,
+            editing: false
         }
     }
 
@@ -68,9 +69,10 @@ export default class Account extends React.Component {
                 </Link>
                 <hr className="hr-style"></hr>
                 <h5 style={{fontWeight: "bold", marginLeft: "40px" }}> My car </h5>
-                <TextField class= "bio" type="text" fullWidth label="Title" inputRef={this.title} />
+                <TextField class= "bio" type="text" fullWidth InputProps={{ readOnly: this.state.editing }} label="Title" inputRef={this.title} />
+                <button type="button"> {this.state.editing = true} </button>
                 <h5 style={{fontWeight: "bold", marginLeft: "40px" }}> Bio </h5>
-                <TextField class= "bio" multiline fullWidth label="Description" inputRef={this.description} />
+                <TextField class= "bio" multiline fullWidth InputProps={{ readOnly: this.state.editing }} label="Description" inputRef={this.description} />
             </div>
             
         );
