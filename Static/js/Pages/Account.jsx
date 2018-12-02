@@ -24,6 +24,21 @@ export default class Account extends React.Component {
         }
     }
 
+    save() {
+        this.setState({loading: true});
+        axios.post("/UpdateUserInfo/", this.state.accountInfo)
+            .then(response => {
+                this.setState({
+                    accountInfo: response.data,
+                    loading: false
+                })
+            }).catch(error => {
+                this.setState({loading: false});
+                alert("Could not update data");
+                console.log(error);
+            })
+    }
+
     getUserInfo(userToView) {
         axios.post("/GetUserInfo/", {id: userToView})
             .then(response => {
