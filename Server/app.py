@@ -125,7 +125,9 @@ def UpdateUserInfo():
                 bio=json['bio'],
                 vehicle=json['vehicle'])
     
-    db.table("Users").update(user.getDatabaseModel(), User.id == current_user.id)
+    db.table("Users").update(user.getDatabaseModel(), Query().id == current_user.id)
+
+    return jsonify(user.getDatabaseModel());
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
