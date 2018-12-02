@@ -127,7 +127,7 @@ def UpdateUserInfo():
     
     db.table("Users").update(user.getDatabaseModel(), Query().id == current_user.id)
 
-    return jsonify(user.getDatabaseModel());
+    return jsonify(user.getDatabaseModel())
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
