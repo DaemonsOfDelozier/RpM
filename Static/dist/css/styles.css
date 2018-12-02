@@ -79,6 +79,10 @@ html, body {
   float: left !important;
 }
 
+.locationEntry {
+  padding-left: 20px;
+}
+
 /**************** EXPLORE PAGE ***************/
 
 .dv-star-rating {
@@ -134,6 +138,10 @@ html, body {
 
   .login-logout-button {
     font-size: 1em;
+  }
+
+  .locationEntry {
+    padding-left: 0px;
   }
 }
 
@@ -210,4 +218,10 @@ html, body {
 .form .submit-button {
     display: block;
     margin-top: 10px;
+}
+
+@media screen and (max-width: 991px) {
+  .form {
+    padding: 0 20 20 20;
+  }
 }

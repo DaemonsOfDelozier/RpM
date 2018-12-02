@@ -56,7 +56,7 @@ export default class WaypointAdder extends React.Component {
         let newLocationLabel = numLocations === 0 ? "Start" : "Next";
         return (
             <Grid item container>
-                <Grid item sm={11}>
+                <Grid item xs={11}>
                     <TextField fullWidth 
                                error={this.state.newLocationError}
                                type="text" 
@@ -64,7 +64,7 @@ export default class WaypointAdder extends React.Component {
                                onChange={this.handleInputChange} 
                                value={this.state.newLocation} />
                 </Grid>
-                <Grid item sm={1}>
+                <Grid item xs={1}>
                     <IconButton onClick={() => this.setState({ doneTyping: true })}>
                         <AddIcon />
                     </IconButton>
@@ -85,7 +85,7 @@ export default class WaypointAdder extends React.Component {
 
             return (
                 <Grid item container key={index}>
-                    <Grid item sm={11}>
+                    <Grid item xs={11}>
                         <TextField fullWidth
                             InputProps={{ readOnly: true }}
                             label={label}
@@ -125,7 +125,7 @@ export default class WaypointAdder extends React.Component {
                             onRouteResponse={this.props.onRouteResponse} 
                             finished={this.state.finished}/>
                     </Grid>
-                    <Grid container direction="column" justify={justify} item md={12} lg={6} style={{ paddingLeft: "20px" }}>
+                    <Grid container direction="column" justify={justify} item md={12} lg={6} className="locationEntry">
                         {this.renderLocations()}
                         {this.renderNewLocationInput(numLocations)}
                         {this.renderFinishButton(numLocations)}
