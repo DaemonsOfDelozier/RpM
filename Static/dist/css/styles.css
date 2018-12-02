@@ -224,10 +224,12 @@ html, body {
 
 .button-make-new-post{
   float: right;
+  margin-right:20px;
   background-color: white;
   border: 2px solid #333;
   color:#333;
   font-weight: bold;
+  font-size: 25px;
 }
 
 .button-make-new-post:hover{
@@ -235,8 +237,9 @@ html, body {
   border: 2px solid #0056b3;
 }
 .Account-Name{
-  padding-left: 20px;
+  margin-left: 10px;
   font-weight: bold;
+
 }
 
 .hr-style{
@@ -244,6 +247,20 @@ html, body {
   border-color: #333;
   margin-left: 10px;
   margin-right: 10px;
+}
+
+.bio{
+  padding-right: 230px;
+  padding-left: 40px;
+}
+
+.triangle-right {
+	width: 0;
+	height: 0;
+	border-top: 25px solid transparent;
+	border-left: 50px solid #333;
+  border-bottom: 25px solid transparent;
+  margin-left: 20px;
 }
 
 @media screen and (max-width: 991px) {
