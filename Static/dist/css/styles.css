@@ -75,6 +75,10 @@ html, body {
   font-weight: bold;
 }
 
+.floatLeft {
+  float: left !important;
+}
+
 /**************** EXPLORE PAGE ***************/
 
 .dv-star-rating {
@@ -194,8 +198,9 @@ html, body {
 /************* SUBMITPOST *****************/
 
 .form {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 20 50 20 50;
+    overflow-x: hidden;
+    overflow-y: overlay;
 }
 
 .form .submit-button {
