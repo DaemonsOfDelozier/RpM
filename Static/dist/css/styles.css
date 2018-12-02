@@ -139,6 +139,10 @@ html, body {
 
 /************* ABOUT *****************/
 
+.about {
+  overflow-y: overlay;
+}
+
 .about img {
     float: right;
     width: 30%;
