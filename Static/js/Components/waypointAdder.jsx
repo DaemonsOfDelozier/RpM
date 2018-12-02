@@ -18,26 +18,28 @@ export default class WaypointAdder extends React.Component {
             finished: false
         }
 
+        this.post = {};
+
         this.handleInputChange = this.handleInputChange.bind(this);
         this.onNewLocationSuccess = this.onNewLocationSuccess.bind(this);
         this.onNewLocationFailure = this.onNewLocationFailure.bind(this);
-        this.onRouteResponse = this.onRouteResponse.bind(this);
-        this.finish = this.finish.bind(this);
     }
 
     onNewLocationFailure() {
-        console.log("fail");
-        this.setState({ doneTyping: false, newLocationError: true });
+        this.setState({ 
+            doneTyping: false, 
+            newLocationError: true 
+        });
     }
 
     onNewLocationSuccess(completeAddress) {
-        console.log("success");
         this.setState(state => {
             state.locations.push(completeAddress);
             return {
                 locations: state.locations,
                 newLocation: "",
-                doneTyping: false
+                doneTyping: false,
+                newLocationError: false
             };
         });
     }
@@ -99,21 +101,14 @@ export default class WaypointAdder extends React.Component {
 
         return (
             <Grid item>
-                <Button variant="contained"
+                <Button style={{float: "left", marginTop: "10px"}}
+                    variant="contained"
                     color="secondary"
                     disabled={numLocations < 2}
-                    onClick={this.finish}
+                    onClick={() => this.setState({ finished: true })}
                 >Finish Route</Button>
             </Grid>
         );
-    }
-
-    onRouteResponse(request) {
-        console.log(request);
-    }
-
-    finish() {
-        this.setState({ finished: true });
     }
 
     render() {
@@ -127,7 +122,7 @@ export default class WaypointAdder extends React.Component {
                             newLocation={this.state.doneTyping ? this.state.newLocation : null}
                             onNewLocationSuccess={this.onNewLocationSuccess}
                             onNewLocationFailure={this.onNewLocationFailure}
-                            onRouteResponse={this.onRouteResponse} 
+                            onRouteResponse={this.props.onRouteResponse} 
                             finished={this.state.finished}/>
                     </Grid>
                     <Grid container direction="column" justify={justify} item md={12} lg={6} style={{ paddingLeft: "20px" }}>

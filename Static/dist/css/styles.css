@@ -75,6 +75,10 @@ html, body {
   font-weight: bold;
 }
 
+.floatLeft {
+  float: left !important;
+}
+
 /**************** EXPLORE PAGE ***************/
 
 .dv-star-rating {

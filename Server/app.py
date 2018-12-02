@@ -79,48 +79,21 @@ def GetAllPosts():
 @app.route("/SubmitPost/", methods=["POST"])
 @login_required
 def SubmitPost():
+    if not request.json:
+        abort(400)
 
-    title = request.form['title']
-    description = request.form['description']
-    notes = request.form['notes']
-    rating = request.form['rating']
-    start = request.form['start']
-    waypoints = request.form['waypoints']
-    end = request.form['end']
-
-    rating = int(rating)
-    waypoints = [x.strip() for x in waypoints.split('>')]
-    waypoints_json = {}
-    new_waypoints = []
-
-    i = 0
-    while(i < len(waypoints)):
-        #checking to see if left blank
-        if(waypoints[i] == ''):
-            waypoints_json['location'] = start
-            waypoints_json['stopover'] = True
-        else:
-            waypoints_json['location'] = waypoints[i]
-            waypoints_json['stopover'] = True
-        new_waypoints.append(waypoints_json)
-        waypoints_json = {}
-        i = i + 1
-
-    # if not request.json:
-    #     abort(400)
-
-    # json = request.get_json()
+    json = request.get_json()
 
     newPost = Post(postID=uuid.uuid4().hex,
                    userID=current_user.id,
-                   title=title,
-                   description=description,
-                   notes=notes,
-                   rating=rating,
+                   title=json['title'],
+                   description=json['description'],
+                   notes=json['notes'],
+                   rating=json['rating'],
                    numRatings=0,
-                   start=start,
-                   waypoints=new_waypoints,
-                   end=end)
+                   start=json['start'],
+                   waypoints=json['waypoints'],
+                   end=json['end'])
 
     db.table("Posts").insert(newPost.getDatabaseModel())
     return "success"
