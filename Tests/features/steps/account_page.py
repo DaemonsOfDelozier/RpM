@@ -46,12 +46,37 @@ def step_impl(context):
 @then(u'We can see our name')
 def step_impl(context):
     browser = context.browser
-    pass
-	
+    name = browser.find_element_by_xpath('xpath goes here')
+    assert name == "John Doe"
 
 @then(u'We can edit and view our bio')
 def step_impl(context):
     browser = context.browser
-    pass
+    time.sleep(5)
+    bio = browser.find_element_by_xpath('bio xpath')
+    assert bio == ''
+    edit_button = browser.find_element_by_xpath('edit button xpath')
+    edit_button.click()
+    time.sleep(5)
+    edit_text_box = browser.find_element_by_xpath('edit text box xpath')
+    edit_text_box.send_keys('This is my really cool bio!')
+    assert bio == 'This is my really cool bio!'
 
     browser.quit()
+
+@given(u'We see someone elses post')
+def step_impl(context):
+    #local testing
+    browser = webdriver.Chrome()
+
+    context.browser = browser
+    browser.get('localhost:5000/account/')
+    browser.maximize_window()
+
+@then(u'We can click on their name')
+def step_impl(context):
+    pass
+
+@then(u'We can see their profile')
+def step_impl(context):
+    pass
