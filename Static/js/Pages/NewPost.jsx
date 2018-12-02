@@ -1,6 +1,11 @@
 import React from "react";
 import axios from "axios";
-import {Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
+import TextField from '@material-ui/core/TextField';
+import Grid from "@material-ui/core/Grid"
+import Button from '@material-ui/core/Button';
+import WaypointAdder from "../Components/waypointAdder";
+import StarRatingComponent from "react-star-rating-component";
 
 export default class NewPost extends React.Component {
 
@@ -9,23 +14,50 @@ export default class NewPost extends React.Component {
 
         this.state = {
             loading: false,
-            success: false
+            success: false,
+            rating: 0
         }
+
+        this.title = React.createRef();
+        this.description = React.createRef();
+        this.notes = React.createRef();
+        this.route = {};
+
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleRating = this.handleRating.bind(this);
+        this.onRouteResponse = this.onRouteResponse.bind(this);
     }
 
-    handleSubmit(event) {
-        event.preventDefault();
-        const data = new FormData(event.target);
-        this.setState({loading: true});
+    handleSubmit() {
+        this.setState({ loading: true });
 
-        axios.post("/SubmitPost/", data)
+        const post = {
+            title: this.title.current.value,
+            description: this.description.current.value,
+            notes: this.notes.current.value,
+            start: this.route.start,
+            end: this.route.end,
+            waypoints: this.route.waypoints,
+            rating: this.state.rating
+        }
+
+        axios.post("/SubmitPost/", post)
             .then(() => {
-                this.setState({success: true});
+                this.setState({ success: true });
             }).catch(() => {
-                this.setState({loading: false});
+                this.setState({ loading: false });
                 alert("Post could not be submitted");
             });
+    }
+
+    onRouteResponse(request) {
+        this.route.start = request.origin;
+        this.route.end = request.destination;
+        this.route.waypoints = request.waypoints;
+    }
+
+    handleRating(value) {
+        this.setState({ rating: value });
     }
 
     renderForm() {
@@ -36,40 +68,28 @@ export default class NewPost extends React.Component {
         } else {
             return (
                 <div className="form">
-                    <h2>Submit a Route</h2>
-                    <form className="submit-form" onSubmit={this.handleSubmit}>
-                        <h4>Title:</h4>
-                        <input type="text" placeholder="title" name="title"/>
-
-                        <h4>Description:</h4>
-                        <textarea rows="4" cols="50" name="description">
-                        </textarea>
-
-                        <h4>Notes:</h4>
-                        <textarea rows="4" cols="50" name="notes">
-                        </textarea>
-
-                        <h4>Rating:</h4>
-                        <select name="rating">
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                        <option value="4">Four</option>
-                        <option value="5">Five</option>
-                        </select>
-
-                        <h4>Starting Point:</h4>
-                        <input type="text" placeholder="start" name="start"/>
-
-                        <h4>Waypoints:</h4>
-                        <p>e.g. 123 Street_Address, OH 12345 > 456 Street_Address, OH 67890 ...</p>
-                        <textarea rows="4" cols="50" name="waypoints"/>
-
-                        <h4>End:</h4>
-                        <input type="text" placeholder="end" name="end"/>
-
-                        <input className="submit-button" type="submit"/>
-                    </form>
+                    <h2 style={{ textAlign: "left" }}>Submit a Route</h2>
+                    <TextField type="text" fullWidth label="Title" inputRef={this.title} />
+                    <TextField multiline fullWidth label="Description" inputRef={this.description} />
+                    <WaypointAdder onRouteResponse={this.onRouteResponse} />
+                    <TextField type="text" fullWidth label="Notes" inputRef={this.notes} />
+                    <Grid container justify="space-between" style={{marginTop: "10px"}}>
+                        <Grid item>
+                            <p className="emphasized" style={{ display: "inline-block", float: "left", paddingRight: "5px" }}>Rating:</p>
+                            <StarRatingComponent
+                                className="floatLeft"
+                                name={"rating"}
+                                starCount={5}
+                                value={this.state.rating}
+                                onStarClick={this.handleRating}
+                                editing={true} />
+                        </Grid>
+                        <Grid item>
+                            <Button variant="contained"
+                                color="primary"
+                                onClick={this.handleSubmit}>Submit</Button>
+                        </Grid>
+                    </Grid>
                 </div>
             );
         }
@@ -80,11 +100,11 @@ export default class NewPost extends React.Component {
             return <Redirect to="/explore" />;
         }
         if (this.state.loading) {
-            return <img src="../dist/css/img/wheel-loader.gif"/>
+            return <img src="../dist/css/img/wheel-loader.gif" />
         }
 
         return (
-            <div style={{paddingTop: "100px"}}>
+            <div style={{ paddingTop: "100px", textAlign: "center" }}>
                 {this.renderForm()}
             </div>
         );

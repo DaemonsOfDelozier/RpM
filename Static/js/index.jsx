@@ -5,7 +5,6 @@ import SignIn from "./Components/signin.jsx"
 import Explore from "./Pages/Explore.jsx";
 import About from "./Pages/About.jsx";
 import Account from "./Pages/Account.jsx";
-import RouteMap from "./Pages/RouteMap.jsx";
 import NewPost from "./Pages/NewPost.jsx"
 import NoMatch from "./Pages/404.jsx"
 
@@ -28,9 +27,6 @@ const App = () => {
                                     <Link className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" to="/explore/">Explore</Link>
                                 </li>
                                 <li className="nav-item mx-0 mx-lg-1">
-                                    <Link className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" to="/route-map/">Route Map</Link>
-                                </li>
-                                <li className="nav-item mx-0 mx-lg-1">
                                     <Link className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" to="/about/">About</Link>
                                 </li>
                                 <li className="nav-item mx-0 mx-lg-1">
@@ -48,7 +44,6 @@ const App = () => {
                 <div className="main-wrap">
                     <Switch>
                         <Route path="/explore/" render={(props) => <Explore {...props} user={user} />} />
-                        <Route path="/route-map/" render={(props) => <RouteMap {...props} user={user} />} />
                         <Route path="/about/" render={(props) => <About {...props} user={user} />} />
                         <Route path="/account/:userid" render={(props) => 
                             <Account {...props} user={user} userToView={props.match.params.userid || user.id}/>

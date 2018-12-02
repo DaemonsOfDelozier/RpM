@@ -8,7 +8,7 @@ export default class About extends React.Component {
 
     render() {
         return (
-            <div class="about">
+            <div className="about">
                 
                 <img src="../dist/css/img/logo-2.png"/>
 

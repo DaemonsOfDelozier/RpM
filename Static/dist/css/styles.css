@@ -75,6 +75,14 @@ html, body {
   font-weight: bold;
 }
 
+.floatLeft {
+  float: left !important;
+}
+
+.locationEntry {
+  padding-left: 20px;
+}
+
 /**************** EXPLORE PAGE ***************/
 
 .dv-star-rating {
@@ -131,9 +139,17 @@ html, body {
   .login-logout-button {
     font-size: 1em;
   }
+
+  .locationEntry {
+    padding-left: 0px;
+  }
 }
 
 /************* ABOUT *****************/
+
+.about {
+  overflow-y: overlay;
+}
 
 .about img {
     float: right;
@@ -194,8 +210,9 @@ html, body {
 /************* SUBMITPOST *****************/
 
 .form {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 20 50 20 50;
+    overflow-x: hidden;
+    overflow-y: overlay;
 }
 
 .form .submit-button {
@@ -227,4 +244,10 @@ html, body {
   border-color: #333;
   margin-left: 10px;
   margin-right: 10px;
+}
+
+@media screen and (max-width: 991px) {
+  .form {
+    padding: 0 20 20 20;
+  }
 }
