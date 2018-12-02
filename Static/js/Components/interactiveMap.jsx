@@ -23,7 +23,7 @@ export default class InteractiveMap extends React.Component {
     }
 
     initializeMap(latitude = 41.1537, longitude = -81.3579) {
-        this.setState({initializing: false});
+        this.setState({ initializing: false });
 
         const coordinates = new window.google.maps.LatLng(latitude, longitude);
         const mapOptions = {
@@ -38,13 +38,42 @@ export default class InteractiveMap extends React.Component {
         if (this.props.newLocation) {
             this.plotAddress(this.props.newLocation);
         }
+        if (this.props.finished) {
+            this.createRoute();
+        }
+    }
+
+    createRoute() {
+        const directionsService = new window.google.maps.DirectionsService();
+        const directionsRenderer = new window.google.maps.DirectionsRenderer()
+        directionsRenderer.setMap(this.map);
+
+        let locations = [...this.props.locations];
+        const request = {
+            origin: locations.shift(),
+            destination: locations.pop(),
+            travelMode: google.maps.TravelMode.DRIVING,
+            waypoints: locations.map(loc => {
+                return { location: loc, stopover: true }
+            }),
+            optimizeWaypoints: false
+        };
+
+        directionsService.route(request, (response, status) => {
+            if (status === window.google.maps.DirectionsStatus.OK) {
+                this.props.onRouteResponse(request);
+                directionsRenderer.setDirections(response);
+            } else { 
+                alert("Directions request failed: " + status); 
+            }
+        });
     }
 
     plotAddress(address) {
         const geocoder = new window.google.maps.Geocoder();
         geocoder.geocode({ 'address': address }, (results, status) => {
             if (status == 'OK') {
-                const latLng = {lat: results[0].geometry.location.lat (), lng: results[0].geometry.location.lng ()};
+                const latLng = { lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng() };
                 const marker = new window.google.maps.Marker({
                     position: latLng,
                     map: this.map
@@ -58,7 +87,7 @@ export default class InteractiveMap extends React.Component {
 
     render() {
         if (this.state.initializing) {
-            return <img src="../dist/css/img/wheel-loader.gif"/>
+            return <img src="../dist/css/img/wheel-loader.gif" />
         }
         return (
             <div style={{ width: "100%", paddingTop: "100%" }} id="interactive-map" />
