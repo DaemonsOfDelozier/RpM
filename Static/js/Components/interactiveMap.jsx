@@ -10,6 +10,8 @@ export default class InteractiveMap extends React.Component {
         }
 
         this.map = null;
+        this.markers = [];
+        this.bounds = new window.google.maps.LatLngBounds();
     }
 
     componentDidMount() {
@@ -61,10 +63,11 @@ export default class InteractiveMap extends React.Component {
 
         directionsService.route(request, (response, status) => {
             if (status === window.google.maps.DirectionsStatus.OK) {
+                this.markers.forEach(marker => marker.setMap(null)); //Clear existing markers
                 this.props.onRouteResponse(request);
                 directionsRenderer.setDirections(response);
-            } else { 
-                alert("Directions request failed: " + status); 
+            } else {
+                alert("Directions request failed: " + status);
             }
         });
     }
@@ -74,15 +77,30 @@ export default class InteractiveMap extends React.Component {
         geocoder.geocode({ 'address': address }, (results, status) => {
             if (status == 'OK') {
                 const latLng = { lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng() };
+                const markerLabel = (this.props.locations.length + 1).toString();
                 const marker = new window.google.maps.Marker({
                     position: latLng,
-                    map: this.map
+                    map: this.map,
+                    label: { text: markerLabel }
                 });
+
+                this.markers.push(marker);
+                this.resizeMap(latLng);
                 this.props.onNewLocationSuccess();
             } else {
                 this.props.onNewLocationFailure();
             }
         });
+    }
+
+    resizeMap(latLng) {
+        this.bounds.extend(latLng);
+        this.map.setCenter(this.bounds.getCenter());
+        this.map.fitBounds(this.bounds);
+        this.map.setZoom(this.map.getZoom() - 1);
+        if (this.map.getZoom() > 14) {
+            this.map.setZoom(14);
+        }
     }
 
     render() {
