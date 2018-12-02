@@ -31,17 +31,17 @@ export default class Account extends React.Component {
         }
         return (
             <div style={{ paddingTop: "120px" }}>
-                <div class="triangle-right">
-                    <h2 class="Account-Name"> 
+                <div className="triangle-right">
+                    <h2 className="Account-Name"> 
                         {this.state.accountInfo.name}
                     </h2>
                 </div>
                 <Link to="/new-post">
-                    <button type="button" class="button-make-new-post">
+                    <button type="button" className="button-make-new-post">
                         Post New Route
                     </button>
                 </Link>
-                <hr class="hr-style"></hr>
+                <hr className="hr-style"></hr>
                 <h5 style={{fontWeight: "bold", marginLeft: "40px" }}> My car </h5>
                 <TextField class= "bio" type="text" fullWidth label="Title" inputRef={this.title} />
                 <h5 style={{fontWeight: "bold", marginLeft: "40px" }}> Bio </h5>
