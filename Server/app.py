@@ -101,6 +101,16 @@ def SubmitPost():
     db.table("Posts").insert(newPost.getDatabaseModel())
     return "success"
 
+@app.route("/GetUserInfo/", methods=["POST"])
+def GetUserInfo():
+    if not request.json:
+        abort(400)
+
+    json = request.get_json()
+
+    user = loadUser(json['id'])
+    return jsonify(user.getDatabaseModel())
+
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
