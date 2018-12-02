@@ -13,6 +13,11 @@ export default class Account extends React.Component {
             loading: true,
             editing: false
         }
+
+        this.bio = React.createRef();
+        this.car = React.createRef();
+
+        this.save = this.save.bind(this);
     }
 
     componentDidMount() {
@@ -27,7 +32,12 @@ export default class Account extends React.Component {
 
     save() {
         this.setState({loading: true});
-        axios.post("/UpdateUserInfo/", this.state.accountInfo)
+
+        let newAccountInfo = {... this.state.accountInfo}
+        newAccountInfo.bio = this.bio.current.value;
+        newAccountInfo.vehicle = this.car.current.value;
+
+        axios.post("/UpdateUserInfo/", newAccountInfo)
             .then(response => {
                 this.setState({
                     accountInfo: response.data,
@@ -69,10 +79,12 @@ export default class Account extends React.Component {
                 </Link>
                 <hr className="hr-style"></hr>
                 <h5 style={{fontWeight: "bold", marginLeft: "40px" }}> My car </h5>
-                <TextField class= "bio" type="text" fullWidth InputProps={{ readOnly: this.state.editing }} label="Title" inputRef={this.title} />
-                <button type="button"> {this.state.editing = true} </button>
+                <TextField class= "bio" type="text" fullWidth InputProps={{ readOnly: !this.state.editing }} label="Title" inputRef={this.car} />
+                <button type="button" onClick={() => this.setState({editing: true})}> {this.state.editing = true} </button>
+                <button type="button" onClick={this.save}> {this.state.editing = true} </button>
                 <h5 style={{fontWeight: "bold", marginLeft: "40px" }}> Bio </h5>
-                <TextField class= "bio" multiline fullWidth InputProps={{ readOnly: this.state.editing }} label="Description" inputRef={this.description} />
+                <TextField class= "bio" multiline fullWidth InputProps={{ readOnly: !this.state.editing }} label="Description" inputRef={this.bio} />
+                <button type="button" onClick={() => this.setState({editing: true})}> {this.state.editing = true} </button>
             </div>
             
         );

@@ -119,13 +119,13 @@ def UpdateUserInfo():
 
     json = request.get_json()
 
-    user = User(userID=current_user.userID, 
+    user = User(userID=current_user.id, 
                 name=current_user.name, 
                 email=current_user.email,
                 bio=json['bio'],
                 vehicle=json['vehicle'])
     
-    db.table("Users").update(user.getDatabaseModel(), User.userID == current_user.userID)
+    db.table("Users").update(user.getDatabaseModel(), User.id == current_user.id)
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
