@@ -23,14 +23,18 @@ export default class WaypointAdder extends React.Component {
 
     onNewLocationFailure() {
         console.log("fail");
-        this.setState({doneInputting: false});
+        this.setState({ doneInputting: false });
     }
 
     onNewLocationSuccess() {
         console.log("success");
         this.setState(state => {
             state.locations.push(state.newLocation);
-            return { locations: [...state.locations], doneInputting: false };
+            return {
+                locations: state.locations,
+                newLocation: "",
+                doneInputting: false
+            };
         });
     }
 
@@ -40,24 +44,42 @@ export default class WaypointAdder extends React.Component {
         });
     }
 
+    renderLocations() {
+        return this.state.locations.map((location, index) => {
+            let label = index === 0 ? "start" : `waypoint ${index}`;
+            return (
+                <Grid container key={index}>
+                    <Grid item sm={11}>
+                        <TextField fullWidth 
+                                   InputProps={{readOnly: true}} 
+                                   label={label}
+                                   value={location} />
+                    </Grid>
+                </Grid>
+            );
+        });
+    }
+
     render() {
+        let newLocationLabel = this.state.locations.length === 0 ? "Start" : "Next";
         return (
-            <div style={{paddingTop: 20}}>
+            <div style={{ paddingTop: 20 }}>
                 <Grid container>
                     <Grid item md={12} lg={6} style={{ width: "100%" }}>
                         <InteractiveMap locations={this.state.locations}
-                                        newLocation={this.state.doneInputting ? this.state.newLocation : null}
-                                        onNewLocationSuccess={this.onNewLocationSuccess}
-                                        onNewLocationFailure={this.onNewLocationFailure}/>
+                            newLocation={this.state.doneInputting ? this.state.newLocation : null}
+                            onNewLocationSuccess={this.onNewLocationSuccess}
+                            onNewLocationFailure={this.onNewLocationFailure} />
                     </Grid>
                     <Grid item md={12} lg={6} style={{ paddingLeft: "20px" }}>
+                        {this.renderLocations()}
                         <Grid container>
                             <Grid item sm={11}>
-                                <TextField fullWidth type="text" label="Start"
+                                <TextField fullWidth type="text" label={newLocationLabel}
                                     onChange={this.handleInputChange} value={this.state.newLocation} />
                             </Grid>
                             <Grid item sm={1}>
-                                <IconButton onClick={() => this.setState({doneInputting: true})}><AddIcon /></IconButton>
+                                <IconButton onClick={() => this.setState({ doneInputting: true })}><AddIcon /></IconButton>
                             </Grid>
                         </Grid>
                     </Grid>
