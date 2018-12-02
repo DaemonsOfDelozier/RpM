@@ -86,7 +86,7 @@ export default class InteractiveMap extends React.Component {
 
                 this.markers.push(marker);
                 this.resizeMap(latLng);
-                this.props.onNewLocationSuccess();
+                this.props.onNewLocationSuccess(results[0].formatted_address);
             } else {
                 this.props.onNewLocationFailure();
             }

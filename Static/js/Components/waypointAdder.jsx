@@ -27,13 +27,13 @@ export default class WaypointAdder extends React.Component {
 
     onNewLocationFailure() {
         console.log("fail");
-        this.setState({ doneTyping: false });
+        this.setState({ doneTyping: false, newLocationError: true });
     }
 
-    onNewLocationSuccess() {
+    onNewLocationSuccess(completeAddress) {
         console.log("success");
         this.setState(state => {
-            state.locations.push(state.newLocation);
+            state.locations.push(completeAddress);
             return {
                 locations: state.locations,
                 newLocation: "",
@@ -55,8 +55,12 @@ export default class WaypointAdder extends React.Component {
         return (
             <Grid item container>
                 <Grid item sm={11}>
-                    <TextField fullWidth type="text" label={newLocationLabel}
-                        onChange={this.handleInputChange} value={this.state.newLocation} />
+                    <TextField fullWidth 
+                               error={this.state.newLocationError}
+                               type="text" 
+                               label={newLocationLabel}
+                               onChange={this.handleInputChange} 
+                               value={this.state.newLocation} />
                 </Grid>
                 <Grid item sm={1}>
                     <IconButton onClick={() => this.setState({ doneTyping: true })}>
