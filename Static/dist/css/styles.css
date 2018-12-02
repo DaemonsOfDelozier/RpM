@@ -202,3 +202,29 @@ html, body {
     display: block;
     margin-top: 10px;
 }
+
+/************* Account Page *****************/
+
+.button-make-new-post{
+  float: right;
+  background-color: white;
+  border: 2px solid #333;
+  color:#333;
+  font-weight: bold;
+}
+
+.button-make-new-post:hover{
+  color: #0056b3;
+  border: 2px solid #0056b3;
+}
+.Account-Name{
+  padding-left: 20px;
+  font-weight: bold;
+}
+
+.hr-style{
+  border-width: 2px;
+  border-color: #333;
+  margin-left: 10px;
+  margin-right: 10px;
+}
