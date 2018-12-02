@@ -17,6 +17,7 @@ def step_impl(context):
 	browser.maximize_window()
 	sign_in_button = browser.find_element_by_xpath('//*[@id="mainNav"]/div/div[3]/button')
 	sign_in_button.click()
+	time.sleep(3)
 
 @when(u'we sign in to google')
 def step_impl(context):

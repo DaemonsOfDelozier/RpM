@@ -11,7 +11,8 @@ def step_impl(context):
 	browser = context.browser
 	google_beat_us = context.google_beat_us
 	createnwpost = browser.find_element_by_xpath('//*[@id="content"]/div/div/div/a/button');
-	createnwpost.click();
+	createnwpost.click()
+	time.sleep(3)
 	title = browser.find_element_by_xpath('//*[@id="content"]/div/div/div/div/div[1]/div/input')
 	descritpion = browser.find_element_by_xpath('//*[@id="content"]/div/div/div/div/div[2]/div/div/textarea[3]')
 
@@ -22,33 +23,33 @@ def step_impl(context):
 	
 	route1 = browser.find_element_by_xpath('//*[@id="content"]/div/div/div/div/div[3]/div/div[2]/div[1]/div[1]/div/div/input')
 	route1.send_keys('Kent State')
-	continuebutton.click();
-	time.sleep(1)
+	continuebutton.click()
+	time.sleep(3)
 
 	
 	route2 = browser.find_element_by_xpath('//*[@id="content"]/div/div/div/div/div[3]/div/div[2]/div[2]/div[1]/div/div/input')
-	route2.send_keys('Pizza Hut, Kent')
-	continuebutton.click();
-	time.sleep(1)
+	route2.send_keys('Pizza Hut, Kent')     
+	continuebutton.click()
+	time.sleep(3)
 
 	
 	route3 = browser.find_element_by_xpath('//*[@id="content"]/div/div/div/div/div[3]/div/div[2]/div[3]/div[1]/div/div/input')
 	route3.send_keys('Walmart, Kent')
-	continuebutton.click();
-	time.sleep(1)
+	continuebutton.click()
+	time.sleep(3)
 	
 	route4 = browser.find_element_by_xpath('//*[@id="content"]/div/div/div/div/div[3]/div/div[2]/div[4]/div[1]/div/div/input')
 	route4.send_keys('Kent State')
 
-	time.sleep(1)
+	time.sleep(3)
 	
 	submitbuttom = browser.find_element_by_xpath('//*[@id="content"]/div/div/div/div/div[3]/div/div[2]/div[5]/button')
-	submitbuttom.click();
+	submitbuttom.click()
 	
-	time.sleep(1)
+	time.sleep(3)
 	
 	confirmbutton = browser.find_element_by_xpath('//*[@id="content"]/div/div/div/div/div[5]/div[2]/button')
-	confirmbutton.click();
+	confirmbutton.click()
 
 	time.sleep(4)
 	
@@ -58,7 +59,7 @@ def step_impl(context):
 	assert "250 Tallmadge Rd, Kent, OH 44240, USA" in browser.page_source
 
 	
-	browser.quit();
+	browser.quit()
 
 	
 	

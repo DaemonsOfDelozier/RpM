@@ -1,5 +1,5 @@
 Feature: Post Feature
 
-   Scenario: Name shows on account page
+   Scenario: User creates a post
         Given We go to the account page, and we are signed in
         Then We create a post
