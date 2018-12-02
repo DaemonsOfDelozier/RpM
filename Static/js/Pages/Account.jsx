@@ -15,7 +15,17 @@ export default class Account extends React.Component {
     }
 
     componentDidMount() {
-        axios.post("/GetUserInfo/", {id: this.props.userToView})
+        this.getUserInfo(this.props.userToView);
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.userToView != prevProps.userToView) {
+            this.getUserInfo(this.props.userToView);
+        }
+    }
+
+    getUserInfo(userToView) {
+        axios.post("/GetUserInfo/", {id: userToView})
             .then(response => {
                 this.setState({
                     accountInfo: response.data,
