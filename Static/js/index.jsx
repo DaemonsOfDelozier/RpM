@@ -34,7 +34,7 @@ const App = () => {
                                     <Link className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" to="/about/">About</Link>
                                 </li>
                                 <li className="nav-item mx-0 mx-lg-1">
-                                    <Link className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" to="/account/">Account</Link>
+                                    <Link className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" to={`/account/${user.id}`}>Account</Link>
                                 </li>
                             </ul>
                         </div>
