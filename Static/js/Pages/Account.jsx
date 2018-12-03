@@ -11,7 +11,8 @@ export default class Account extends React.Component {
         this.state = {
             accountInfo: null,
             loading: true,
-            editing: false
+            editing: false,
+            viewingOwnAccount: props.user.id === props.userToView
         }
 
         this.handleBioChange = this.handleBioChange.bind(this);
@@ -26,6 +27,9 @@ export default class Account extends React.Component {
     componentDidUpdate(prevProps) {
         if (this.props.userToView != prevProps.userToView) {
             this.getUserInfo(this.props.userToView);
+            this.setState({
+                viewingOwnAccount: this.props.user.id === this.props.userToView
+            });
         }
     }
 
@@ -67,8 +71,17 @@ export default class Account extends React.Component {
         this.setState({accountInfo: newInfo});
     }
 
+    renderEditButtons(field) {
+        if (!this.state.viewingOwnAccount) return null;
+        return (
+            <div>
+                <button className="user-buttons" type="button" onClick={() => this.setState({ editing: true })}> Edit {field} </button>
+                <button className="user-buttons" type="button" onClick={this.save}> Save {field} </button>
+            </div>
+        );
+    }
+
     render() {
-        console.log(this.state.accountInfo);
         if (this.state.loading) {
             return <img src="../dist/css/img/wheel-loader.gif" />;
         }
@@ -94,8 +107,7 @@ export default class Account extends React.Component {
                     label="Title" 
                     onChange={this.handleVehicleChange}
                     value={this.state.accountInfo.vehicle} />
-                <button className="user-buttons" type="button" onClick={() => this.setState({ editing: true })}> Edit Car </button>
-                <button className="user-buttons" type="button" onClick={this.save}> Save Car </button>
+                {this.renderEditButtons("car")}
                 <h5 style={{ fontWeight: "bold", marginLeft: "40px" }}> Bio </h5>
                 <TextField
                     class="bio"
@@ -105,8 +117,7 @@ export default class Account extends React.Component {
                     label="Description"
                     onChange={this.handleBioChange}
                     value={this.state.accountInfo.bio} />
-                <button className="user-buttons" type="button" onClick={() => this.setState({ editing: true })}> Edit Bio </button>
-                <button className="user-buttons" type="button" onClick={this.save}> Save Bio </button>
+                {this.renderEditButtons("bio")}
             </div>
 
         );
