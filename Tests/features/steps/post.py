@@ -9,8 +9,7 @@ import os
 @then(u'We create a post')
 def step_impl(context):
 	browser = context.browser
-	google_beat_us = context.google_beat_us
-	createnwpost = browser.find_element_by_xpath('//*[@id="content"]/div/div/div/a/button');
+	createnwpost = browser.find_element_by_xpath('//*[@id="content"]/div/div/div/a/button')
 	createnwpost.click()
 	time.sleep(3)
 	title = browser.find_element_by_xpath('//*[@id="content"]/div/div/div/div/div[1]/div/input')
