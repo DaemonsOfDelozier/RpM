@@ -10,6 +10,7 @@ import NoMatch from "./Pages/404.jsx"
 
 const App = () => {
     const user = window.user;
+    const userid = user ? user.id : "";
 
     return (
         <Router>
@@ -30,7 +31,7 @@ const App = () => {
                                     <Link className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" to="/about/">About</Link>
                                 </li>
                                 <li className="nav-item mx-0 mx-lg-1">
-                                    <Link className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" to={`/account/${user.id}`}>Account</Link>
+                                    <Link className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" to={`/account/${userid}`}>Account</Link>
                                 </li>
                             </ul>
                         </div>
