@@ -48,7 +48,7 @@ def Login():
 
         if dbUser == None:
             profile = json['profileObj']
-            dbUser = { 'id': userid, 'name': profile['name'], 'email': profile['email'] }
+            dbUser = { 'id': userid, 'name': profile['name'], 'email': profile['email'], 'bio': "", 'vehicle': "" }
             userTable.insert(dbUser)
         
         user = User(dbUser['id'], dbUser['name'], dbUser['email'])
@@ -100,6 +100,34 @@ def SubmitPost():
 
     db.table("Posts").insert(newPost.getDatabaseModel())
     return "success"
+
+@app.route("/GetUserInfo/", methods=["POST"])
+def GetUserInfo():
+    if not request.json:
+        abort(400)
+
+    json = request.get_json()
+
+    user = loadUser(json['id'])
+    return jsonify(user.getDatabaseModel())
+
+@app.route("/UpdateUserInfo/", methods=["POST"])
+@login_required
+def UpdateUserInfo():
+    if not request.json:
+        abort(400)
+
+    json = request.get_json()
+
+    user = User(userID=current_user.id, 
+                name=current_user.name, 
+                email=current_user.email,
+                bio=json['bio'],
+                vehicle=json['vehicle'])
+    
+    db.table("Users").update(user.getDatabaseModel(), Query().id == current_user.id)
+
+    return jsonify(user.getDatabaseModel())
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')

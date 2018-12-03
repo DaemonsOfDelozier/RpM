@@ -32,5 +32,8 @@
       "@babel/preset-env",
       "@babel/preset-react"
     ]
+  },
+  "dependencies": {
+    "@types/react-router-dom": "^4.3.1"
   }
 }
