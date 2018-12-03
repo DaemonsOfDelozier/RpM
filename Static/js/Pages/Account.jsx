@@ -75,7 +75,7 @@ export default class Account extends React.Component {
         if (!this.state.viewingOwnAccount) return null;
         return (
             <div>
-                <button className="user-buttons" style={{marginRight: "225px"}} type="button" onClick={() => this.setState({ editing: true })}> Edit {field} </button>
+                <button className="user-buttons edit-button" type="button" onClick={() => this.setState({ editing: true })}> Edit {field} </button>
                 <button className="user-buttons" type="button" onClick={this.save}> Save {field} </button>
             </div>
         );

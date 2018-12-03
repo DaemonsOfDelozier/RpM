@@ -296,9 +296,29 @@ html, body {
   padding: 3 3 3 3;
 }
 
+.edit-button {
+  margin-right: 225px;
+}
+
 @media screen and (max-width: 991px) {
   .form {
     padding: 0 20 20 20;
+  }
+
+  .bio {
+    margin: 0 10;
+  }
+
+  .stuff{
+    margin: 50 10 0 10;
+  }
+
+  .edit-button {
+    margin-right: 10px;
+  }
+
+  .user-buttons{
+    margin-top: -10px;
   }
 }
 
