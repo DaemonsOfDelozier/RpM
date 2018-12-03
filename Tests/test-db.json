@@ -4,22 +4,30 @@
     "1": {
       "id": "111878986403861738670",
       "name": "Clay James",
-      "email": "clayw.james@gmail.com"
+      "email": "clayw.james@gmail.com",
+      "bio": "",
+      "vehicle": ""
     },
     "2": {
       "id": "112242778374526994969",
       "name": "Joshua Dotson",
-      "email": "jdotso11@kent.edu"
+      "email": "jdotso11@kent.edu",
+      "bio": "",
+      "vehicle": ""
     },
     "3": {
       "id": "107379256252231037647",
       "name": "Roger Cooper",
-      "email": "roger.h.cooper@gmail.com"
+      "email": "roger.h.cooper@gmail.com",
+      "bio": "",
+      "vehicle": ""
     },
     "4": {
       "id": "116982725875632556390",
       "name": "justin mckenna",
-      "email": "mckennaman123@gmail.com"
+      "email": "mckennaman123@gmail.com",
+      "bio": "",
+      "vehicle": ""
     }
   },
   "Posts": {
@@ -49,7 +57,7 @@
     },
     "3": {
       "id": "a6e63870c1c24a16b9c023f692fd006d",
-      "userid": "111878986403861738670",
+      "userid": "116982725875632556390",
       "title": "Testo de Posto the third",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus aliquet est sed orci suscipit, sit amet venenatis odio tincidunt. Vivamus non gravida ex. Vestibulum vitae nunc condimentum, mollis dolor non, molestie tortor. Fusce sit amet ante quis purus malesuada sagittis. Nulla sed iaculis nibh. Cras feugiat at ligula at volutpat. Duis ullamcorper nunc eu gravida facilisis. Curabitur augue sem, pulvinar eu tempus at, condimentum ac libero. Ut nec diam vel neque sollicitudin cursus. Proin vitae neque aliquam, laoreet ex vel, semper lectus. Integer pharetra enim justo, in tincidunt quam ullamcorper sed. Suspendisse potenti. In finibus, ligula quis dignissim consequat, tellus.",
       "notes": "I hope this page looks good",

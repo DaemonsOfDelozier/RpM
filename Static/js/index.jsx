@@ -10,6 +10,7 @@ import NoMatch from "./Pages/404.jsx"
 
 const App = () => {
     const user = window.user;
+    const userid = user ? user.id : "";
 
     return (
         <Router>
@@ -30,7 +31,7 @@ const App = () => {
                                     <Link className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" to="/about/">About</Link>
                                 </li>
                                 <li className="nav-item mx-0 mx-lg-1">
-                                    <Link className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" to="/account/">Account</Link>
+                                    <Link className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" to={`/account/${userid}`}>Account</Link>
                                 </li>
                             </ul>
                         </div>
@@ -45,7 +46,9 @@ const App = () => {
                     <Switch>
                         <Route path="/explore/" render={(props) => <Explore {...props} user={user} />} />
                         <Route path="/about/" render={(props) => <About {...props} user={user} />} />
-                        <Route path="/account/" render={(props) => <Account {...props} user={user} />} />
+                        <Route path="/account/:userid" render={(props) => 
+                            <Account {...props} user={user} userToView={props.match.params.userid || user.id}/>
+                        }/>
                         <Route path="/new-post/" render={(props) => <NewPost {...props} user={user} />} />
                         <Redirect exact from='/' to='/explore' />
                         <Route component={NoMatch} />
