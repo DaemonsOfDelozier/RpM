@@ -10,7 +10,9 @@ def test_user_stone():
     assert stone.email == "fmerges@att.net"
     assert stone.getDatabaseModel() == {'id': "15559907691249342452", 
                                         'name': "Stone Ermintrude",
-                                        'email': "fmerges@att.net"}
+                                        'email': "fmerges@att.net",
+                                        'bio': "",
+                                        'vehicle': ""}
 
 def test_user_sarina():
     stone = User.User("01408433132153922941", "Sarina Bryson", "gommix@yahoo.com")
@@ -19,7 +21,9 @@ def test_user_sarina():
     assert stone.email == "gommix@yahoo.com"
     assert stone.getDatabaseModel() == {'id': "01408433132153922941", 
                                         'name': "Sarina Bryson",
-                                        'email': "gommix@yahoo.com"}
+                                        'email': "gommix@yahoo.com",
+                                        'bio': "",
+                                        'vehicle': ""}
 
 def test_user_darla():
     stone = User.User("81110540176349414340", "Darla Brett", "research@live.com")
@@ -28,7 +32,9 @@ def test_user_darla():
     assert stone.email == "research@live.com"
     assert stone.getDatabaseModel() == {'id': "81110540176349414340", 
                                         'name': "Darla Brett",
-                                        'email': "research@live.com"}       
+                                        'email': "research@live.com",
+                                        'bio': "",
+                                        'vehicle': ""}    
 
 def test_user_ferdie():
     stone = User.User("27590093802242994513", "Ferdie Kurt", "isotopian@optonline.net")
@@ -37,7 +43,9 @@ def test_user_ferdie():
     assert stone.email == "isotopian@optonline.net"
     assert stone.getDatabaseModel() == {'id': "27590093802242994513", 
                                         'name': "Ferdie Kurt",
-                                        'email': "isotopian@optonline.net"}
+                                        'email': "isotopian@optonline.net",
+                                        'bio': "",
+                                        'vehicle': ""}
 
 def test_user_gayla():
     stone = User.User("73013361165793008717", "Gayla Dion", "biglou@yahoo.ca")
@@ -46,4 +54,6 @@ def test_user_gayla():
     assert stone.email == "biglou@yahoo.ca"
     assert stone.getDatabaseModel() == {'id': "73013361165793008717", 
                                         'name': "Gayla Dion",
-                                        'email': "biglou@yahoo.ca"}                                                                                                             
+                                        'email': "biglou@yahoo.ca",
+                                        'bio': "",
+                                        'vehicle': ""}                                                                                                             
