@@ -100,7 +100,7 @@ def step_impl(context):
     password_text_box.send_keys('testing4lyfe')
     password_next_button = browser.find_element_by_xpath('//*[@id="passwordNext"]')
     password_next_button.click()
-    time.sleep(5)
+    time.sleep(7)
 
     
     original_window = browser.window_handles[0]

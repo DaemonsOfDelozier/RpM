@@ -78,6 +78,7 @@ def step_impl(context):
 @then(u'Go to every page on mobile')
 def step_impl(context):
 	browser = context.browser
+	time.sleep(1)
 
 	#going to explore page
 	menu_button = browser.find_element_by_xpath('//*[@id="mobileMenu"]/div/a')
