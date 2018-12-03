@@ -29,7 +29,9 @@ export default class Explore extends React.Component {
     render() {
         if (this.state.loading) return null;
         return (
-            <div style={{paddingTop: "90px"}}>
+            <div className= "explore" style={{paddingTop: "90px"}}>
+            <a href="https://www.instagram.com/routes_per_mile/"><img style={{float:"right"}} src="../dist/css/img/InstaLogo.png" height="42" width="42"/></a>
+            <a href="https://twitter.com/RoutesPerMile"><img style={{float:"right"}} src="../dist/css/img/TwitterLogo.png" height="42" width="42"/></a>
                 { this.state.posts.map(route => <RoutePost key={route.post.id} post={route} />) }
             </div>
         );
