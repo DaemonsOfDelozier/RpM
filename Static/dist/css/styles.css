@@ -237,9 +237,12 @@ html, body {
   border: 2px solid #0056b3;
 }
 .Account-Name{
-  margin-left: 10px;
   font-weight: bold;
-
+  font-size: 35px;
+  color: white;
+  padding-top: 7px;
+  margin-left: -5px;
+  
 }
 
 .hr-style{
@@ -250,16 +253,47 @@ html, body {
 }
 
 .bio{
-  margin-right: 230px;
+  margin-right: 400px;
   margin-left: 40px;
 }
 
 .user-buttons{
-  margin: 5 5 5 5;
+  float:right;
+  margin: -35 5 5 5;
   background-color: white;
   border: 2px solid #333;
   color:#333;
   font-weight: bold;
+}
+.user-buttons:hover{
+  color: #0056b3;
+  border: 2px solid #0056b3;
+}
+
+.circle {
+  width: 99px;
+  height: 99px;
+  border-radius: 50%;
+  color: white;
+  background: #333;
+  margin-left: 10px;
+  margin-top:5px;
+}
+.square {
+  height: 60px;
+  width: 2000px;
+  background-color: #333;
+  margin-left: 50px;
+  margin-top : -20px;
+}
+
+.stuff{
+  font-weight: bold;
+  margin-left: 35px;
+  margin-right: 400px;
+  background-color: #333;
+  color: white;
+  padding: 3 3 3 3;
 }
 
 @media screen and (max-width: 991px) {

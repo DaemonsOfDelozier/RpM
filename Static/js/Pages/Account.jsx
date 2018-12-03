@@ -75,7 +75,7 @@ export default class Account extends React.Component {
         if (!this.state.viewingOwnAccount) return null;
         return (
             <div>
-                <button className="user-buttons" type="button" onClick={() => this.setState({ editing: true })}> Edit {field} </button>
+                <button className="user-buttons" style={{marginRight: "225px"}} type="button" onClick={() => this.setState({ editing: true })}> Edit {field} </button>
                 <button className="user-buttons" type="button" onClick={this.save}> Save {field} </button>
             </div>
         );
@@ -87,10 +87,10 @@ export default class Account extends React.Component {
         }
         return (
             <div style={{ paddingTop: "120px" }}>
-                <div>
-                    <h2 className="Account-Name">
-                        {this.state.accountInfo.name}
-                    </h2>
+            <div className="circle">
+                <div className="square">
+                    <h2 className="Account-Name"> {this.state.accountInfo.name} </h2>
+                </div>
                 </div>
                 <Link to="/new-post">
                     <button type="button" className="button-make-new-post">
@@ -98,9 +98,10 @@ export default class Account extends React.Component {
                     </button>
                 </Link>
                 <hr className="hr-style"></hr>
-                <h5 style={{ fontWeight: "bold", marginLeft: "40px" }}> My car </h5>
+                <h5 className= "stuff"  style={{marginTop: "30px"}}> My car </h5>
                 <TextField
                     class="bio"
+                    style={{marginTop: "-10px", marginBottom: "20px"}}
                     type="text"
                     fullWidth
                     InputProps={{ readOnly: !this.state.editing }}
@@ -108,9 +109,10 @@ export default class Account extends React.Component {
                     onChange={this.handleVehicleChange}
                     value={this.state.accountInfo.vehicle} />
                 {this.renderEditButtons("car")}
-                <h5 style={{ fontWeight: "bold", marginLeft: "40px" }}> Bio </h5>
+                <h5 className= "stuff"> Bio </h5>
                 <TextField
                     class="bio"
+                    style={{marginTop: "-10px", marginBottom: "20px"}}
                     multiline
                     fullWidth
                     InputProps={{ readOnly: !this.state.editing }}
@@ -118,6 +120,7 @@ export default class Account extends React.Component {
                     onChange={this.handleBioChange}
                     value={this.state.accountInfo.bio} />
                 {this.renderEditButtons("bio")}
+                <hr className="hr-style" style={{marginTop: "100px"}}></hr>
             </div>
 
         );
