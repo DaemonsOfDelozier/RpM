@@ -34,12 +34,12 @@ def step_impl(context):
 	assert 'explore' in browser.current_url
 
 	#going to about
-	explore_button = browser.find_element_by_xpath('//*[@id="menu"]/li[3]/a')
+	explore_button = browser.find_element_by_xpath('//*[@id="menu"]/li[2]/a')
 	explore_button.click()
 	assert 'about' in browser.current_url
 
 	#going to account
-	explore_button = browser.find_element_by_xpath('//*[@id="menu"]/li[4]/a')
+	explore_button = browser.find_element_by_xpath('//*[@id="menu"]/li[3]/a')
 	explore_button.click()
 	assert 'account' in browser.current_url
 
@@ -78,6 +78,7 @@ def step_impl(context):
 @then(u'Go to every page on mobile')
 def step_impl(context):
 	browser = context.browser
+	time.sleep(1)
 
 	#going to explore page
 	menu_button = browser.find_element_by_xpath('//*[@id="mobileMenu"]/div/a')
@@ -89,7 +90,7 @@ def step_impl(context):
 	menu_button = browser.find_element_by_xpath('//*[@id="mobileMenu"]/div/a')
 	menu_button.click()
 	time.sleep(1)
-	about_button = browser.find_element_by_xpath('//*[@id="mobileMenu"]/div/ul/li[3]/a')
+	about_button = browser.find_element_by_xpath('//*[@id="mobileMenu"]/div/ul/li[2]/a')
 	about_button.click()
 	assert 'about' in browser.current_url
 	time.sleep(1)
@@ -98,7 +99,7 @@ def step_impl(context):
 	menu_button = browser.find_element_by_xpath('//*[@id="mobileMenu"]/div/a')
 	menu_button.click()
 	time.sleep(1)
-	account_button = browser.find_element_by_xpath('//*[@id="mobileMenu"]/div/ul/li[4]/a')
+	account_button = browser.find_element_by_xpath('//*[@id="mobileMenu"]/div/ul/li[3]/a')
 	account_button.click()
 	assert 'account' in browser.current_url
 
