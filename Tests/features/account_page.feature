@@ -6,6 +6,5 @@ Feature: Account Page
         And   We can edit and view our bio
 
     Scenario: Look at someone elses account
-        Given We see someone elses post
-        Then  We can click on their name
-        And   We can see their profile
+        Given We are signed in on the explore page
+        Then  We can click on someones name and see their profile
